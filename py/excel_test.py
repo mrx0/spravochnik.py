@@ -2,7 +2,7 @@
 import openpyxl
 # Создание объекта, читаем файл и присваиваем объекту книгу из файла.
 # data_only=True - берём только значения (не формулы)
-wb = openpyxl.reader.excel.load_workbook(filename="СПРАВОЧНИК_.xlsx", data_only=True)
+wb = openpyxl.reader.excel.load_workbook(filename="../СПРАВОЧНИК_.xlsx", data_only=True)
 # Выводим массив с названиями листов вниги
 print(wb.sheetnames)
 # Активируем лист по его индексу
