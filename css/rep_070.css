@@ -126,8 +126,10 @@
     max-height:50px;
 }*/
 
+/*!!!*/
 .k-grid td {
-    white-space: pre-wrap;
+    /*white-space: pre-wrap;*/
+    white-space: normal;
     text-overflow: ellipsis;
 }
 
