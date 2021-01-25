@@ -134,3 +134,4 @@ dmypy.json
 *.orig
 
 /config.*
+/python_error.log

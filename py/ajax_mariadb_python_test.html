@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>AJAX Python Echo </title>
+        <meta charset="utf-8" />
+        <script src="../js/jquery-1.12.1.js"></script>
+        <script type="text/javascript">
+            // $(document).ready(function(){
+            //     $('#form').submit(function(event){
+            //         $.post("ajax_python_test.py",{data:$("#in1").val()},onResponse);
+            //         return false;
+            //     })
+            //     function onResponse(data){
+            //         $("#in2").text(data);
+            //     }
+            // })
+
+            // Когда загрузился весь документ (DOM)
+            $(document).ready(function(){
+                // Клик на элементе с id="btn" в body
+                // $("body").on("click", "#btn", function(event){
+                // Любое изменение данных в поле с id="in1"
+                $("body").on("change keyup input click", "#in1", function(event){
+                    // Выводим в консоль
+                    //console.log(event);
+
+                    // Проверяем нажата ли именно левая кнопка мыши (тут не надо, но на будущее) //!!! с on("change" ... ) работать конечно же не будет, только с on("click" ....)
+                    // if (event.which === 1)  {
+
+                        // Куда передаём данные и отекда будем ждать ответ (скрипт *.py)
+                        let link = "py/ajax_mariadb_python_test.py";
+
+                        // Данные, которые передаём
+                        let reqData = {
+                            data: $("#in1").val()
+                        };
+                        // Выводим в консоль
+                        //console.log(reqData);
+
+                        $.ajax({
+                            url: link,
+                            global: false,
+                            type: "POST",
+                            dataType: "JSON",
+                            data: reqData,
+                            cache: false,
+                            beforeSend: function () {
+                                // Что-то делаем пока ждём ответа
+                                // $('#errrror').html("<div style='width: 120px; height: 32px; padding: 10px; text-align: center; vertical-align: middle; border: 1px dotted rgb(255, 179, 0); background-color: rgba(255, 236, 24, 0.5);'><img src='img/wait.gif' style='float:left;'><span style='float: right;  font-size: 90%;'> обработка...</span></div>");
+                            },
+                            // Действие, при ответе с сервера
+                            success: function (res) {
+                                // Выводим в консоль
+                                // console.log(res);
+                                // console.log(res.data);
+
+                                //$("#in2").html(res);
+                                $("#in2").html(res.data);
+                            }
+                        });
+                    // }
+                });
+            })
+
+        </script>
+    </head>
+    <body>
+    <!--<form id="form" method="POST">-->
+        <input id="in1" type="text" autocomplete="off">
+        <button id="btn">Test</button>
+    <!--</form>-->
+    <p id="in2"></p>
+    </body>
+</html>
