@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+
+<html style="" class="">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+	<title>Справочник v2.0</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./imgs/favicon.ico">
+    <link href="./css/Site.css" rel="stylesheet" type="text/css">
+
+	<link href="./css/css.css" rel="stylesheet">
+
+    
+    <link href="./css/all.css" rel="stylesheet" type="text/css">
+	<link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="./css/kendo.common.min.css" rel="stylesheet" type="text/css">
+	
+	<link href="./css/kendo.silver.min.css" rel="stylesheet" type="text/css">
+	
+	
+	<link href="./css/kendo.silver.mobile.min.css" rel="stylesheet" type="text/css">
+	<link href="./css/kendo.mobile.all.min.css" rel="stylesheet" type="text/css">
+	
+	<link href="./css/jquery-ui.min.css" rel="stylesheet" type="text/css">
+	<style>
+		body {
+			font-size: 11px;
+		}
+	</style>
+	<script src="./js/jquery-1.12.1.js"></script>
+
+	<!--<script src="./js/app.js"></script>-->
+
+	<script src="./js/dlgTree.js"></script>
+	<script src="./js/jquery-ui-1.12.1.min.js"></script>
+	<script src="./js/kendo.all.min.js"></script>
+	<script src="./js/jszip.min.js"></script>
+	<script src="./js/pako_deflate.min.js"></script>
+	<script src="./js/kendo.culture.ru-RU.min.js"></script>
+	<script src="./js/kendo.messages.ru-RU.min.js"></script>
+	<script>
+        // kendo.culture("ru-RU");
+	</script>
+    <script>
+        // kendo.pdf.defineFont({
+        //     "DejaVu Sans": "http://kraz-s-sdsrv.hq.root.ad/sd/kendoui" +"/Content/kendo/" + "2019.2.619" + "/fonts/DejaVu/DejaVuSans.ttf",
+        //     "DejaVu Sans|Bold": "http://kraz-s-sdsrv.hq.root.ad/sd/kendoui" + "/Content/kendo/" + "2019.2.619" + "/fonts/DejaVu/DejaVuSans-Bold.ttf",
+        //     "DejaVu Sans|Bold|Italic": "http://kraz-s-sdsrv.hq.root.ad/sd/kendoui" + "/Content/kendo/" + "2019.2.619" + "/fonts/DejaVu/DejaVuSans-Oblique.ttf",
+        //     "DejaVu Sans|Italic": "http://kraz-s-sdsrv.hq.root.ad/sd/kendoui" + "/Content/kendo/" + "2019.2.619" + "/fonts/DejaVu/DejaVuSans-Oblique.ttf",
+        //     "WebComponentsIcons": "http://kraz-s-sdsrv.hq.root.ad/sd/kendoui" + "/Content/kendo/" + "2019.2.619" + "/fonts/glyphs/WebComponentsIcons.ttf"
+        // });
+    </script>
+    <style type="text/css">
+        html,
+        body,
+        #app {
+            margin: 0;
+            padding: 0;
+            border-width: 0;
+            height: 100%; /* DO NOT USE !important for setting the Grid height! */
+            overflow-y: hidden;
+        }
+    </style>
+</head>
+<body>
+	<div id="app">
+		<script type="text/x-kendo-template" id="tvTreeView-template">
+			<img class='k-image' alt='#: item.NAME #' src='/SD/SD_Reports/Images/treeitem_#= item.STATUS #.png' />#: item.NAME #
+		</script>
+		<script>
+            var actionImages = '/SD/SD_Reports/Images';
+            var actionContent = '/SD/SD_Reports/Content';
+		</script>
+		<link href="./css/rep_070.css" rel="stylesheet">
+
+        <div id="header1" class="container-fluid" style="padding:.3em .3em 0;background-color: #1984c8; color:#fff;">
+            <div id="panelfind" class="float-left">
+                <div class="h4" style="margin: .3em .3em 0; vertical-align:middle; text-align: center;">
+
+                    <a href="index.html" style="float:left; margin:-0.2em 0.2em 0.2em -0.2em; color:#fff;" title="Вернутся на главную"><!--<i class="fas fa-home" style="font-size:24px;"></i>-->
+                        <!--<img src="./imgs/logo.png" style="max-width:23px; float:left; margin: -0.2em 0.2em 0.2em -0.1em;">-->
+                        Справочник v2.0
+                    </a>
+                 </div>
+            </div>
+            <div class="float-right">
+                <p class="nav" style="font-size:11px">Имя пользователя(Login)</p>
+                <!--<p class="nav" style="font-size:11px; cursor:pointer;" title="Настроить колонки" onclick="setColumnUsers()"><span class="k-icon k-i-gear" style="font-size:12px;"></span> <span style="text-decoration:underline;">По умолчанию</span></p>-->
+            </div>
+        </div>
+
+<div id="vertical" style="height:100%;" data-role="splitter" class="k-widget k-splitter">
+    <div id="top-panel" role="group" class="k-pane k-scrollable" style="position: absolute; top: 0px;  /*height: 897px;*/ /*width: 100%;*/">
+        <div id="panelgrid" style="height: 867px;">
+            <div id="grid" data-role="grid" class="k-grid k-widget k-display-block k-reorderable" style="height: 867px;">
+                <div class="k-header k-grid-toolbar">
+                    <div id="panelfind1" class="float-left">
+                        <!--<div id="expandAll" style="float:left;" title="Развернуть все группы" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-icon k-i-zoom-in"></span></div>
+                        <div id="collapseAll" style="float:left;" title="Свернуть все группы" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-icon k-i-zoom-out"></span></div>
+                        <div id="filterBtn" style="float:left;" data-role="button" class="k-button k-button-icontext" role="button" aria-disabled="false" tabindex="0"><img alt="icon" class="k-image" src="./imgs/refresh.png"><span id="filterTxt">Обновить <br> <span id="loadingProgressBar" style="float:left; display: none;" data-role="progressbar" class="k-widget k-progressbar k-progressbar-horizontal"></span></span></div>
+
+                        <x-field>
+                            <span class="k-icon k-i-zoom search-icon"></span>
+                            <input id="NOMER_DEMAND" name="NOMER_DEMAND" type="search" style="width:100px;" placeholder="Поиск по №" class="k-search" title="Поиск по № заявки">
+                            <span class="close" onclick="ClearInput()" id="clear" title="Очистить">×</span>
+                        </x-field>-->
+
+
+                        <!--<span class="km-switch km-widget km-switch-off"><input type="checkbox" id="date-switch" aria-label="Отключение периода дат" title="Отключение периода дат" checked="checked" data-role="switch" class="km-widget">
+                            <span class="km-switch-wrapper">
+                                <span class="km-switch-background" style="margin-left: -50px;"></span>
+                            </span>
+                            <span class="km-switch-container">
+                                <span class="km-switch-handle" style="transform: translateX(0px);">
+                                    <span class="km-switch-label-on">Вкл</span>
+                                    <span class="km-switch-label-off">Откл</span>
+                                </span>
+                            </span>
+                        </span>
+                        <span class="k-widget k-datepicker text-box single-line" style="">
+                            <span class="k-picker-wrap k-state-disabled">
+                                <input class="text-box single-line k-input" id="D_BEGIN" name="D_BEGIN" type="text" value="" data-role="datepicker" role="combobox" aria-expanded="false" aria-owns="D_BEGIN_dateview" autocomplete="off" aria-disabled="true" disabled="disabled" style="width: 100%;">
+                                <span unselectable="on" class="k-select" aria-label="select" role="button" aria-controls="D_BEGIN_dateview">
+                                    <span class="k-icon k-i-calendar"></span>
+                                </span>
+                            </span>
+                        </span>
+                        <span class="k-widget k-datepicker text-box single-line" style="">
+                            <span class="k-picker-wrap k-state-disabled">
+                                <input class="text-box single-line k-input" id="D_END" name="D_END" type="text" value="" data-role="datepicker" role="combobox" aria-expanded="false" aria-owns="D_END_dateview" autocomplete="off" aria-disabled="true" disabled="disabled" style="width: 100%;">
+                                <span unselectable="on" class="k-select" aria-label="select" role="button" aria-controls="D_END_dateview">
+                                    <span class="k-icon k-i-calendar"></span>
+                                </span>
+                            </span>
+                        </span>-->
+
+                        <!-- Тут будет меню -->
+                        <!-- класс k-state-active и aria-pressed="true" на кнопке подсвечивает её как активную -->
+                        <div id="STATUS" data-role="buttongroup" class="k-widget k-button-group" role="group" tabindex="0">
+                                <span title="" data-value="1" aria-pressed="false" role="button" class="k-button k-state-active">Оборудование</span>
+                                <span title="" data-value="2" aria-pressed="false" role="button" class="k-button">Сотрудники</span>
+                                <span title="" data-value="3" aria-pressed="true" role="button" class="k-button">Что-то</span>
+                                <span title="" data-value="4" aria-pressed="false" role="button" class="k-button">Что-то ещё</span>
+                        </div>
+
+                        <!-- Тут будет дополнительное меню (если будет нужен) -->
+                        <!--<div id="STATUS_EXT" data-role="buttongroup" class="k-widget k-button-group" role="group" tabindex="0" aria-disabled="false">
+                            <span title="" data-value="1" data-status="1" aria-pressed="true" role="button" class="k-button k-state-active k-state-focused">Что-то 1</span>
+                            <span title="" data-value="2" data-status="1" aria-pressed="false" role="button" class="k-button">Что-то 2</span>
+                            <span title="" data-value="3" data-status="0" aria-pressed="false" role="button" class="k-button k-state-disabled">Что-то 3</span>
+                            <span title="" data-value="4" data-status="0" aria-pressed="false" role="button" class="k-button k-state-disabled">Что-то 4</span>
+                        </div>-->
+
+                        <!--<div id="STATUS_3" data-role="buttongroup" class="k-widget k-button-group" role="group" tabindex="0" aria-disabled="false">
+                            <span title="Н.з.выдан, Н.з.выполняется" data-value="0" aria-pressed="false" role="button" class="k-button">В работе</span>
+                            <span title="Н.з. в ожидании" data-value="1" aria-pressed="false" role="button" class="k-button">Ожидание</span>
+                            <span title="Н.з. выдано, Н.з. выполняется, Н.з. в Ожидании" data-value="2" aria-pressed="true" role="button" class="k-button k-state-active">Все</span>
+                        </div>-->
+                    </div>
+
+                    <!--<div id="help" style="float:right;" title="Помощь" data-role="button" class="k-button" role="button" aria-disabled="false" tabindex="0">
+                        <span class="k-icon k-i-help"></span>
+                    </div>
+                    <a role="button" class="k-button k-button-icontext k-grid-excel" href="">
+                        <span class="k-icon k-i-file-excel"></span>
+                    </a>-->
+                </div>
+
+                <div class="k-grouping-header" data-role="droptarget">
+                    <div id="STATUS_EXT" data-role="buttongroup" class="k-widget k-button-group" role="group" tabindex="0" aria-disabled="false">
+                        <span title="" data-value="1" data-status="1" aria-pressed="true" role="button" class="k-button k-state-active k-state-focused">Ноутбук</span>
+                        <span title="" data-value="2" data-status="1" aria-pressed="false" role="button" class="k-button">ПК</span>
+                        <span title="" data-value="3" data-status="0" aria-pressed="false" role="button" class="k-button k-state-disabled">Телефон</span>
+                        <span title="" data-value="4" data-status="0" aria-pressed="false" role="button" class="k-button k-state-disabled">И так далее, выгрузить из справочника в бД</span>
+                    </div>
+                </div>
+
+                <div class="k-grid-header" style="padding-right: 17px;">
+                    <div class="k-grid-header-wrap k-auto-scrollable" data-role="resizable">
+                        <table role="grid">
+                            <colgroup>
+                                <col style="width: 50px;  min-width: 50px;">
+                                <col style="width: 100px">
+                                <col style="width: 100px; min-width: 100px;">
+                                <col style="width: 80px">
+                                <!--<col style="width: 52px">-->
+                                <!--<col style="width: 43px">-->
+                                <col style="width: 100px; min-width: 100px;">
+                                <col style="width: 200px">
+                                <!--<col style="width:87px">
+                                <col style="width:87px">
+                                <col style="width:104px">-->
+                                <col style="width:186px">
+                                <!--<col style="width:52px">
+                                <col style="width:34px">
+                                <col style="width:34px">
+                                <col style="width:52px">-->
+                                <!--<col style="width:69px">
+                                <col style="width:69px">
+                                <col style="width:52px">
+                                <col style="width:69px">
+                                <col style="width:34px">-->
+                            </colgroup>
+                            <thead role="rowgroup">
+                                <tr role="row">
+                                    <th scope="col" role="columnheader" data-field="COUNT_VR" aria-haspopup="true" rowspan="1" data-title="" data-groupable="false" data-index="1" id="b29dedd7-57f8-465a-8ed7-263c454c422d" title="" class="k-header" data-role="columnsorter">
+                                        <a class="k-link" href="">Тип</a>
+                                    </th>
+                                    <th scope="col" role="columnheader" data-field="DOCS" aria-haspopup="true" rowspan="1" data-title="" data-groupable="false" data-index="2" id="d18deb96-8f96-4ae2-8b0b-47db353fbc7e" title="" class="k-header" data-role="columnsorter">
+                                        <a class="k-link" href="">Модель</a>
+                                    </th>
+                                    <th scope="col" role="columnheader" data-field="NOMER_DEMAND" aria-haspopup="true" rowspan="1" data-title="" data-groupable="false" data-index="0" id="657d0dca-7461-490a-ad56-2fa0ff5aec83" title="" class="k-header" data-role="columnsorter">
+                                        <a class="k-link" href="">Инвент. №</a>
+                                    </th>
+                                    <th scope="col" role="columnheader" data-field="DATE_BEGIN" aria-haspopup="true" rowspan="1" data-title="" aria-label="" data-aggregates="count" data-index="3" id="b5e42713-5842-46c7-8611-68e18393ed37" title="Дата выдачи" class="k-header" data-role="columnsorter">
+                                        <!--<a class="k-grid-filter" href="#" title="фильтровать" aria-label="фильтровать" tabindex="-1">
+                                            <span class="k-icon k-i-filter"></span>
+                                        </a>-->
+                                        <a class="k-link" href="">Серийн. №</a>
+                                    </th>
+                                    <!--<th scope="col" role="columnheader" data-field="STATUS_DEMAND" aria-haspopup="true" rowspan="1" data-title="Статус" aria-label="Статус Press ctrl + space to group" data-aggregates="count" data-index="4" id="7cc54bd4-f742-4777-9303-f8044511be31" title="Статус" class="k-header k-with-icon k-filterable" data-role="columnsorter">
+                                        <a class="k-grid-filter" href="" title="фильтровать" aria-label="фильтровать" tabindex="-1">
+                                            <span class="k-icon k-i-filter"></span>
+                                        </a>
+                                        <a class="k-link" href="">Статус</a>
+                                    </th>-->
+                                    <!--<th scope="col" role="columnheader" data-field="NAME_STATUS_DEMAND" aria-haspopup="true" rowspan="1" data-title="Приоритет" aria-label="Приоритет Press ctrl + space to group" data-aggregates="count" data-index="5" id="872214cb-8bb8-4e20-9748-2b8d854dc261" title="Приоритет" class="k-header k-with-icon k-filterable" data-role="columnsorter">
+                                        <a class="k-grid-filter" href="" title="фильтровать" aria-label="фильтровать" tabindex="-1">
+                                            <span class="k-icon k-i-filter"></span>
+                                        </a>
+                                        <a class="k-link" href="">Приоритет</a>
+                                    </th>-->
+                                    <th scope="col" role="columnheader" data-field="CL_PHONE" aria-haspopup="true" rowspan="1" data-title="Host / Т.номер" aria-label="" data-aggregates="count" data-index="6" id="786d2679-6aad-4b0d-a59c-5030f828ef8e" title="Телефон" class="k-header" data-role="columnsorter">
+                                        <!--<a class="k-grid-filter" href="" title="фильтровать" aria-label="фильтровать" tabindex="-1">
+                                            <span class="k-icon k-i-filter"></span>
+                                        </a>-->
+                                        <a class="k-link" href="">Host / Т.номер</a>
+                                    </th>
+                                    <th scope="col" role="columnheader" data-field="NAME_CLIENT" aria-haspopup="true" rowspan="1" data-title="Числится" aria-label="" data-aggregates="count" data-index="7" id="451c820c-081d-430a-9997-c4f55f9fdcd2" title="Клиент" class="k-header" data-role="columnsorter">
+                                        <!--<a class="k-grid-filter" href="" title="фильтровать" aria-label="фильтровать" tabindex="-1">
+                                            <span class="k-icon k-i-filter"></span>
+                                        </a>-->
+                                        <a class="k-link" href="">Числится</a>
+                                    </th>
+                                    <!--<th scope="col" role="columnheader" data-field="NAME_TEMPLATE_DEMAND" aria-haspopup="true" rowspan="1" data-title="Шаблон" aria-label="Шаблон Press ctrl + space to group" data-aggregates="count" data-index="8" id="11cf4c1a-2958-48ae-91e0-57c5e063757b" title="Шаблон" class="k-header k-with-icon k-filterable" data-role="columnsorter">
+                                        <a class="k-grid-filter" href="" title="фильтровать" aria-label="фильтровать" tabindex="-1">
+                                            <span class="k-icon k-i-filter"></span>
+                                        </a>
+                                        <a class="k-link" href="">Шаблон</a>
+                                    </th>
+                                    <th scope="col" role="columnheader" data-field="NAME_GROUP_WORK" aria-haspopup="true" rowspan="1" data-title="Тип заявки" aria-label="Тип заявки Press ctrl + space to group" data-aggregates="count" data-index="9" id="fcbbb057-0b31-4a6c-bec2-356a6b4a25a0" title="Тип заявки" class="k-header k-with-icon k-filterable" data-role="columnsorter"><a class="k-grid-filter" href="http://kraz-s-sdsrv.hq.root.ad/SD/SD_Reports/Rep_070?id_res=130933&amp;idNode=149978#" title="фильтровать" aria-label="фильтровать" tabindex="-1"><span class="k-icon k-i-filter"></span></a><a class="k-link" href="http://kraz-s-sdsrv.hq.root.ad/SD/SD_Reports/Rep_070?id_res=130933&amp;idNode=149978#">Тип заявки</a>
+                                    </th>
+                                    <th scope="col" role="columnheader" data-field="NAME_OBJECT_KUPSO" aria-haspopup="true" rowspan="1" data-title="КЕ" aria-label="КЕ Press ctrl + space to group" data-aggregates="count" data-index="10" id="d7afdaa2-bb7f-4179-aa12-c2cc6c578a00" title="Конфиг. единица" class="k-header k-with-icon k-filterable" data-role="columnsorter"><a class="k-grid-filter" href="http://kraz-s-sdsrv.hq.root.ad/SD/SD_Reports/Rep_070?id_res=130933&amp;idNode=149978#" title="фильтровать" aria-label="фильтровать" tabindex="-1"><span class="k-icon k-i-filter"></span></a><a class="k-link" href="http://kraz-s-sdsrv.hq.root.ad/SD/SD_Reports/Rep_070?id_res=130933&amp;idNode=149978#">КЕ</a>
+                                    </th>-->
+                                    <th scope="col" role="columnheader" data-field="NOTE" aria-haspopup="true" rowspan="1" data-title="Описание" data-groupable="false" data-index="11" id="2fc10ed1-4709-41a5-b46d-31221285d389" title="Описание" class="k-header <!--k-with-icon k-filterable-->" data-role="columnsorter">
+                                        <!--<a class="k-grid-filter" href="" title="фильтровать" aria-label="фильтровать" tabindex="-1">
+                                            <span class="k-icon k-i-filter"></span>
+                                        </a>-->
+                                        <a class="k-link" href="">Примечания</a>
+                                    </th>
+                                    <!--<th scope="col" role="columnheader" data-field="DATE_CREATE" aria-haspopup="true" rowspan="1" data-title="Переведен" aria-label="Переведен Press ctrl + space to group" data-aggregates="count" data-index="12" id="4613db12-e8e0-40df-8498-a93a3063df64" title="Дата тек. статуса" class="k-header k-with-icon k-filterable" data-role="columnsorter"><a class="k-grid-filter" href="http://kraz-s-sdsrv.hq.root.ad/SD/SD_Reports/Rep_070?id_res=130933&amp;idNode=149978#" title="фильтровать" aria-label="фильтровать" tabindex="-1"><span class="k-icon k-i-filter"></span></a><a class="k-link" href="http://kraz-s-sdsrv.hq.root.ad/SD/SD_Reports/Rep_070?id_res=130933&amp;idNode=149978#">Переведен</a>
+                                    </th>
+                                    <th scope="col" role="columnheader" data-field="SLA_LIGHT" aria-haspopup="true" rowspan="1" data-title="SLA" aria-label="SLA Press ctrl + space to group" data-aggregates="count" data-index="13" id="cfe08601-e08d-4b65-b817-9e85d1e3a8a8" title="SLA" class="k-header" data-role="columnsorter"><a class="k-link" href="http://kraz-s-sdsrv.hq.root.ad/SD/SD_Reports/Rep_070?id_res=130933&amp;idNode=149978#">SLA</a></th><th scope="col" role="columnheader" data-field="DATE_PLAN_END" aria-haspopup="true" rowspan="1" data-title="Пл.оконч." aria-label="Пл.оконч. Press ctrl + space to group" data-aggregates="count" data-index="14" id="cec94d47-0e3d-4fe8-98d7-872e519fcc38" title="Дата планового окончания" class="k-header k-with-icon k-filterable k-sorted" data-role="columnsorter" data-dir="asc" aria-sort="ascending"><a class="k-grid-filter" href="http://kraz-s-sdsrv.hq.root.ad/SD/SD_Reports/Rep_070?id_res=130933&amp;idNode=149978#" title="фильтровать" aria-label="фильтровать" tabindex="-1"><span class="k-icon k-i-filter"></span></a><a class="k-link" href="http://kraz-s-sdsrv.hq.root.ad/SD/SD_Reports/Rep_070?id_res=130933&amp;idNode=149978#">Пл.оконч.<span class="k-icon k-i-sort-asc-sm"></span></a>
+                                    </th>
+                                    <th scope="col" role="columnheader" data-field="DAY_PLAN_END" aria-haspopup="true" rowspan="1" data-title="Ост.дней" aria-label="Ост.дней Press ctrl + space to group" data-aggregates="count" data-index="15" id="9a8b44e3-d89b-4079-abcb-d63890914784" title="Осталось дней" class="k-header k-with-icon k-filterable" data-role="columnsorter"><a class="k-grid-filter" href="http://kraz-s-sdsrv.hq.root.ad/SD/SD_Reports/Rep_070?id_res=130933&amp;idNode=149978#" title="фильтровать" aria-label="фильтровать" tabindex="-1"><span class="k-icon k-i-filter"></span></a><a class="k-link" href="http://kraz-s-sdsrv.hq.root.ad/SD/SD_Reports/Rep_070?id_res=130933&amp;idNode=149978#">Ост.дней</a>
+                                    </th>-->
+                                    <!--<th scope="col" role="columnheader" data-field="SHORT_NAME_TEAM" aria-haspopup="true" rowspan="1" data-title="Команда" aria-label="Команда Press ctrl + space to group" data-aggregates="count" data-index="16" id="29724011-adcb-4956-ba07-1ab35ef28084" title="Команда" class="k-header k-with-icon k-filterable" data-role="columnsorter"><a class="k-grid-filter" href="http://kraz-s-sdsrv.hq.root.ad/SD/SD_Reports/Rep_070?id_res=130933&amp;idNode=149978#" title="фильтровать" aria-label="фильтровать" tabindex="-1"><span class="k-icon k-i-filter"></span></a><a class="k-link" href="http://kraz-s-sdsrv.hq.root.ad/SD/SD_Reports/Rep_070?id_res=130933&amp;idNode=149978#">Команда</a>
+                                    </th>
+                                    <th scope="col" role="columnheader" data-field="NAME_TEAM" aria-haspopup="true" rowspan="1" data-title="Команда" aria-label="Команда Press ctrl + space to group" data-aggregates="count" data-index="17" id="ab1a1b78-d41f-4ddd-8a4e-4d3fe27df456" title="Команда" class="k-header k-with-icon k-filterable" data-role="columnsorter"><a class="k-grid-filter" href="http://kraz-s-sdsrv.hq.root.ad/SD/SD_Reports/Rep_070?id_res=130933&amp;idNode=149978#" title="фильтровать" aria-label="фильтровать" tabindex="-1"><span class="k-icon k-i-filter"></span></a><a class="k-link" href="http://kraz-s-sdsrv.hq.root.ad/SD/SD_Reports/Rep_070?id_res=130933&amp;idNode=149978#">Команда</a>
+                                    </th>
+                                    <th scope="col" role="columnheader" data-field="NAME_PERFORMER" aria-haspopup="true" rowspan="1" data-title="Исполнитель" aria-label="Исполнитель Press ctrl + space to group" data-aggregates="count" data-index="18" id="590611d7-aae7-429e-a5fe-159e0b4b77ee" title="Исполнитель" class="k-header k-with-icon k-filterable" data-role="columnsorter"><a class="k-grid-filter" href="http://kraz-s-sdsrv.hq.root.ad/SD/SD_Reports/Rep_070?id_res=130933&amp;idNode=149978#" title="фильтровать" aria-label="фильтровать" tabindex="-1"><span class="k-icon k-i-filter"></span></a><a class="k-link" href="http://kraz-s-sdsrv.hq.root.ad/SD/SD_Reports/Rep_070?id_res=130933&amp;idNode=149978#">Исполнитель</a>
+                                    </th>
+                                    <th scope="col" role="columnheader" data-field="CLIENT_ANSWER" aria-haspopup="true" rowspan="1" data-title="Уточнения" data-groupable="false" data-index="19" id="6bef3368-0cc0-4353-8dc7-6333d0363f04" class="k-header" data-role="columnsorter"><a class="k-link" href="http://kraz-s-sdsrv.hq.root.ad/SD/SD_Reports/Rep_070?id_res=130933&amp;idNode=149978#">Уточнения</a>
+                                    </th>
+                                    <th scope="col" role="columnheader" data-field="LINK_INTERNET" aria-haspopup="true" rowspan="1" data-title="URL" data-groupable="false" data-index="20" id="02882bfd-3528-4cd4-99c7-0560361ac063" title="URL" class="k-header" data-role="columnsorter">
+                                        <a class="k-link" href="">URL</a>
+                                    </th>-->
+                                </tr>
+                            </thead>
+                        <!--</table>
+                        <div class="k-resize-handle" style="top: 0px; left: 1742.5px; height: 30px; width: 9px; display: block;">
+                            <div class="k-resize-handle-inner"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="k-grid-content k-auto-scrollable" style="height: 752px;">
+                    <table role="grid" data-role="selectable" class="k-selectable">
+                        <colgroup>
+                            <col style="width:40px">
+                            <col style="width:26px">
+                            <col style="width:34px">
+                            <col style="width:52px">
+                            <col style="width:52px">
+                            <col style="width:43px">
+                            <col style="width:52px">
+                            <col style="width:52px">
+                            <col style="width:87px">
+                            <col style="width:87px">
+                            <col style="width:104px">
+                            <col style="width:186px">
+                            <col style="width:52px">
+                            <col style="width:34px">
+                            <col style="width:34px" class="k-sorted">
+                            <col style="width:52px">
+                            <col style="width:69px">
+                            <col style="width:69px">
+                            <col style="width:52px">
+                            <col style="width:69px">
+                            <col style="width:34px">
+                        </colgroup>-->
+                        <tbody role="rowgroup">
+
+                            <!--
+                            Классы для tr (или td?)
+                            k-alt - Выделение серым (через 1)
+                            k-master-row - ХЗ для чего
+                            redsRows - Выделение красным (просроченно)
+                            k-state-selected - Выделение синим (выбраная строка)
+                            -->
+
+                            <tr data-uid="71742817-5fad-4b59-a6e4-3e0e51b3dc84" role="row">
+                                <td class="" role="gridcell">
+                                    <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
+                                        <div style="margin:auto;" title="">
+                                            <!--<span class="k-icon k-i-track-changes-accept icon-color" id="icon_solution" style="color: rgb(25, 132, 200);"></span>-->
+                                            ноутбук
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="" role="gridcell">
+                                    <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
+                                        <div style="margin:auto; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" title="ThinkPad 13 2nd Gen 8G 256 W10P">
+                                            <!--<span class="k-icon k-i-attachment icon-color" id="icon_docs" style="color: rgb(25, 132, 200);"></span>
+                                            <sup style="font-size:9px;">3 </sup>-->
+                                            ThinkPad 13 2nd Gen 8G 256 W10P
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-copymenu="true" class="" role="gridcell">
+                                    <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
+                                        <div id="NOM_DEMAND" style="margin:auto; cursor: pointer; color: rgb(25, 132, 200);" title="56300000000560">
+                                            56300000000560
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="" role="gridcell">
+                                    <div style="margin:auto; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" title="ThinkPad 13 2nd Gen 8G 256 W10P">
+                                        54511517-0000411
+                                    </div>
+                                </td>
+                               <!-- <td class="" role="gridcell">
+                                    <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
+                                        <div style="margin:auto;" title="н.з. Выдано">
+                                            <span class="k-icon icon-color k-i-track-changes-enable " id="icon_status" style="color: rgb(25, 132, 200);"></span>
+                                        </div>
+                                    </div>
+                                </td>-->
+                                <!--<td class="" role="gridcell">
+                                    <div style="display: flex; position: relative; margin-left: auto; margin-right: auto;">
+                                        <div style="margin:auto;" title="Стандартный">
+                                            <span class="k-icon k-i-warning" style="color: green; font-size:24px;"></span>
+                                        </div>
+                                    </div>
+                                </td>-->
+                                <td class="" role="gridcell">
+                                    <!--<a href="" target="_blank" title="RIMS" id="linkToRIMS">Гуцева Г.М.</a>-->
+                                    <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
+                                        <div style="margin:auto;" title="">
+                                            TAY-WN-004867
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="" role="gridcell">
+                                    <div id="NOM_DEMAND" style="cursor: pointer; color: rgb(25, 132, 200);" title="Красноперова Анастасия Валерьевна">
+                                        Красноперова Анастасия Валерьевна
+                                    </div>
+                                </td>
+                               <!-- <td class="" role="gridcell">
+                                    27 211 Заявка о неисправности оборудования [ТФ]
+                                </td>
+                                <td class="" role="gridcell">
+                                    ИНЦИДЕНТ
+                                </td>
+                                <td class="" role="gridcell">
+                                    Объект не указан
+                                </td>-->
+                                <td class="" role="gridcell">
+                                    <div class="note">
+                                        При подключении к ноутбуку нет видео сигнала.
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="k-alt" data-uid="7924fa9b-1bbe-4ca3-844f-2ca705bb6458" role="row">
+                                <td data-copymenu="true" class="" role="gridcell">
+                                    <div id="NOM_DEMAND" style="cursor: pointer; color: rgb(25, 132, 200);" title="Информация по заявке">
+                                        6151873
+                                    </div>
+                                </td>
+                                <td class="" role="gridcell">
+                                    <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
+                                        <div style="margin:auto;" title="Добавить выполненные работы/этапы">
+                                            <span class="k-icon k-i-track-changes-accept icon-color" id="icon_solution" style="color: rgb(25, 132, 200);"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="" role="gridcell">
+                                    <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
+                                        <div style="margin:auto;" title="Просмотр/Добавление документов">
+                                            <span class="k-icon k-i-attachment icon-color" id="icon_docs" style="color: rgb(25, 132, 200);"></span>
+                                            <sup style="font-size:9px;">3 </sup>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="" role="gridcell">
+                                    <span title="Дата выдачи наряд-задания">27.11.20 13:08</span>
+                                </td>
+                                <td class="" role="gridcell">
+                                    <a href="" target="_blank" title="RIMS" id="linkToRIMS">
+                                        Тимченко С.А.
+                                    </a>
+                                </td>
+                                <td class="" role="gridcell">
+                                    <a href="" target="_blank" title="Телефонный справочник">
+                                        89039178005
+                                    </a>
+                                </td>
+                                <td class="" role="gridcell">
+                                    <div class="note">
+                                        При подключении к ноутбуку нет видео сигнала.
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!--<div class="k-pager-wrap k-grid-pager k-widget k-floatwrap" data-role="pager">
+                    <span class="k-pager-info k-label">Отображены записи 1 - 9 из 9</span>
+                </div>-->
+            </div>
+		</div>
+    </div>
+    <div tabindex="0" class="k-splitbar k-state-default k-splitbar-vertical" data-marker="5d1c7e7c" role="separator" aria-expanded="false" style="width: 1918px; top: 897px;">
+        <div class="k-icon k-resize-handle k-i-hbar"></div>
+    </div>
+    <div id="bottom-panel" role="group" class="k-pane k-scrollable k-state-collapsed" style="position: absolute; top: 904px; overflow: hidden; height: 0px; width: 1918px;">
+        <div class="k-tabstrip-wrapper"><div id="tabstrip" style="height:87%;" data-role="tabstrip" tabindex="0" class="k-widget k-header k-tabstrip k-floatwrap k-tabstrip-top" role="tablist">
+            <ul class="k-tabstrip-items k-reset"><li class="k-state-active k-item k-tab-on-top k-state-default k-first" data-grid="dsEmployee" role="tab" aria-selected="true" aria-controls="panelgrid2"><span class="k-loading k-complete"></span><span unselectable="on" class="k-link">Исполнение</span></li><li data-grid="dsDocs" class="k-item k-state-default" role="tab" aria-controls="panelgrid3"><span class="k-loading k-complete"></span><span unselectable="on" class="k-link">Документы</span></li><li data-grid="dsMatching" class="k-item k-state-default k-last" role="tab" aria-controls="panelgrid4"><span class="k-loading k-complete"></span><span unselectable="on" class="k-link">Согласование</span></li></ul>
+            <div id="panelgrid2" style="height: 79%; display: block;" class="k-content k-state-active" role="tabpanel" aria-expanded="true">
+                <div id="grid2" style="height:99%;" data-role="grid" class="k-grid k-widget k-display-block"><div class="k-grid-header" style="padding-right: 17px;"><div class="k-grid-header-wrap k-auto-scrollable"><table role="grid"><colgroup><col style="width:45px"><col style="width:35px"><col style="width:45px"><col style="width:45px"><col style="width:150px"><col style="width:50px"><col style="width:50px"></colgroup><thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader" data-field="DATE_CREATE" aria-haspopup="true" rowspan="1" data-title="Дата" data-index="0" id="5c4cc82a-ab1a-4655-a103-f980e4c4a0c8" class="k-header">Дата</th><th scope="col" role="columnheader" data-field="NAME_CREATOR" aria-haspopup="true" rowspan="1" data-title="Кем выдано" data-index="1" id="ec7609a3-c555-4a2f-a6be-fe258cddd77c" class="k-header">Кем выдано</th><th scope="col" role="columnheader" data-field="NAME_TEAM" aria-haspopup="true" rowspan="1" data-title="Команда" data-index="2" id="7528483d-bb05-4963-8893-1de68f249375" class="k-header">Команда</th><th scope="col" role="columnheader" data-field="NAME_PERFORMER" aria-haspopup="true" rowspan="1" data-title="Исполнитель" data-index="3" id="5533dbbf-264e-462a-b805-1efe09c28059" class="k-header">Исполнитель</th><th scope="col" role="columnheader" data-field="NOTE_COMMENT" aria-haspopup="true" rowspan="1" data-title="Комментарий/решение" data-index="4" id="d0fe26c5-bcdf-4ccf-adb5-f1dd6519bfec" class="k-header">Комментарий/решение</th><th scope="col" role="columnheader" data-field="ID_DEMAND" aria-haspopup="true" rowspan="1" data-title="Вып. работы" data-index="5" id="e8fc2038-ac59-4bcf-8cfd-a362381f91d9" class="k-header">Вып. работы</th><th scope="col" role="columnheader" data-field="STATUS_DEMAND_TXT" aria-haspopup="true" rowspan="1" data-title="Статус" data-index="6" id="309fc3b0-caca-4a19-a14b-5c6cb1114cd9" class="k-header">Статус</th></tr></thead></table></div></div><div class="k-grid-content k-auto-scrollable" style="height: 35px;"><table role="grid" data-role="selectable" class="k-selectable"><colgroup><col style="width:45px"><col style="width:35px"><col style="width:45px"><col style="width:45px"><col style="width:150px"><col style="width:50px"><col style="width:50px"></colgroup><tbody role="rowgroup"></tbody></table><div class="k-grid-content-expander" style="width: 1851px;"></div></div><div class="k-pager-wrap k-grid-pager k-widget k-floatwrap" data-role="pager"><span class="k-pager-info k-label">Нет записей для отображения</span></div></div>
+            </div>
+            <div id="panelgrid3" style="height:79%;" class="k-content" role="tabpanel" aria-hidden="true" aria-expanded="false">
+                <div id="DOCS" style="height:99%;" data-role="grid" class="k-grid k-widget k-display-block">
+                    <div class="k-header k-grid-toolbar">
+                        <div class="float-left" style="display:flex;width:100%">
+                            <div id="panelfind2" class="float-left" style="width:98%;  margin: 0 10px;">
+                                <div class="k-widget k-upload k-header k-upload-empty"><div class="k-dropzone"><div class="k-button k-upload-button" aria-label="Выбрать..."><input name="files" id="files" type="file" aria-label="files" data-role="upload" multiple="multiple" autocomplete="off"><span>Выбрать...</span></div><em>Или переместите требуемый документ в область таблицы</em></div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="k-grid-header" style="padding-right: 17px;"><div class="k-grid-header-wrap k-auto-scrollable">
+                        <table role="grid">
+                            <colgroup>
+                                <col style="width:50px">
+                                <col style="width:150px">
+                                <col style="width:50px">
+                                <col style="width:50px">
+                                <col style="width:50px">
+                                <col style="width:30px">
+                            </colgroup>
+                            <thead role="rowgroup">
+                                <tr role="row">
+                                    <th scope="col" role="columnheader" data-field="DATE_CREATE" aria-haspopup="true" rowspan="1" data-title="&lt;span style=&#39;font-weight:500;&#39;&gt;Дата учета&lt;/span&gt;" data-index="0" id="7672c11d-b784-4644-b085-90e14a1d772f" class="k-header"><span style="font-weight:500;">Дата учета</span></th><th scope="col" role="columnheader" data-field="NOTE" aria-haspopup="true" rowspan="1" data-title="&lt;span style=&#39;font-weight:500;&#39;&gt;Описание&lt;/span&gt;" data-index="1" id="be6b9bc7-bf7d-4191-a556-f4284469bc76" class="k-header"><span style="font-weight:500;">Описание</span></th><th scope="col" role="columnheader" data-field="TYPE_CLOSE" aria-haspopup="true" rowspan="1" data-title="&lt;span style=&#39;font-weight:500;&#39;&gt;Решение клиенту&lt;/span&gt;" data-index="2" id="3a52355b-e234-4f5f-b987-796f24153154" class="k-header"><span style="font-weight:500;">Решение клиенту</span></th><th scope="col" role="columnheader" data-field="NAME_CREATOR" aria-haspopup="true" rowspan="1" data-title="&lt;span style=&#39;font-weight:500;&#39;&gt;Создатель&lt;/span&gt;" data-index="3" id="4f173d37-9ab1-41c1-8fec-64c506115854" class="k-header"><span style="font-weight:500;">Создатель</span></th><th scope="col" role="columnheader" data-field="ID_DOC" aria-haspopup="true" rowspan="1" data-title="&lt;span style=&#39;font-weight:500;&#39;&gt;Скачать&lt;/span&gt;" data-index="4" id="9dc7c915-b5a7-44fb-adcc-8892e0c29ca4" class="k-header"><span style="font-weight:500;">Скачать</span></th><th scope="col" role="columnheader" data-field="STATUS_DEMAND_TXT" aria-haspopup="true" rowspan="1" data-title=" " data-index="5" id="802d2840-ab0f-44ee-9f46-425092285faa" class="k-header">&nbsp;</th></tr></thead></table></div></div><div class="k-grid-content k-auto-scrollable"><table role="grid" data-role="selectable" class="k-selectable"><colgroup><col style="width:50px"><col style="width:150px"><col style="width:50px"><col style="width:50px"><col style="width:50px"><col style="width:30px"></colgroup><tbody role="rowgroup"></tbody></table></div><div class="k-pager-wrap k-grid-pager k-widget k-floatwrap k-pager-sm" data-role="pager"><span class="k-pager-info k-label">Нет записей для отображения</span></div></div>
+                    </div>
+            <div id="panelgrid4" style="height:79%;" class="k-content" role="tabpanel" aria-hidden="true" aria-expanded="false">
+                <div id="Matching" style="height:99%;" data-role="grid" class="k-grid k-widget k-display-block"><div class="k-grid-header" style="padding-right: 17px;"><div class="k-grid-header-wrap k-auto-scrollable"><table role="grid"><colgroup><col style="width:50px"><col style="width:50px"><col style="width:150px"><col style="width:50px"></colgroup><thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader" data-field="DATE_CREATE" aria-haspopup="true" rowspan="1" data-title="&lt;span style=&#39;font-weight:500;&#39;&gt;Дата согласования&lt;/span&gt;" data-index="0" id="c747fd00-5967-4339-bc81-6efae4116856" class="k-header"><span style="font-weight:500;">Дата согласования</span></th><th scope="col" role="columnheader" data-field="NAME" aria-haspopup="true" rowspan="1" data-title="&lt;span style=&#39;font-weight:500;&#39;&gt;ФИО Согласующего&lt;/span&gt;" data-index="1" id="9f37cef1-7fbc-40a7-b2be-6af3175213e4" class="k-header"><span style="font-weight:500;">ФИО Согласующего</span></th><th scope="col" role="columnheader" data-field="COMMENT" aria-haspopup="true" rowspan="1" data-title="&lt;span style=&#39;font-weight:500;&#39;&gt;Комментарий&lt;/span&gt;" data-index="2" id="520871a8-969b-499d-810f-e741579ab3da" class="k-header"><span style="font-weight:500;">Комментарий</span></th><th scope="col" role="columnheader" data-field="FILES" aria-haspopup="true" rowspan="1" data-title="&lt;span style=&#39;font-weight:500;&#39;&gt;Файл&lt;/span&gt;" data-index="3" id="d54f1089-8bd5-4d0d-840e-008c1c4c03cd" class="k-header"><span style="font-weight:500;">Файл</span></th></tr></thead></table></div></div><div class="k-grid-content k-auto-scrollable"><table role="grid" data-role="selectable" class="k-selectable"><colgroup><col style="width:50px"><col style="width:50px"><col style="width:150px"><col style="width:50px"></colgroup><tbody role="rowgroup"></tbody></table></div><div class="k-pager-wrap k-grid-pager k-widget k-floatwrap k-pager-sm" data-role="pager"><span class="k-pager-info k-label">Нет записей для отображения</span></div></div>
+            </div>
+        </div></div>
+    </div>
+</div>
+    <span id="notification" style="display:none;" data-role="notification"></span>
+	<div id="dialog"></div>
+    <div id="dialogVR"></div>
+    
+    <div id="confirm"></div>
+    <div id="tooltipsite"></div>
+    <div id="ColorMenu">
+        <div id="colorChooser"></div>
+    </div>
+    
+    
+    
+
+
+<!--<script id="template" type="text/x-kendo-template">
+	<div id="panelfind1" class="float-left">
+        <div id="expandAll"  style="float:left;" title="Развернуть все группы"></div> 
+        <div id="collapseAll"  style="float:left;" title="Свернуть все группы"></div> 
+		<div id="filterBtn" style="float:left;"><span id="filterTxt">Обновить <br /> <span id="loadingProgressBar" style="float:left; display: none;"></span></span></div>
+        
+        <x-field>
+            <span class="k-icon k-i-zoom search-icon"></span>
+            <input id="NOMER_DEMAND" name="NOMER_DEMAND" type="search" style="width:100px;" placeholder="Поиск по №" class="k-search" title="Поиск по № заявки" />
+            <span class="close" onclick="ClearInput()" id="clear" title="Очистить">&times;</span>
+        </x-field>
+           
+           
+        <input type="checkbox" id="date-switch" aria-label="Отключение периода дат" title="Отключение периода дат" checked="checked" />
+		<input class="text-box single-line" id="D_BEGIN" name="D_BEGIN" type="text" value="" />
+		<input class="text-box single-line" id="D_END" name="D_END" type="text" value="" />
+        <div id="STATUS">
+            # if(STATUS) { #
+            #for (var i=0; i < STATUS.length; i++) {#
+            <span title= "#=STATUS[i].title#" data-value="#=STATUS[i].value#">#=STATUS[i].caption#</span>
+            #}}#
+        </div>
+        <div id="STATUS_EXT">
+            # if(STATUS_EXT) { #
+            #for (var i=0; i < STATUS_EXT.length; i++) {#
+            <span title="#=STATUS_EXT[i].title#" data-value="#=STATUS_EXT[i].value#" data-status="#=STATUS_EXT[i].status#">#=STATUS_EXT[i].caption#</span>
+            #}}#
+        </div>
+        <div id="STATUS_3">
+            # if(STATUS_3) { #
+            #for (var i=0; i < STATUS_3.length; i++) {#
+            <span title="#=STATUS_3[i].title#" data-value="#=STATUS_3[i].value#">#=STATUS_3[i].caption#</span>
+            #}}#
+        </div>
+	</div>
+    <div id="help" style="float:right;" title="Помощь">
+        <span class="k-icon k-i-help"></span>
+    </div>
+</script>-->
+<script id="templateDocs" type="text/x-kendo-template">
+    <div class="float-left" style="display:flex;width:100%">
+        <div id="panelfind2" class="float-left" style="width:98%;  margin: 0 10px;">
+            <input name="files" id="files" type="file" aria-label="files" />
+        </div>
+    </div>
+</script>
+<script>
+    var dmRep_070 = {
+        ID_PERFORMER: '218698', ProfileGrid: 'SHORT_NAME_TEAM,NOMER_DEMAND,NAME_CLIENT,CL_PHONE,COUNT_VR,NOTE,NAME_OBJECT_KUPSO,LINK_INTERNET,NAME_TEMPLATE_DEMAND,NAME_GROUP_WORK,DATE_BEGIN,DATE_CREATE,DATE_PLAN_END,DAY_PLAN_END,NAME_TEAM,NAME_PERFORMER,STATUS_DEMAND,DOCS,NAME_STATUS_DEMAND,CLIENT_ANSWER,SLA_LIGHT', ProfileGroup: 'null', ProfileContextMenu: '017,001,002,003,004,005,006,007,008,009,010,011,012,013,014,015,016,021',
+        ProfileRefreshInt: '0', ProfilePeriod: '30', search: '', ProfileName: 'По умолчанию',
+        WEB_ID: '130933', IdListColumns: '166702', IdListContextMenu: '185619', idProfile: '142123', ID_CLIENT: '272031',
+        PostponementAccess: 'False' == "True", idDateRangeSetting: '147300', idFontSizeSetting: '187270', idProfileRefres: '147296',
+        AppointExecutorAccess: 'False' == "True", idAdditionalParameterChangeExecutor: '44909', ID_USER: '17746',
+        idAllExecutorSetting: '188560', showExtPane: 'false' == 'true'
+    };
+    var access = { PRIV_TMC: '0', PRIV_CREATE_TEMP: '0' };
+    var bagModel = { Title: 'Справочник v2.0', ID_RES: '130933' };
+</script>
+<!--<script src="./js/rep_070.js"></script>-->
+
+
+
+	</div>
+	
+
+
+
+
+<div class="k-widget k-window" data-role="draggable" style="visibility: visible; display: none; padding-top: 33px; min-width: 90px; min-height: 50px; top: 972.844px; left: 0px;">
+    <div class="k-window-titlebar k-header" style="margin-top: -33px;">
+        <span class="k-window-title" id="dlgImages_wnd_title"></span>
+        <div class="k-window-actions">
+            <a role="button" href="http://kraz-s-sdsrv.hq.root.ad/SD/SD_Reports/Rep_070?id_res=130933&amp;idNode=149978#" class="k-button k-bare k-button-icon k-window-action" aria-label="Close">
+                <span class="k-icon k-i-close"></span>
+            </a>
+        </div>
+    </div>
+    <div id="dlgImages" data-role="window" class="k-window-content k-content" tabindex="0" role="dialog" aria-labelledby="dlgImages_wnd_title"></div>
+    <div class="k-resize-handle k-resize-n"></div>
+    <div class="k-resize-handle k-resize-e"></div>
+    <div class="k-resize-handle k-resize-s"></div>
+    <div class="k-resize-handle k-resize-w"></div>
+    <div class="k-resize-handle k-resize-se"></div>
+    <div class="k-resize-handle k-resize-sw"></div>
+    <div class="k-resize-handle k-resize-ne"></div>
+    <div class="k-resize-handle k-resize-nw"></div>
+</div>
+<div aria-hidden="true" class="k-calendar-container k-popup k-group k-reset" id="D_END_dateview" data-role="popup" style="display: none; position: absolute;"></div>
+<div aria-hidden="true" class="k-calendar-container k-popup k-group k-reset" id="D_BEGIN_dateview" data-role="popup" style="display: none; position: absolute;"></div>
+<ul id="gridCopyMenu" data-role="contextmenu" class="k-widget k-reset k-header k-menu k-menu-vertical k-context-menu k-popup k-group" tabindex="0" role="menubar" style="display: none; position: absolute;" aria-hidden="true">
+    <li class="k-item k-state-default k-first" role="menuitem" data-uid="096f0788-5188-4b54-aed0-938ea583d66d">
+        <span class="k-link k-menu-link">
+            <span data-code="1">
+                <span class="k-icon k-i-copy"></span>
+                Копировать N заявки
+            </span>
+        </span>
+    </li>
+    <li class="k-item k-state-default" role="menuitem" data-uid="d3b71916-301a-47ed-8b4a-6943fa23d133">
+        <span class="k-link k-menu-link">
+            <span data-code="2">
+                <span class="k-icon k-i-copy"></span>
+                Коп. описание заявки
+            </span>
+        </span>
+    </li>
+    <li class="k-item k-state-default" role="menuitem" data-uid="77ad7ad8-2853-4f8e-9a09-37d67a02af47"><span class="k-link k-menu-link"><span data-code="3"><span class="k-icon k-i-copy"></span>Коп. ФИО Клиента</span></span></li><li class="k-item k-state-default" role="menuitem" data-uid="1f5d8ef9-16da-4901-bed5-729dd8e638ab"><span class="k-link k-menu-link"><span data-code="4"><span class="k-icon k-i-copy"></span>Коп. решение комментарии</span></span></li><li class="k-item k-state-default" role="menuitem" data-uid="a8a79987-58d4-4c1c-aac7-0ee2988f9c8a"><span class="k-link k-menu-link"><span data-code="5"><span class="k-icon k-i-copy"></span>Коп. URL</span></span></li><li class="k-item k-state-default k-last" role="menuitem" data-uid="8281976b-971c-4055-a60a-219f088cc563"><span class="k-link k-menu-link"><span data-code="6"><span class="k-icon k-i-copy"></span>Коп. общую инф-ю</span></span></li></ul><div class="k-animation-container" style="width: 226px; height: 423px; overflow: hidden; display: none; position: absolute; top: 254px; z-index: 10002; left: 1395px;" aria-hidden="true"><ul id="gridMenu" data-role="contextmenu" class="k-widget k-reset k-header k-menu k-context-menu k-popup k-group k-menu-vertical" tabindex="0" role="menubar" style="display: none; position: absolute; font-size: 11px; font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-stretch: 100%; font-style: normal; font-weight: 400; line-height: normal; opacity: 0;" aria-hidden="true"><li class="k-item k-state-default k-first" role="menuitem" data-uid="e7a90a19-e0c0-4bd0-8a0d-79471675c161"><span class="k-link k-menu-link"><span data-code="1"><span class="k-icon k-i-copy"></span>Перевод статуса</span></span></li><li class="k-item k-state-default" role="menuitem" data-uid="b77075bd-f049-4cc4-8971-2f49c796a3c0"><span class="k-link k-menu-link"><span data-code="2"><span class="k-icon k-i-track-changes-accept"></span>Добавление/Просмотр ВР</span></span></li><li class="k-item k-state-disabled" role="menuitem" data-uid="86331a8c-aaea-46e4-a836-5df99640b5ef" aria-disabled="true"><span class="k-link k-menu-link"><span data-code="17" id="addCompletedWork"><span class="k-icon k-i-track-changes-accept"></span>Добавить ВР</span></span></li><li class="k-item k-state-default" role="menuitem" aria-haspopup="true" data-uid="9ccc2104-adb1-4422-98b8-26b9c8969efc" aria-disabled="false"><span class="k-link k-menu-link"><span data-code="30" id="accessCloseNZ"><span class="k-icon k-i-track-changes-reject"></span>Закрыть н.з. по шаблону</span><span class="k-icon k-i-arrow-60-right k-menu-expand-arrow"></span></span><ul class="k-group k-menu-group" style="display:none" role="menu" aria-hidden="true"></ul></li><li class="k-item k-state-default" role="menuitem" aria-haspopup="true" data-uid="a8961c78-ab29-4d2c-bf40-9c78780bc2b7"><span class="k-link k-menu-link"><span data-code="14" id="assognPerformer"><span class="k-icon k-i-track-changes-enable"></span>Назначить исполнителя</span><span class="k-icon k-i-arrow-60-right k-menu-expand-arrow"></span></span><ul class="k-group k-menu-group" style="display:none" role="menu" aria-hidden="true"></ul></li><li class="k-item k-state-disabled" role="menuitem" aria-haspopup="true" data-uid="7a50bb43-b46a-4ba0-b7c8-9aae9552ba06" aria-disabled="true"><span class="k-link k-menu-link"><span id="changeServices"><span class="k-icon k-i-track-changes-enable"></span>Редактирование</span><span class="k-icon k-i-arrow-60-right k-menu-expand-arrow"></span></span><ul class="k-group k-menu-group" style="display:none" role="menu" aria-hidden="true"></ul></li><li class="k-item k-state-default" role="menuitem" data-uid="4163b84c-a5f9-4a16-ac85-2a410940ff88"><span class="k-link k-menu-link"><span data-code="4"><span class="k-icon k-i-track-changes-enable"></span>Выдать новый н.з</span></span></li><li class="k-item k-state-default" role="menuitem" data-uid="6367845b-c79c-468e-a402-48dea0dca694"><span class="k-link k-menu-link"><span data-code="5"><span class="k-icon k-i-paste-plain-text"></span>Информация по заявке</span></span></li><li class="k-item k-state-default" role="menuitem" data-uid="5d183558-ea6c-4c77-b2f6-0a07afbea3c2"><span class="k-link k-menu-link"><span data-code="6"><span class="k-icon k-i-attachment"></span>Добавление/Просмотр документов</span></span></li><li class="k-item k-state-default" role="menuitem" data-uid="31538724-5573-4e5e-8142-4f84acd1a05a"><span class="k-link k-menu-link"><span data-code="7"><span class="k-icon k-i-calculator"></span>Назначить норму НЗ</span></span></li><li class="k-item k-state-default" role="menuitem" data-uid="9af730b9-2f2a-4c0d-9fc2-87dc40c754e2"><span class="k-link k-menu-link"><span data-code="8"><span class="k-icon k-i-sort-asc"></span>Структура заявки</span></span></li><li class="k-item k-state-default" role="menuitem" data-uid="dda9aaf2-1d1e-4fb0-a6c7-20e168e15cff"><span class="k-link k-menu-link"><span data-code="9"><span class="k-icon k-i-edit-tools"></span>Комментарии/уточнения</span></span></li><li class="k-item k-state-disabled" role="menuitem" data-uid="3e26cb31-10bf-4619-b723-f3e6fa020ad8" aria-disabled="true"><span class="k-link k-menu-link"><span data-code="13" id="postponementSLA"><span class="k-icon k-i-gears"></span>Перенос срока SLA</span></span></li><li class="k-item k-state-disabled" role="menuitem" data-uid="99ee270b-c30c-41a5-a8cd-5eb550d4d006" aria-disabled="true"><span class="k-link k-menu-link"><span data-code="10" id="accessTMC"><span class="k-icon k-i-gears"></span>Добавление/Просмотр ТМЦ</span></span></li><li class="k-item k-state-disabled" role="menuitem" data-uid="0ed9e7e9-16b8-4e7a-8ab6-09cfc011dd1f" aria-disabled="true"><span class="k-link k-menu-link"><span data-code="11" id="accessCreateTemp"><span class="k-icon k-i-track-changes-accept"></span>Создать заявку по шаблону</span></span></li><li class="k-item k-state-default" role="menuitem" data-uid="9264fdd2-4ee1-4766-9023-6a17f9664bd7"><span class="k-link k-menu-link"><span data-code="12" id="accessCreateTemp"><span class="k-icon k-i-track-changes-accept"></span>Создать заявку на согласование</span></span></li><li class="k-item k-state-default" role="menuitem" aria-haspopup="true" data-uid="3faa6b06-c1a6-4bad-866c-872ad211095f"><span class="k-link k-menu-link"><span><span class="k-icon k-i-copy"></span>Копировать в буфер обмена</span><span class="k-icon k-i-arrow-60-right k-menu-expand-arrow"></span></span><ul class="k-group k-menu-group" style="display:none" role="menu" aria-hidden="true"></ul></li><li class="k-item k-state-default k-last" role="menuitem" data-uid="bbabb8f3-8fdb-4d7d-980c-a0ad62318c25"><span class="k-link k-menu-link"><span data-code="21" id="StatusExecTrans"><span class="k-icon k-i-check-outline"></span>Решение по перевозке</span></span></li></ul></div><div class="k-animation-container" style="width: 376px; height: 247px; overflow: hidden; display: none; position: absolute; top: 183.812px; z-index: 10002; left: 538.625px;" aria-hidden="true"><form class="k-filter-menu k-popup k-group k-reset" data-role="popup" style="display: none; position: absolute; font-size: 11px; font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-stretch: 100%; font-style: normal; font-weight: 600; line-height: normal; transform: translateY(-247px);" aria-hidden="true"><div class="k-filter-menu-container"><ul class="k-reset k-multicheck-wrap"><li class="k-item"><label class="k-label"><input type="checkbox" class="k-check-all" value="Отметить все"><span class="k-item-title">Отметить все</span></label></li><li class="k-item"><label class="k-label"><input type="checkbox" class="" value="Заявка на выполнение работ (ЦК 1С)"><span class="k-item-title">Заявка на выполнение работ (ЦК 1С)</span></label></li><li class="k-item"><label class="k-label"><input type="checkbox" class="" value="Заявка на обслуживание"><span class="k-item-title">Заявка на обслуживание</span></label></li><li class="k-item"><label class="k-label"><input type="checkbox" class="" value="ИНЦИДЕНТ"><span class="k-item-title">ИНЦИДЕНТ</span></label></li><li class="k-item"><label class="k-label"><input type="checkbox" class="" value="Установка/Настройка драйвера локального принтера"><span class="k-item-title">Установка/Настройка драйвера локального принтера</span></label></li><li class="k-item"><label class="k-label"><input type="checkbox" class="" value="замена расходных материалов"><span class="k-item-title">замена расходных материалов</span></label></li></ul><div class="k-filter-selected-items">0 элементов выбрано/div><div class="k-action-buttons"><button type="submit" class="k-button k-primary">фильтровать</button><button type="reset" class="k-button">очистить</button></div></div>
+
+    </div>
+
+</body>
+</html>
