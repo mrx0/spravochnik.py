@@ -15,6 +15,8 @@ $("body").on("click", ".k-button", function(){
 
         // - items_button
         if ($(this).attr("id") == 'items_button') {
+            // Чистим главное окно
+            $('#main_window').html('');
             // Чистим менюшку с кнопками по типам
             $("#main_window_header").html('');
             // Показываем менюшку с кнопками по типам
@@ -28,10 +30,15 @@ $("body").on("click", ".k-button", function(){
         }
         // - workers_button
         if ($(this).attr("id") == 'workers_button') {
+            // Чистим главное окно
+            $('#main_window').html('');
             // Чистим менюшку с кнопками по типам
             $("#main_window_header").html('');
             // Прячем менюшку с кнопками по типам
             $("#main_window_header").hide();
+
+            // Отображение всех сотрудников
+            showAllWorkers();
 
             //Запросим данные
             //getDataFromDB ($(this).attr("id"));
@@ -99,6 +106,57 @@ function getDataFromDB (flag) {
             }
         }
     });
+}
+
+// Функция отображения всех сотрудников (создаёт форму и запрашивает данные для неё у function getScladCategories)
+function showAllWorkers(){
+    $('#main_window').html('' +
+        '<div style="white-space: nowrap;">' +
+            '<div style="display: inline-block; border: 1px solid #c5c5c5; position: relative; vertical-align: top;">' +
+                '<div style="margin: 5px 0 5px; font-size: 11px; cursor: pointer;">' +
+                    '<!--<span class="dotyel a-action lasttreedrophide">скрыть всё</span>, <span class="dotyel a-action lasttreedropshow">раскрыть всё</span>-->' +
+                '</div>' +
+                '<div id="workers_staff_rezult" style="width: 350px; max-width: 350px; min-width: 350px; height: 750px; overflow-y: scroll; overflow-x: hidden;">' +
+                '</div>' +
+            '</div>' +
+        '</div>');
+
+    getAllWorkers ();
+
+}
+
+//Загрузка категорий склада
+function getAllWorkers (){
+
+    let link = "py/get_staff_tree.py";
+
+    //!!! Просто что-то передали, потом исправить/убрать
+    let reqData = {
+        flag: true
+    };
+    //console.log(reqData);
+
+    $.ajax({
+        url: link,
+        global: false,
+        type: "POST",
+        dataType: "JSON",
+        data: reqData,
+        cache: false,
+        beforeSend: function () {
+            // Что-то делаем пока ждём ответа
+            // $('#errrror').html("<div style='width: 120px; height: 32px; padding: 10px; text-align: center; vertical-align: middle; border: 1px dotted rgb(255, 179, 0); background-color: rgba(255, 236, 24, 0.5);'><img src='img/wait.gif' style='float:left;'><span style='float: right;  font-size: 90%;'> обработка...</span></div>");
+        },
+        // Действие, при ответе с сервера
+        success: function (res) {
+            // console.log (res);
+
+            // Вывели дерево/список
+            if (res.result == 'success') {
+                $("#workers_staff_rezult").html(res.data);
+            }
+        }
+    })
 }
 
 

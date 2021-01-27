@@ -3,7 +3,7 @@
 # Модуль логирования
 import logging
 # Настройки логирования
-logging.basicConfig(filename='python_error.log', filemode='a', format='%(name)s - %(levelname)s - %(message)s')
+logging.basicConfig(filename='./python_error.log', filemode='a', format='%(name)s - %(levelname)s - %(message)s')
 
 # Для доступа к данным поступившим в результате запроса в Python служит класс FieldStorage из модуля cgi.
 # Импортируем его
@@ -16,6 +16,9 @@ import json
 # Импорт модуля для работы с MariaDB
 import mariadb
 
+# Импортируем функцию из файла functions.py
+from functions import showTreeStaff
+
 try:
     storage = cgi.FieldStorage()
     # Получить значение того или иного параметра по его имени можно при помощи метода getvalue
@@ -24,7 +27,7 @@ try:
     # Переменная для хранения строки для возврата ответа
     res = ''
 
-    # Проверка, действительно ли параметр содержит значение, и после обработки (при необходимости) направляем результат обратно клиенту.
+    # Проверка, действительно ли параметр содержит значение
     if req_data is not None:
         # print(data)
 
@@ -43,24 +46,10 @@ try:
             database=conf_data['mariadb']['db']
         )
 
-        # dictionary=True - чтобы работать с результатом как с объектом (ассоциативным массивом)
-        cur = conn.cursor(dictionary=True)
 
-        # Строка запроса
-        query = """SELECT * FROM spr_types db 
-            WHERE db.status <> ? 
-            ORDER BY db.id ASC
-            """
-
-        # Запрос данных
-        cur.execute(query, [9])
-
-        result = cur.fetchall()
-
-        # Собираем то, что получили, в одну строку для возврата обратно в Ajax
-        for data in result:
-            res += ''+data['name']+''
-            # print(data['name'])
+        # работаем с функцией showTreeStaff из файла functions, передаём значения аргументов и ждём результат
+        # def showTreeStaff(level, space, type, sel_id, first, last_level, deleted, dtype, conn):
+        res = showTreeStaff('NUll', '', 'list', 0, True, 0, False, 0, conn)
 
         # Работая с Python под WEB, нельзя забывать про вывод заголовков и указание кодировки
         print('Status: 200 OK')
@@ -68,10 +57,10 @@ try:
         print('')
 
         # Результат в виде JSON
-        print(json.dumps({"result": "success", "data": result}))
+        print(json.dumps({"result": "success", "data": res}))
 
         # Закрываем соединение
-        conn.close()
+        # conn.close()
     else:
         # Работая с Python под WEB, нельзя забывать про вывод заголовков и указание кодировки
         print('Status: 200 OK')
