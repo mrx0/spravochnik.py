@@ -58,9 +58,9 @@ try:
         result = cur.fetchall()
 
         # Собираем то, что получили, в одну строку для возврата обратно в Ajax
-        for data in result:
-            res += ''+data['name']+''
-            # print(data['name'])
+        # for data in result:
+        #     res += ''+data['name']+''
+        #     # print(data['name'])
 
         # Работая с Python под WEB, нельзя забывать про вывод заголовков и указание кодировки
         print('Status: 200 OK')
