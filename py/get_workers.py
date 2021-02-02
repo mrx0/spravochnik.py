@@ -49,18 +49,22 @@ try:
 
 
         # Строка запроса
-        query = """SELECT db.id, db.fio, db.tab_nomer, db.phone_personal, db.status FROM spr_workers db 
-            WHERE db.staff_position = ? AND db.status <> ? AND db.status <> ?
-            ORDER BY db.fio ASC
+        query = """SELECT s_w.id, s_w.fio, s_w.tab_nomer, s_w.phone_personal, s_w.status, st_pos.name AS pos_name 
+            FROM spr_workers s_w
+            LEFT JOIN spr_staff_positions st_pos ON st_pos.id = s_w.staff_position
+            WHERE s_w.staff = ? AND s_w.status <> ? AND s_w.status <> ?
+            ORDER BY s_w.fio ASC
             """
 
         args = [req_data,8,9]
 
         # Если получили staff == 0, значит надо показать Все элементы
         if req_data == '0':
-            query = """SELECT db.id, db.fio, db.tab_nomer, db.phone_personal, db.status FROM spr_workers db
-                WHERE db.status <> ? AND db.status <> ?
-                ORDER BY db.fio ASC
+            query = """SELECT s_w.id, s_w.fio, s_w.tab_nomer, s_w.phone_personal, s_w.status, st_pos.name AS pos_name 
+                FROM spr_workers s_w
+                LEFT JOIN spr_staff_positions st_pos ON st_pos.id = s_w.staff_position
+                WHERE s_w.status <> ? AND s_w.status <> ?
+                ORDER BY s_w.fio ASC
                 """
 
             args = [8,9]
@@ -95,6 +99,13 @@ try:
                                     <div style="position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
                                         <div style="margin:auto; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" title="">
                                             ''' + str(data['tab_nomer']) + '''
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="" role="gridcell" style="border-left: none;">
+                                    <div style="position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
+                                        <div style="margin:auto; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" title="">
+                                            ''' + data['pos_name'] + '''
                                         </div>
                                     </div>
                                 </td>
