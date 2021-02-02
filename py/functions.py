@@ -57,7 +57,7 @@ def showTreeStaff (level, space, type, sel_id, first, last_level, deleted, dtype
             rez_str += '''
                     <ol class="tree">
                     <li>
-                        <label id="cat_0" class="droppable hover" onclick="getScladItems (0, 0, 1000, false, true, 0); return;" cat_name="">Вне списка</label> <input type="checkbox" id="folder0" checked />
+                        <label id="cat_0" class="droppable hover" onclick="getWorkers (0); return;" cat_name="">Вне списка</label> <input type="checkbox" id="folder0" checked />
                     </li>'''
 
     else:
@@ -78,7 +78,7 @@ def showTreeStaff (level, space, type, sel_id, first, last_level, deleted, dtype
                 if data['node_count'] > 0:
                     rez_str += '''
                         <li>
-                            <label id="cat_''' + str(str(data['id'])) + '''" class="draggable droppable hover" onclick="getScladItems (''' + str(data['id']) + ''', 0, 1000, false, true, ''' + str(data['id']) + '''); return;" cat_name="''' + data['name'] + '''"> ''' + data['name'] + '''</label> <input type="checkbox" id="folder''' + str(data['id']) + '''" checked />
+                            <label id="cat_''' + str(str(data['id'])) + '''" class="draggable droppable hover" onclick="getWorkers (''' + str(data['id']) + '''); return;" cat_name="''' + data['name'] + '''"> ''' + data['name'] + '''</label> <input type="checkbox" id="folder''' + str(data['id']) + '''" checked />
                         '''
                     rez_str += showTreeStaff(data['id'], '', 'list', 0, False, 0, False, 0, conn)
 
@@ -87,7 +87,7 @@ def showTreeStaff (level, space, type, sel_id, first, last_level, deleted, dtype
                 else:
                     rez_str += '''
                         <li>
-                            <label id="cat_''' + str(data['id']) + '''" class="draggable droppable hover" onclick="getScladItems (''' + str(data['id']) + ''', 0, 1000, false, true, ''' + str(data['id']) + '''); return;" cat_name="''' + data['name'] + '''"> ''' + data['name'] + '''</label> <input type="checkbox" id="folder''' + str(data['id']) + '''" checked />
+                            <label id="cat_''' + str(data['id']) + '''" class="draggable droppable hover" onclick="getWorkers (''' + str(data['id']) + '''); return;" cat_name="''' + data['name'] + '''"> ''' + data['name'] + '''</label> <input type="checkbox" id="folder''' + str(data['id']) + '''" checked />
                         </li>'''
 
     #         if ($type == 'select'){

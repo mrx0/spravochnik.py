@@ -48,7 +48,7 @@ try:
         cur = conn.cursor(dictionary=True)
 
         # Строка запроса
-        query = """SELECT * FROM spr_items db 
+        query = """SELECT db.* FROM spr_items db 
             WHERE db.type_id = ? AND db.status <> ? 
             ORDER BY db.model_name ASC
             """
@@ -57,7 +57,7 @@ try:
 
         # Если получили type == 0, значит надо показать Все элементы
         if req_data == '0':
-            query = """SELECT * FROM spr_items db 
+            query = """SELECT db.* FROM spr_items db 
                 WHERE db.status <> ? 
                 ORDER BY db.model_name ASC
                 """
