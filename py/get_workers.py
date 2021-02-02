@@ -50,20 +50,20 @@ try:
 
         # Строка запроса
         query = """SELECT * FROM spr_workers db 
-            WHERE db.staff_position = ? AND db.status <> ? 
+            WHERE db.staff_position = ? AND db.status <> 9  AND db.status <> 8 
             ORDER BY db.fio ASC
             """
 
-        args = [req_data, 9]
+        args = [req_data]
 
         # Если получили type == 0, значит надо показать Все элементы
         if req_data == '0':
             query = """SELECT * FROM spr_workers db 
-                WHERE db.status <> ? 
+                WHERE db.status <> 9 AND db.status <> 8 
                 ORDER BY db.fio ASC
                 """
 
-            args = [9]
+            args = []
 
         # Запрос данных
         cur.execute(query, args)
@@ -71,7 +71,7 @@ try:
         result = cur.fetchall()
         
         res += '''
-            <table>
+            <table style="width: 470px; max-width: 470px; min-width: 470px;">
         '''
 
         # Собираем то, что получили, в одну строку для возврата обратно в Ajax
@@ -79,27 +79,27 @@ try:
             # Если пусто БД, значит пустая строка (!!! пока, потом какой-то маркер добавить)
             if data['tab_nomer'] is None:
                 data['tab_nomer'] = '<span style="color: red">не указан</span>'
-            if data['phone_personall'] is None or data['phone_personal'] == '':
+            if data['phone_personal'] is None or data['phone_personal'] == '':
                 data['phone_personal'] = '<span style="color: grey">не указан</span>'
 
             res += '''
                             <tr data-uid="" role="row">
                                 <td class="" role="gridcell">
-                                    <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
+                                    <div style="position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
                                         <div style="margin:auto;" title="">
                                             ''' + data['fio'] + '''
                                         </div>
                                     </div>
                                 </td>
                                 <td class="" role="gridcell">
-                                    <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
-                                        <div style="margin:auto; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" title="''' + str(data['tab_nomer']) + '''">
+                                    <div style="position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
+                                        <div style="margin:auto; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" title="">
                                             ''' + str(data['tab_nomer']) + '''
                                         </div>
                                     </div>
                                 </td>
                                 <td data-copymenu="true" class="" role="gridcell">
-                                    <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
+                                    <div style="position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
                                         <div id="NOM_DEMAND" style="margin:auto; cursor: pointer; color: rgb(25, 132, 200);" title="">
                                             ''' + str(data['phone_personal']) + '''
                                         </div>
