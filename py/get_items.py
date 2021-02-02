@@ -1,3 +1,4 @@
+# get_items.py
 # -*- coding: utf-8  -*-
 
 # Модуль логирования
@@ -45,7 +46,6 @@ try:
 
         # dictionary=True - чтобы работать с результатом как с объектом (ассоциативным массивом)
         cur = conn.cursor(dictionary=True)
-
 
         # Строка запроса
         query = """SELECT * FROM spr_items db 

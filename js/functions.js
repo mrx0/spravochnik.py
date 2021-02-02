@@ -139,7 +139,7 @@ function showAllWorkers(){
                 '<div style="margin: 5px 0 5px; font-size: 11px; cursor: pointer;">' +
                     '<!--<span class="dotyel a-action lasttreedrophide">скрыть всё</span>, <span class="dotyel a-action lasttreedropshow">раскрыть всё</span>-->' +
                 '</div>' +
-                '<div id="workers_rezult" style="width: 470px; max-width: 470px; min-width: 470px; height: 750px; overflow-y: scroll; overflow-x: hidden;">' +
+                '<div id="workers_rezult" style="/*width: 700px; max-width: 700px; min-width: 700px;*/ height: 750px; overflow-y: scroll; overflow-x: hidden;">' +
 				'</div>' +
             '</div>' +
         '</div>');
@@ -147,7 +147,6 @@ function showAllWorkers(){
     getStaffTree ();
 	
 	getWorkers (0);
-	
 
 }
 

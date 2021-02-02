@@ -52,8 +52,10 @@ try:
             ORDER BY db.id ASC
             """
 
+        args = [9]
+
         # Запрос данных
-        cur.execute(query, [9])
+        cur.execute(query, args)
 
         result = cur.fetchall()
 
