@@ -124,7 +124,7 @@ function getDataFromDB (flag) {
     });
 }
 
-// Функция отображения всех сотрудников (создаёт форму и запрашивает данные для неё у function getScladCategories)
+// Функция отображения всех сотрудников (создаёт форму и запрашивает данные для неё у function getStaffTree и getWorkers)
 function showAllWorkers(){
     $('#main_window').html('' +
         '<div style="white-space: nowrap;">' +
@@ -135,13 +135,22 @@ function showAllWorkers(){
                 '<div id="workers_staff_rezult" style="width: 350px; max-width: 350px; min-width: 350px; height: 750px; overflow-y: scroll; overflow-x: hidden;">' +
                 '</div>' +
             '</div>' +
+			'<div style="display: inline-block; border: 1px solid #c5c5c5; position: relative; vertical-align: top;">' +
+                '<div style="margin: 5px 0 5px; font-size: 11px; cursor: pointer;">' +
+                    '<!--<span class="dotyel a-action lasttreedrophide">скрыть всё</span>, <span class="dotyel a-action lasttreedropshow">раскрыть всё</span>-->' +
+                '</div>' +
+                '<div id="workers_rezult" style="/*width: 700px; max-width: 700px; min-width: 700px;*/ height: 750px; overflow-y: scroll; overflow-x: hidden;">' +
+				'</div>' +
+            '</div>' +
         '</div>');
 
     getStaffTree ();
+	
+	getWorkers (0);
 
 }
 
-//Загрузка
+//Загрузка дерева
 function getStaffTree (){
     //console.log('getStaffTree');
 
@@ -251,6 +260,38 @@ function getItmesFromDB (type){
                 $(function() {
                     $("#myTable").tablesorter();
                 });
+            }
+        }
+    })
+}
+
+//Загрузка сотрудников
+function getWorkers(staff){
+	let link = "py/get_workers.py";
+
+    let reqData = {
+        staff: staff
+    };
+    // console.log(reqData);
+
+    $.ajax({
+        url: link,
+        global: false,
+        type: "POST",
+        dataType: "JSON",
+        data: reqData,
+        cache: false,
+        beforeSend: function () {
+            // Что-то делаем пока ждём ответа
+            // $('#errrror').html("<div style='width: 120px; height: 32px; padding: 10px; text-align: center; vertical-align: middle; border: 1px dotted rgb(255, 179, 0); background-color: rgba(255, 236, 24, 0.5);'><img src='img/wait.gif' style='float:left;'><span style='float: right;  font-size: 90%;'> обработка...</span></div>");
+        },
+        // Действие, при ответе с сервера
+        success: function (res) {
+            // console.log (res);
+
+            // Вывели список
+            if (res.result == 'success') {
+                $("#workers_rezult").html(res.data);
             }
         }
     })
