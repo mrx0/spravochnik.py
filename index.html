@@ -112,7 +112,7 @@
                 </div>
 
                 <div id="main_window" class="k-grid-header" style="padding-right: 17px;">
-                    <div class="k-grid-header-wrap k-auto-scrollable" data-role="resizable">
+                    <!--<div class="k-grid-header-wrap k-auto-scrollable" data-role="resizable">
                         <table role="grid" id="myTable" class="tablesorter">
                             <colgroup>
                                 <col style="width: 50px;  min-width: 50px;">
@@ -143,7 +143,8 @@
                                     <th scope="col" role="columnheader" data-field="NAME_CLIENT" aria-haspopup="true" rowspan="1" data-title="Числится" aria-label="" data-aggregates="count" data-index="7" id="451c820c-081d-430a-9997-c4f55f9fdcd2" title="Клиент" class="k-header" data-role="columnsorter">
                                         <span class="k-link" href="">Числится</span>
                                     </th>
-                                    <th scope="col" role="columnheader" data-field="NOTE" aria-haspopup="true" rowspan="1" data-title="Описание" data-groupable="false" data-index="11" id="2fc10ed1-4709-41a5-b46d-31221285d389" title="Описание" class="k-header <!--k-with-icon k-filterable-->" data-role="columnsorter">
+                                    <th scope="col" role="columnheader" data-field="NOTE" aria-haspopup="true" rowspan="1" data-title="Описание" data-groupable="false" data-index="11" id="2fc10ed1-4709-41a5-b46d-31221285d389" title="Описание" class="k-header <!--k-with-icon k-filterable
+									" data-role="columnsorter">
                                         <span class="k-link" href="">Примечания</span>
                                     </th>
                                 </tr>
@@ -157,7 +158,7 @@
                             k-master-row - ХЗ для чего
                             redsRows - Выделение красным (просроченно)
                             k-state-selected - Выделение синим (выбраная строка)
-                            -->
+                            
 
                             <tr data-uid="71742817-5fad-4b59-a6e4-3e0e51b3dc84" role="row">
                                 <td class="" role="gridcell">
@@ -187,7 +188,7 @@
                                     </div>
                                 </td>
                                 <td class="" role="gridcell">
-                                    <!--<a href="" target="_blank" title="RIMS" id="linkToRIMS">Гуцева Г.М.</a>-->
+                                    <!--<a href="" target="_blank" title="RIMS" id="linkToRIMS">Гуцева Г.М.</a>
                                     <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
                                         <div style="margin:auto;" title="">
                                             TAY-WN-004867
@@ -234,7 +235,7 @@
                                     </div>
                                 </td>
                                 <td class="" role="gridcell">
-                                    <!--<a href="" target="_blank" title="RIMS" id="linkToRIMS">Гуцева Г.М.</a>-->
+                                    <!--<a href="" target="_blank" title="RIMS" id="linkToRIMS">Гуцева Г.М.</a>
                                     <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
                                         <div style="margin:auto;" title="">
                                             TAY-WN-004867
@@ -254,7 +255,7 @@
                             </tr>
 
                         </tbody>
-                    </table>
+                    </table>-->
                 </div>
 
                 <!--<div class="k-pager-wrap k-grid-pager k-widget k-floatwrap" data-role="pager">
@@ -404,6 +405,28 @@
             $("#myTable").tablesorter();
         });
     </script>
+
+	<!-- Действия при загрузке -->
+    <script>
+		$( document ).ready(function() {
+            // Чистим главное окно
+            $('#main_window').html('');
+            // Чистим менюшку с кнопками по типам
+            $("#main_window_header").html('');
+            // Показываем менюшку с кнопками по типам
+            $("#main_window_header").show();
+
+            // Запросим данные по типам оборудования
+            getDataFromDB('items_types');
+
+            // Запросим данные по всему оборудованию
+            getItmesFromDB(0)
+
+            // Запросим данные
+            //getDataFromDB ($(this).attr("id"));
+		});
+	</script>
+
 
 
 
