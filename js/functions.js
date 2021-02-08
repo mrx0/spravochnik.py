@@ -297,4 +297,63 @@ function getWorkers(staff){
     })
 }
 
+// Показываем блок для подтверждения переноса
+// !!!2021-02-08 Сейчас никакого блока нет, функцуия сквозная, просто передаёт данные дальше
+// но м.б. в будущем мы сделаем тут диалог подтверждения
+function showMoveApprove(item, target){
+    // console.log(item);
+    // console.log(target);
+    // console.log(item.elem.getAttribute("data-uid")+" in "+target.id);
+    // console.log(item.elem.id.split('_')[0]);
 
+    let itemDataUID = item.elem.getAttribute("data-uid");
+    let targetDataUID = target.getAttribute("data-uid");
+    // console.log(itemDataUID.split('_')[1]);
+    // console.log(targetDataUID.split('_')[1]);
+
+    //Спрячем элемент, который переносили, чтобы не перезагружать страницу
+    item.elem.style.display = 'none';
+
+    //Перемещение департамента в другой
+    if (itemDataUID.split('_')[0] == 'staffId') {
+        moveWorkerOrStaffInStaff(0, itemDataUID.split('_')[1], targetDataUID.split('_')[1]);
+    }
+    //Перемещение сотрудника в другой департамент
+    if (itemDataUID.split('_')[0] == 'workerId') {
+        moveWorkerOrStaffInStaff(itemDataUID.split('_')[1], 0, targetDataUID.split('_')[1]);
+    }
+}
+
+//Перемещаем позицию в другое место
+function moveWorkerOrStaffInStaff (worker_id, staff_id, target_staff_id){
+
+    let link = "py/move_item_in_staff.py";
+
+    let reqData = {
+        worker_id: worker_id,
+        staff_id: staff_id,
+        target_staff_id: target_staff_id
+    };
+    //console.log(reqData);
+
+    $.ajax({
+        url: link,
+        global: false,
+        type: "POST",
+        dataType: "JSON",
+        data: reqData,
+        cache: false,
+        beforeSend: function () {
+            // Что-то делаем пока ждём ответа
+            // $('#errrror').html("<div style='width: 120px; height: 32px; padding: 10px; text-align: center; vertical-align: middle; border: 1px dotted rgb(255, 179, 0); background-color: rgba(255, 236, 24, 0.5);'><img src='img/wait.gif' style='float:left;'><span style='float: right;  font-size: 90%;'> обработка...</span></div>");
+        },
+        success: function (res) {
+            console.log (res);
+
+            if (res.result == 'success') {
+                getStaffTree ();
+            }
+        }
+    })
+
+}
