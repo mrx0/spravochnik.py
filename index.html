@@ -32,28 +32,14 @@
 	<script src="./js/jquery-ui-1.12.1.min.js"></script>
 
 
-	<script src="./js/kendo.all.min.js"></script>
-	<script src="./js/jszip.min.js"></script>
-	<script src="./js/pako_deflate.min.js"></script>
-	<script src="./js/kendo.culture.ru-RU.min.js"></script>
-	<script src="./js/kendo.messages.ru-RU.min.js"></script>
 
-    <style type="text/css">
-        html,
-        body,
-        #app {
-            margin: 0;
-            padding: 0;
-            border-width: 0;
-            height: 100%; /* DO NOT USE !important for setting the Grid height! */
-            overflow-y: hidden;
-        }
-    </style>
+
+
 </head>
 <body>
-	<div id="app">
 
-		<link href="./css/rep_070.css" rel="stylesheet">
+
+		<!--<link href="./css/rep_070.css" rel="stylesheet">-->
        <!-- <link href="./css/theme.default.min.css" rel="stylesheet" type="text/css">-->
         <!--Свои стили (!!!временно, перенести потом в один)-->
         <link href="./css/style.css" rel="stylesheet" type="text/css">
@@ -111,151 +97,7 @@
                 <div id="main_window_header" class="k-grouping-header" data-role="droptarget">
                 </div>
 
-                <div id="main_window" class="k-grid-header" style="padding-right: 17px;">
-                    <!--<div class="k-grid-header-wrap k-auto-scrollable" data-role="resizable">
-                        <table role="grid" id="myTable" class="tablesorter">
-                            <colgroup>
-                                <col style="width: 50px;  min-width: 50px;">
-                                <col style="width: 100px">
-                                <col style="width: 100px; min-width: 100px;">
-                                <col style="width: 80px">
-                                <col style="width: 100px; min-width: 100px;">
-                                <col style="width: 200px">
-                                <col style="width:186px">
-                            </colgroup>
-                            <thead role="rowgroup">
-                                <tr role="row">
-                                    <th scope="col" role="columnheader" data-field="COUNT_VR" aria-haspopup="true" rowspan="1" data-title="" data-groupable="false" data-index="1" id="b29dedd7-57f8-465a-8ed7-263c454c422d" title="" class="k-header" data-role="columnsorter">
-                                        <span class="k-link" href="">Тип</span>
-                                    </th>
-                                    <th scope="col" role="columnheader" data-field="DOCS" aria-haspopup="true" rowspan="1" data-title="" data-groupable="false" data-index="2" id="d18deb96-8f96-4ae2-8b0b-47db353fbc7e" title="" class="k-header" data-role="columnsorter">
-                                        <span class="k-link" href="">Модель</span>
-                                    </th>
-                                    <th scope="col" role="columnheader" data-field="NOMER_DEMAND" aria-haspopup="true" rowspan="1" data-title="" data-groupable="false" data-index="0" id="657d0dca-7461-490a-ad56-2fa0ff5aec83" title="" class="k-header" data-role="columnsorter">
-                                        <span class="k-link" href="">Инвент. №</span>
-                                    </th>
-                                    <th scope="col" role="columnheader" data-field="DATE_BEGIN" aria-haspopup="true" rowspan="1" data-title="" aria-label="" data-aggregates="count" data-index="3" id="b5e42713-5842-46c7-8611-68e18393ed37" title="Дата выдачи" class="k-header" data-role="columnsorter">
-                                        <span class="k-link" href="">Серийн. №</span>
-                                    </th>
-                                    <th scope="col" role="columnheader" data-field="CL_PHONE" aria-haspopup="true" rowspan="1" data-title="Host / Т.номер" aria-label="" data-aggregates="count" data-index="6" id="786d2679-6aad-4b0d-a59c-5030f828ef8e" title="Телефон" class="k-header" data-role="columnsorter">
-                                        <span class="k-link" href="">Host / Т.номер</span>
-                                    </th>
-                                    <th scope="col" role="columnheader" data-field="NAME_CLIENT" aria-haspopup="true" rowspan="1" data-title="Числится" aria-label="" data-aggregates="count" data-index="7" id="451c820c-081d-430a-9997-c4f55f9fdcd2" title="Клиент" class="k-header" data-role="columnsorter">
-                                        <span class="k-link" href="">Числится</span>
-                                    </th>
-                                    <th scope="col" role="columnheader" data-field="NOTE" aria-haspopup="true" rowspan="1" data-title="Описание" data-groupable="false" data-index="11" id="2fc10ed1-4709-41a5-b46d-31221285d389" title="Описание" class="k-header <!--k-with-icon k-filterable
-									" data-role="columnsorter">
-                                        <span class="k-link" href="">Примечания</span>
-                                    </th>
-                                </tr>
-                            </thead>
-
-                        <tbody role="rowgroup">
-
-                            <!--
-                            Классы для tr (или td?)
-                            k-alt - Выделение серым (через 1)
-                            k-master-row - ХЗ для чего
-                            redsRows - Выделение красным (просроченно)
-                            k-state-selected - Выделение синим (выбраная строка)
-                            
-
-                            <tr data-uid="71742817-5fad-4b59-a6e4-3e0e51b3dc84" role="row">
-                                <td class="" role="gridcell">
-                                    <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
-                                        <div style="margin:auto;" title="">
-                                            ноутбук
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="" role="gridcell">
-                                    <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
-                                        <div style="margin:auto; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" title="ThinkPad 13 2nd Gen 8G 256 W10P">
-                                            ThinkPad 13 2nd Gen 8G 256 W10P
-                                        </div>
-                                    </div>
-                                </td>
-                                <td data-copymenu="true" class="" role="gridcell">
-                                    <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
-                                        <div id="NOM_DEMAND" style="margin:auto; cursor: pointer; color: rgb(25, 132, 200);" title="56300000000560">
-                                            56300000000560
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="" role="gridcell">
-                                    <div style="margin:auto; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" title="ThinkPad 13 2nd Gen 8G 256 W10P">
-                                        54511517-0000411
-                                    </div>
-                                </td>
-                                <td class="" role="gridcell">
-                                    <!--<a href="" target="_blank" title="RIMS" id="linkToRIMS">Гуцева Г.М.</a>
-                                    <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
-                                        <div style="margin:auto;" title="">
-                                            TAY-WN-004867
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="" role="gridcell">
-                                    <div id="NOM_DEMAND" style="cursor: pointer; color: rgb(25, 132, 200);" title="Красноперова Анастасия Валерьевна">
-                                        Красноперова Анастасия Валерьевна1
-                                    </div>
-                                </td>
-                                <td class="" role="gridcell">
-                                    <div class="note">
-                                        При подключении к ноутбуку нет видео сигнала.2
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr data-uid="71742817-5fad-4b59-a6e4-3e0e51b3dc84" role="row">
-                                <td class="" role="gridcell">
-                                    <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
-                                        <div style="margin:auto;" title="">
-                                            ноутбук
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="" role="gridcell">
-                                    <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
-                                        <div style="margin:auto; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" title="ThinkPad 13 2nd Gen 8G 256 W10P">
-                                            ThinkPad 13 2nd Gen 8G 256 W10P
-                                        </div>
-                                    </div>
-                                </td>
-                                <td data-copymenu="true" class="" role="gridcell">
-                                    <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
-                                        <div id="NOM_DEMAND" style="margin:auto; cursor: pointer; color: rgb(25, 132, 200);" title="56300000000560">
-                                            56300000000560
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="" role="gridcell">
-                                    <div style="margin:auto; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" title="ThinkPad 13 2nd Gen 8G 256 W10P">
-                                        54511517-0000411
-                                    </div>
-                                </td>
-                                <td class="" role="gridcell">
-                                    <!--<a href="" target="_blank" title="RIMS" id="linkToRIMS">Гуцева Г.М.</a>
-                                    <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
-                                        <div style="margin:auto;" title="">
-                                            TAY-WN-004867
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="" role="gridcell">
-                                    <div id="NOM_DEMAND" style="cursor: pointer; color: rgb(25, 132, 200);" title="Красноперова Анастасия Валерьевна">
-                                        Красноперова Анастасия Валерьевна2
-                                    </div>
-                                </td>
-                                <td class="" role="gridcell">
-                                    <div class="note">
-                                        При подключении к ноутбуку нет видео сигнала.1
-                                    </div>
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>-->
+                <div id="main_window" class="k-grid-header" style="">
                 </div>
 
                 <!--<div class="k-pager-wrap k-grid-pager k-widget k-floatwrap" data-role="pager">

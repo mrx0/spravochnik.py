@@ -1,9 +1,48 @@
+html,body{
+    height: 100%;
+    overflow: hidden;
+}
+
+#main_window {
+    /*width: 95vw;*/
+    height: 100%;
+    overflow: auto;
+    /*position: fixed;*/
+    /*top: 0;*/
+    /*left: 50%;*/
+    /*padding: 10px;*/
+    margin: auto; /* Выравниваем по центру */
+    padding-right: 0px;
+}
+
+
+.k-filter-row th, .k-grid-header th.k-header {
+    text-align: center;
+    font-size: 11px;
+}
+
+.k-grid table {
+    /*min-width: 1280px;*/
+    table-layout: fixed;
+}
+
+/*.k-grid tbody tr{
+    max-height:50px;
+}*/
+
+/*!!!*/
+.k-grid td {
+    /*white-space: pre-wrap;*/
+    white-space: normal;
+    text-overflow: ellipsis;
+}
+
 /*table {
     border-spacing: 2px;
     background-color: white;
 }*/
 
-/*Ещё стили для разворачивающихся древовидных списков -->*/
+/*Стили для разворачивающихся древовидных списков -->*/
 .tree{
     /*	font-family: Verdana, Arial, Helvetica, sans-serif;*/
     font-size: 1em;
@@ -103,7 +142,7 @@ li input:checked + ol > li:last-child {
 /*<---Ещё стили для разворачивающихся древовидных списков*/
 
 /*!!!Стили для DnD элементов--->*/
-.sclad_item {
+/*.sclad_item {
     font-size: 11px;
 }
 .sclad_item .cellName{
@@ -114,9 +153,9 @@ li input:checked + ol > li:last-child {
     outline: 1px solid #BFBCB5;
     border: 0;
     margin: 2px;
-}
+}*/
 
-.sclad_item_tr td{
+.worker_item_tr td{
     border-bottom: 1px solid #CCC;
     border-right: 1px solid #CCC;
     /*vertical-align: top;*/

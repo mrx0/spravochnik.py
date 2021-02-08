@@ -87,7 +87,7 @@ try:
                 data['phone_personal'] = '<span style="color: grey">не указан</span>'
 
             res += '''
-                            <tr class="draggable sclad_item_tr" data-uid="" role="row">
+                            <tr class="draggable worker_item_tr" data-uid="workerId_''' + str(data['id']) + '''" role="row">
                                 <td class="" role="gridcell" style="border-left: 1px solid #CCC;">
                                     <div style="position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
                                         <div style="margin:auto;" title="">
