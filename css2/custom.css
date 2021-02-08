@@ -1,0 +1,390 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+
+@font-face {
+  font-family: 'fontawesome-selected';
+  src: url("../font/fontawesome-selected.eot");
+  src: url("../font/fontawesome-selected.eot?#iefix") format('embedded-opentype'), url("../font/fontawesome-selected.woff") format('woff'), url("../font/fontawesome-selected.ttf") format('truetype'), url("../font/fontawesome-selected.svg#fontawesome-selected") format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SFUIText';
+  src: url("../font/SFUIText-Light.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html { height: 100%; }
+
+body {
+	background: #cebe29;
+	background: -moz-linear-gradient(-45deg, #cebe29 0%, #9b1f50 33%, #2989d8 71%, #89b4ff 91%);
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#cebe29), color-stop(33%,#9b1f50), color-stop(71%,#2989d8), color-stop(91%,#89b4ff));
+	background: -webkit-linear-gradient(-45deg, #cebe29 0%,#9b1f50 33%,#2989d8 71%,#89b4ff 91%);
+	background: -o-linear-gradient(-45deg, #cebe29 0%,#9b1f50 33%,#2989d8 71%,#89b4ff 91%);
+	background: -ms-linear-gradient(-45deg, #cebe29 0%,#9b1f50 33%,#2989d8 71%,#89b4ff 91%);
+	background: linear-gradient(135deg, #cebe29 0%,#9b1f50 33%,#2989d8 71%,#89b4ff 91%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cebe29', endColorstr='#89b4ff',GradientType=1 );
+	-webkit-background-size: 100% 100%;
+	-moz-background-size: 100% 100%;
+	background-size: 100% 100%;
+	
+    font-family: 'SFUIText', 'Lato', 'fontawesome-selected', Calibri, Arial, sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+   /* color: #333;*/
+    height: 100%;
+}
+
+/*Раньше было в demo.css*/
+
+
+*,
+*:after,
+*:before {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+/* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+a {
+	color: #555;
+	text-decoration: none;
+}
+/*
+.container {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+
+.container > header {
+	padding: 30px;
+}
+
+.container > header h1 {
+	font-size: 34px;
+	line-height: 38px;
+	margin: 0;
+	font-weight: 700;
+	color: #fff;
+	float: left;
+	text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+}
+
+.container > header h1 span {
+	font-size: 18px;
+	font-weight: 300;
+	display: block;
+}
+*/
+/* Header Style */
+.codrops-top {
+	line-height: 24px;
+	/*font-size: 18px;*/
+	letter-spacing: 3px;
+	/*background: #fff;	/*background: rgba(255, 255, 255, 0.5);*/
+	text-transform: uppercase;
+	z-index: 9999;
+	position: relative;
+	/*box-shadow: 1px 0px 2px rgba(0,0,0,0.2);*/
+	font-weight: 300;
+	
+	padding: 5px 10px;
+	/*margin:10px;*/
+	height: 50px;
+	
+	display: block;
+
+}
+
+
+.codrops-top h2 {
+	float: left;
+	font-weight: 300;
+	text-transform: uppercase;
+	letter-spacing: 4px;
+	text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
+}
+
+.codrops-top h2 {
+	color: #fff;
+	width: 100%;
+}
+
+.codrops-top h2 a {
+	/*color: rgba(255,255,255,0.3);*/
+	/*font-size: 18px;*/
+	/*letter-spacing: 3px;*/
+	/*white-space: nowrap;*/
+}
+
+.codrops-top h2 a {
+	color: rgba(255,255,255,0.5);
+}
+
+/*
+.codrops-top a {
+	padding: 0px 10px;
+	letter-spacing: 1px;
+	color: #333;
+	display: inline-block;
+}
+
+.codrops-top a:hover {
+	background: rgba(255,255,255,0.8);
+	color: #000;
+}
+*/
+.codrops-top span.right {
+	float: right;
+}
+
+.codrops-top span.right a {
+	float: left;
+	display: block;
+}
+
+.custom-calendar-full {
+	position: absolute;
+	top: 24px;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+	height: auto;
+}
+/*
+.fc-calendar-container {
+	position: relative;
+	height: 400px;
+	width: 400px;
+}
+*/
+/*.fc-calendar-container {
+	height: auto;
+	bottom: 0px;
+	width: 100%;
+	top: 50px;
+	position: absolute;
+}*/
+
+.custom-header {
+	padding: 20px 20px 10px 30px;
+	height: 50px;
+	position: relative;
+}
+
+.custom-header h2,
+.custom-header h3 {
+	float: left;
+	font-weight: 300;
+	text-transform: uppercase;
+	letter-spacing: 4px;
+	text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
+}
+
+.custom-header h2 {
+	color: #fff;
+	width: 60%;
+}
+
+.custom-header h2 a, 
+.custom-header h2 span {
+	color: rgba(255,255,255,0.3);
+	font-size: 18px;
+	letter-spacing: 3px;
+	white-space: nowrap;
+}
+
+.custom-header h2 a {
+	color: rgba(255,255,255,0.5);
+}
+
+.no-touch .custom-header h2 a:hover {
+	color: rgba(15,0,0,0.9);
+}
+
+.custom-header h3 {
+	width: 40%;
+	color: #ddd;
+	color: rgba(255,255,255,0.6);
+	font-weight: 300;
+	line-height: 30px;
+	text-align: right;
+	padding-right: 125px;
+}
+
+.custom-header nav {
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.custom-header nav span {
+	float: left;
+	width: 30px;
+	height: 30px;
+	position: relative;
+	color: transparent;
+	cursor: pointer;
+	background: rgba(255,255,255,0.3);
+	margin: 0 1px;
+	font-size: 20px;
+	border-radius: 0 3px 3px 0;
+	box-shadow: inset 0 1px rgba(255,255,255,0.2);
+}
+
+.custom-header nav span:first-child {
+	border-radius: 3px 0 0 3px;
+}
+
+.custom-header nav span:hover {
+	background: rgba(255,255,255,0.5);
+}
+
+.custom-header span:before {
+	/*font-family: 'fontawesome-selected';*/
+	color: #fff;
+	display: inline-block;
+	text-align: center;
+	width: 100%;
+	text-indent: 4px;
+}
+
+.custom-header nav span.custom-prev:before {
+	content: '\25c2';
+}
+
+.custom-header nav span.custom-next:before {
+	content: '\25b8';
+}
+
+.custom-header nav span:last-child {
+	margin-left: 20px;
+	border-radius: 3px;
+}
+
+.custom-header nav span.custom-current:before {
+	content: '\27a6';
+}
+
+.no-touch .fc-calendar .fc-row > div > div a:hover {
+	background: rgba(255,255,255,0.3);
+}
+
+@media screen and (max-width: 880px) , screen and (max-height: 450px) {
+	html, body {
+		
+	}
+
+	.custom-header,
+	.custom-header nav,
+	.custom-calendar-full,
+	/*.fc-calendar-container, */
+	.fc-calendar,
+	.fc-calendar .fc-head,
+	.fc-calendar .fc-row > div > span.fc-date {
+		position: relative;
+		top: auto;
+		left: auto;
+		bottom: auto;
+		right: auto;
+		height: auto;
+		width: auto;
+	}
+
+	.fc-calendar {
+		margin: 0 20px 20px;
+	}
+
+	.custom-header h2,
+	.custom-header h3 {
+		float: none;
+		width: auto;
+		text-align: left;
+		padding-right: 100px;
+	}
+	
+}
+
+@media screen and (max-width: 525px) , screen and (max-height: 450px) {
+	html, body {
+		height: auto;
+	}
+
+	.custom-header,
+	.custom-header nav,
+	.custom-calendar-full,
+	/*.fc-calendar-container, */
+	.fc-calendar,
+	.fc-calendar .fc-head,
+	.fc-calendar .fc-row > div > span.fc-date {
+		position: relative;
+		top: auto;
+		left: auto;
+		bottom: auto;
+		right: auto;
+		height: auto;
+		width: auto;
+	}
+
+	.fc-calendar {
+		margin: 0 20px 20px;
+	}
+
+	.custom-header h2,
+	.custom-header h3 {
+		float: none;
+		width: auto;
+		text-align: left;
+		padding-right: 100px;
+	}
+	/*Под вопросом*/
+				.md-modal {
+					position: fixed;
+					top: 50%;
+					left: 50%;
+					width: 50%;
+					max-width: 630px;
+					min-width: 320px;
+					height: 300px;
+					z-index: 2000;
+					visibility: hidden;
+					-webkit-backface-visibility: hidden;
+					-moz-backface-visibility: hidden;
+					backface-visibility: hidden;
+					-webkit-transform: translateX(-50%) translateY(-50%);
+					-moz-transform: translateX(-50%) translateY(-50%);
+					-ms-transform: translateX(-50%) translateY(-50%);
+					transform: translateX(-50%) translateY(-50%);
+					overflow: auto; 
+				}
+	
+	
+	
+}
