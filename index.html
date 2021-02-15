@@ -211,7 +211,8 @@
     <li class="k-item k-state-default" role="menuitem" data-uid="a8a79987-58d4-4c1c-aac7-0ee2988f9c8a"><span class="k-link k-menu-link"><span data-code="5"><span class="k-icon k-i-copy"></span>Коп. URL</span></span></li><li class="k-item k-state-default k-last" role="menuitem" data-uid="8281976b-971c-4055-a60a-219f088cc563"><span class="k-link k-menu-link"><span data-code="6"><span class="k-icon k-i-copy"></span>Коп. общую инф-ю</span></span></li>
 </ul>-->
 
-    <!--<div class="k-animation-container" style="width: 226px; height: 423px; overflow: hidden; display: none; position: absolute; top: 254px; z-index: 10002; left: 1395px;" aria-hidden="true"><ul id="gridMenu" data-role="contextmenu" class="k-widget k-reset k-header k-menu k-context-menu k-popup k-group k-menu-vertical" tabindex="0" role="menubar" style="display: none; position: absolute; font-size: 11px; font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-stretch: 100%; font-style: normal; font-weight: 400; line-height: normal; opacity: 0;" aria-hidden="true"><li class="k-item k-state-default k-first" role="menuitem" data-uid="e7a90a19-e0c0-4bd0-8a0d-79471675c161"><span class="k-link k-menu-link"><span data-code="1">
+    <div class="k-animation-container" style="width: 226px; height: 423px; overflow: visible; display: block; position: absolute; top: 254px; z-index: 10002; left: 100px;" aria-hidden="true">
+		<ul id="gridMenu" data-role="contextmenu" class="k-widget k-reset k-header k-menu k-context-menu k-popup k-group k-menu-vertical" tabindex="0" role="menubar" style="display: block; position: absolute; font-size: 11px; font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-stretch: 100%; font-style: normal; font-weight: 400; line-height: normal; opacity: 1;" aria-hidden="true"><li class="k-item k-state-default k-first" role="menuitem" data-uid="e7a90a19-e0c0-4bd0-8a0d-79471675c161"><span class="k-link k-menu-link"><span data-code="1">
         <span class="k-icon k-i-copy"></span>Перевод статуса</span></span></li><li class="k-item k-state-default" role="menuitem" data-uid="b77075bd-f049-4cc4-8971-2f49c796a3c0"><span class="k-link k-menu-link"><span data-code="2"><span class="k-icon k-i-track-changes-accept"></span>Добавление/Просмотр ВР</span></span></li>
         <li class="k-item k-state-disabled" role="menuitem" data-uid="86331a8c-aaea-46e4-a836-5df99640b5ef" aria-disabled="true"><span class="k-link k-menu-link"><span data-code="17" id="addCompletedWork"><span class="k-icon k-i-track-changes-accept"></span>Добавить ВР</span></span></li><li class="k-item k-state-default" role="menuitem" aria-haspopup="true" data-uid="9ccc2104-adb1-4422-98b8-26b9c8969efc" aria-disabled="false"><span class="k-link k-menu-link">
             <span data-code="30" id="accessCloseNZ"><span class="k-icon k-i-track-changes-reject"></span>Закрыть н.з. по шаблону</span>
@@ -230,7 +231,100 @@
             <span class="k-icon k-i-gears"></span>Добавление/Просмотр ТМЦ</span></span></li><li class="k-item k-state-disabled" role="menuitem" data-uid="0ed9e7e9-16b8-4e7a-8ab6-09cfc011dd1f" aria-disabled="true"><span class="k-link k-menu-link"><span data-code="11" id="accessCreateTemp"><span class="k-icon k-i-track-changes-accept"></span>Создать заявку по шаблону</span></span></li><li class="k-item k-state-default" role="menuitem" data-uid="9264fdd2-4ee1-4766-9023-6a17f9664bd7"><span class="k-link k-menu-link"><span data-code="12" id="accessCreateTemp"><span class="k-icon k-i-track-changes-accept"></span>Создать заявку на согласование</span></span></li><li class="k-item k-state-default" role="menuitem" aria-haspopup="true" data-uid="3faa6b06-c1a6-4bad-866c-872ad211095f"><span class="k-link k-menu-link"><span><span class="k-icon k-i-copy"></span>Копировать в буфер обмена</span><span class="k-icon k-i-arrow-60-right k-menu-expand-arrow"></span></span><ul class="k-group k-menu-group" style="display:none" role="menu" aria-hidden="true"></ul></li><li class="k-item k-state-default k-last" role="menuitem" data-uid="bbabb8f3-8fdb-4d7d-980c-a0ad62318c25"><span class="k-link k-menu-link"><span data-code="21" id="StatusExecTrans"><span class="k-icon k-i-check-outline"></span>Решение по перевозке</span></span></li>
 
     </ul>
-</div>-->
+</div>
+
+
+<menu class="menu">
+    <li class="menu-item">
+        <button type="button" class="menu-btn">
+            <i class="fa fa-folder-open"></i>
+            <span class="menu-text">Открыть</span>
+        </button>
+    </li>
+    <li class="menu-item disabled">
+        <button type="button" class="menu-btn">
+            <span class="menu-text">Открыть в новом окне</span>
+        </button>
+    </li>
+    <li class="menu-separator"></li>
+    <li class="menu-item">
+        <button type="button" class="menu-btn">
+            <i class="fa fa-reply"></i>
+            <span class="menu-text">Обновить</span>
+        </button>
+    </li>
+    <li class="menu-item">
+        <button type="button" class="menu-btn">
+            <i class="fa fa-star"></i>
+            <span class="menu-text">В закладки</span>
+        </button>
+    </li>
+    <li class="menu-item submenu">
+        <button type="button" class="menu-btn">
+            <i class="fa fa-users"></i>
+            <span class="menu-text">Социальность</span>
+        </button>
+        <menu class="menu">
+            <li class="menu-item">
+                <button type="button" class="menu-btn">
+                    <i class="fa fa-comment"></i>
+                    <span class="menu-text">Комментарии</span>
+                </button>
+            </li>
+            <li class="menu-item submenu">
+                <button type="button" class="menu-btn">
+                    <i class="fa fa-share"></i>
+                    <span class="menu-text">Поделиться</span>
+                </button>
+                <menu class="menu">
+                    <li class="menu-item">
+                        <button type="button" class="menu-btn">
+                            <i class="fa fa-twitter"></i>
+                            <span class="menu-text">Twitter</span>
+                        </button>
+                    </li>
+                    <li class="menu-item">
+                        <button type="button" class="menu-btn">
+                            <i class="fa fa-facebook-official"></i>
+                            <span class="menu-text">Facebook</span>
+                        </button>
+                    </li>
+                    <li class="menu-item">
+                        <button type="button" class="menu-btn">
+                            <i class="fa fa-google-plus"></i>
+                            <span class="menu-text">Google Plus</span>
+                        </button>
+                    </li>
+                    <li class="menu-item">
+                        <button type="button" class="menu-btn">
+                            <i class="fa fa-envelope"></i>
+                            <span class="menu-text">Email</span>
+                        </button>
+                    </li>
+                </menu>
+            </li>
+        </menu>
+    </li>
+    <li class="menu-separator"></li>
+    <li class="menu-item">
+        <button type="button" class="menu-btn">
+            <i class="fa fa-download"></i>
+            <span class="menu-text">Сохранить</span>
+        </button>
+    </li>
+    <li class="menu-item">
+        <button type="button" class="menu-btn">
+            <i class="fa fa-edit"></i>
+            <span class="menu-text">Изменить</span>
+        </button>
+    </li>
+    <li class="menu-item">
+        <button type="button" class="menu-btn">
+            <i class="fa fa-trash"></i>
+            <span class="menu-text">Удалить</span>
+        </button>
+    </li>
+</menu>
 
 <!--    <div class="k-animation-container" style="width: 376px; height: 247px; overflow: hidden; display: none; position: absolute; top: 183.812px; z-index: 10002; left: 538.625px;" aria-hidden="true">
     </div>-->
