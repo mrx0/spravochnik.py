@@ -47,7 +47,7 @@ try:
         cur = conn.cursor(dictionary=True)
 
         # Строка запроса
-        query = """SELECT * FROM spr_types db 
+        query = """SELECT db.id, db.name FROM spr_types db 
             WHERE db.status <> ? 
             ORDER BY db.id ASC
             """

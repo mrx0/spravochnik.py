@@ -16,7 +16,7 @@
 def showTreeStaff (level, space, type, sel_id, first, last_level, deleted, dtype, conn):
     # print (level)
 
-    staff_rez = {}
+    # staff_rez = {}
 
     rez_str = ''
 
@@ -26,12 +26,12 @@ def showTreeStaff (level, space, type, sel_id, first, last_level, deleted, dtype
     # else:
     #     parent_str = "`parent_id` = ?"
 
+    # dictionary=True - чтобы работать с результатом как с объектом (ассоциативным массивом)
+    cur = conn.cursor(dictionary=True)
+
     # берем верхний уровень
     query = """SELECT * FROM `spr_staff` WHERE `parent_id` = ? ORDER BY `name`"""
     # print(query);
-
-    # dictionary=True - чтобы работать с результатом как с объектом (ассоциативным массивом)
-    cur = conn.cursor(dictionary=True)
 
     # Запрос данных
     cur.execute(query, [level])
@@ -57,7 +57,7 @@ def showTreeStaff (level, space, type, sel_id, first, last_level, deleted, dtype
             rez_str += '''
                     <ol class="tree">
                     <li>
-                        <label id="cat_0" class="droppable hover" onclick="getWorkers (0); return;" cat_name="">Вне списка</label> <input type="checkbox" id="folder0" checked />
+                        <label id="staffId_0" data-uid="staffId_0" class="droppable hover" onclick="getWorkers (0); return;" straff_name="">Вне списка</label> <input type="checkbox" id="folder0" checked />
                     </li>'''
 
     else:
@@ -78,7 +78,7 @@ def showTreeStaff (level, space, type, sel_id, first, last_level, deleted, dtype
                 if data['node_count'] > 0:
                     rez_str += '''
                         <li>
-                            <label id="cat_''' + str(str(data['id'])) + '''" class="draggable droppable hover" onclick="getWorkers (''' + str(data['id']) + '''); return;" cat_name="''' + data['name'] + '''"> ''' + data['name'] + '''</label> <input type="checkbox" id="folder''' + str(data['id']) + '''" checked />
+                            <label id="staffId_''' + str(str(data['id'])) + '''" data-uid="staffId_''' + str(str(data['id'])) + '''" class="draggable droppable hover" onclick="getWorkers (''' + str(data['id']) + '''); return;" staff_name="''' + data['name'] + '''"> ''' + data['name'] + '''</label> <input type="checkbox" id="folder''' + str(data['id']) + '''" checked />
                         '''
                     rez_str += showTreeStaff(data['id'], '', 'list', 0, False, 0, False, 0, conn)
 
@@ -87,7 +87,7 @@ def showTreeStaff (level, space, type, sel_id, first, last_level, deleted, dtype
                 else:
                     rez_str += '''
                         <li>
-                            <label id="cat_''' + str(data['id']) + '''" class="draggable droppable hover" onclick="getWorkers (''' + str(data['id']) + '''); return;" cat_name="''' + data['name'] + '''"> ''' + data['name'] + '''</label> <input type="checkbox" id="folder''' + str(data['id']) + '''" checked />
+                            <label id="staffId_''' + str(data['id']) + '''" data-uid="staffId_''' + str(data['id']) + '''" class="draggable droppable hover" onclick="getWorkers (''' + str(data['id']) + '''); return;" staff_name="''' + data['name'] + '''"> ''' + data['name'] + '''</label> <input type="checkbox" id="folder''' + str(data['id']) + '''" checked />
                         </li>'''
 
     #         if ($type == 'select'){
@@ -115,3 +115,38 @@ def showTreeStaff (level, space, type, sel_id, first, last_level, deleted, dtype
             rez_str += '</ol>'
 
     return rez_str
+
+# Проверка родителей в дереве
+def checkExistTreeParents (dbtable, item_id, target_item_id, conn, exist=False):
+    # print(item_id)
+    # print(target_item_id)
+    # print(exist)
+
+    # staff_rez = {}
+
+    # dictionary=True - чтобы работать с результатом как с объектом (ассоциативным массивом)
+    cur = conn.cursor(dictionary=True)
+
+    if not exist:
+
+        query = "SELECT parent_id FROM spr_staff WHERE id = ? AND status <> 9 LIMIT 1"
+        args = [target_item_id]
+        # Запрос данных
+        cur.execute(query, args)
+
+        staff_rez = cur.fetchall()
+
+        if cur.rowcount != 0:
+            # Если нашли совпадение с target_item_id, заканчиваем проверки
+            if str(item_id) == str(staff_rez[0]['parent_id']):
+                exist = True
+                # print(item_id)
+                # print(staff_rez[0]['parent_id'])
+                # print(exist)
+
+                return exist
+            else:
+                exist = checkExistTreeParents(dbtable, item_id, staff_rez[0]['parent_id'], conn)
+
+        return exist
+    return exist

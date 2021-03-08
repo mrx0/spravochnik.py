@@ -1,60 +1,40 @@
 <!DOCTYPE html>
 
 <html style="" class="">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-	<title>Справочник v2.0</title>
-    <link rel="shortcut icon" type="image/x-icon" href="./imgs/favicon.ico">
-    <link href="./css/Site.css" rel="stylesheet" type="text/css">
+        <title>Справочник v2.0</title>
+        <link rel="shortcut icon" type="image/x-icon" href="./imgs/favicon.ico">
+        <link href="./css/Site.css" rel="stylesheet" type="text/css">
 
-	<link href="./css/css.css" rel="stylesheet">
+        <link href="./css/css.css" rel="stylesheet">
 
-    <!--<link href="./css/all.css" rel="stylesheet" type="text/css">-->
-	<link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<link href="./css/kendo.common.min.css" rel="stylesheet" type="text/css">
-	
-	<link href="./css/kendo.silver.min.css" rel="stylesheet" type="text/css">
+        <!--<link href="./css/all.css" rel="stylesheet" type="text/css">-->
+        <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="./css/kendo.common.min.css" rel="stylesheet" type="text/css">
 
-	<link href="./css/jquery-ui.min.css" rel="stylesheet" type="text/css">
+        <link href="./css/kendo.silver.min.css" rel="stylesheet" type="text/css">
 
-	<style>
-		body {
-			font-size: 11px;
-		}
-	</style>
+        <link href="./css/jquery-ui.min.css" rel="stylesheet" type="text/css">
 
-	<script src="./js/jquery-1.12.1.js"></script>
-    <!-- скрипт для сортировки -->
-    <script type="text/javascript" src="./js/jquery.tablesorter.js"></script>
+        <style>
+            body {
+                font-size: 11px;
+            }
+        </style>
 
-	<script src="./js/dlgTree.js"></script>
-	<script src="./js/jquery-ui-1.12.1.min.js"></script>
+        <script src="./js/jquery-1.12.1.js"></script>
+        <!-- скрипт для сортировки -->
+        <script type="text/javascript" src="./js/jquery.tablesorter.js"></script>
 
+        <script src="./js/dlgTree.js"></script>
+        <script src="./js/jquery-ui-1.12.1.min.js"></script>
 
-	<script src="./js/kendo.all.min.js"></script>
-	<script src="./js/jszip.min.js"></script>
-	<script src="./js/pako_deflate.min.js"></script>
-	<script src="./js/kendo.culture.ru-RU.min.js"></script>
-	<script src="./js/kendo.messages.ru-RU.min.js"></script>
-
-    <style type="text/css">
-        html,
-        body,
-        #app {
-            margin: 0;
-            padding: 0;
-            border-width: 0;
-            height: 100%; /* DO NOT USE !important for setting the Grid height! */
-            overflow-y: hidden;
-        }
-    </style>
-</head>
-<body>
-	<div id="app">
-
-		<link href="./css/rep_070.css" rel="stylesheet">
-       <!-- <link href="./css/theme.default.min.css" rel="stylesheet" type="text/css">-->
+    </head>
+    <body>
+        <!--<link href="./css/rep_070.css" rel="stylesheet">-->
+        <!-- <link href="./css/theme.default.min.css" rel="stylesheet" type="text/css">-->
         <!--Свои стили (!!!временно, перенести потом в один)-->
         <link href="./css/style.css" rel="stylesheet" type="text/css">
 
@@ -74,255 +54,107 @@
             </div>
         </div>
 
-<div id="vertical" style="height:100%;" data-role="splitter" class="k-widget k-splitter">
-    <div id="top-panel" role="group" class="k-pane k-scrollable" style="position: absolute; top: 0px;  /*height: 897px;*/ /*width: 100%;*/">
-        <div id="panelgrid" style="height: 867px;">
-            <div id="grid" data-role="grid" class="k-grid k-widget k-display-block k-reorderable" style="height: 867px;">
-                <div class="k-header k-grid-toolbar">
-                    <div id="panelfind1" class="float-left">
-                        <!-- Тут будет меню -->
-                        <!-- класс k-state-active и aria-pressed="true" на кнопке подсвечивает её как активную -->
-                        <div id="main_buttons" data-role="buttongroup" class="k-widget k-button-group" role="group" tabindex="0">
-                                <span id="items_button" data-status="main_menu_button" class="k-button k-state-active" title="Оборудование">Оборудование</span>
-                                <span id="workers_button" data-status="main_menu_button" class="k-button" title="Сотрудники">Сотрудники</span>
-                                <!--<span title="" data-value="3" aria-pressed="false" role="button" class="k-button">Что-то</span>
-                                <span title="" data-value="4" aria-pressed="false" role="button" class="k-button">Что-то ещё</span>-->
+        <div id="vertical" style="height:100%;" data-role="splitter" class="k-widget k-splitter">
+            <div id="top-panel" role="group" class="k-pane k-scrollable" style="position: absolute; top: 0px;  /*height: 897px;*/ /*width: 100%;*/">
+                <div id="panelgrid" style="height: 867px;">
+                    <div id="grid" data-role="grid" class="k-grid k-widget k-display-block k-reorderable" style="height: 867px;">
+                        <div class="k-header k-grid-toolbar">
+                            <div id="panelfind1" class="float-left">
+                                <!-- Тут будет меню -->
+                                <!-- класс k-state-active и aria-pressed="true" на кнопке подсвечивает её как активную -->
+                                <div id="main_buttons" data-role="buttongroup" class="k-widget k-button-group" role="group" tabindex="0">
+                                        <span id="items_button" data-status="main_menu_button" class="k-button k-state-active" title="Оборудование">Оборудование</span>
+                                        <span id="workers_button" data-status="main_menu_button" class="k-button" title="Сотрудники">Сотрудники</span>
+                                        <!--<span title="" data-value="3" aria-pressed="false" role="button" class="k-button">Что-то</span>
+                                        <span title="" data-value="4" aria-pressed="false" role="button" class="k-button">Что-то ещё</span>-->
+                                </div>
+
+                                <!-- Тут будет дополнительное меню (если будет нужен) -->
+                                <!--<div id="STATUS_EXT" data-role="buttongroup" class="k-widget k-button-group" role="group" tabindex="0" aria-disabled="false">
+                                    <span title="" data-value="1" data-status="1" aria-pressed="true" role="button" class="k-button k-state-active k-state-focused">Что-то 1</span>
+                                    <span title="" data-value="2" data-status="1" aria-pressed="false" role="button" class="k-button">Что-то 2</span>
+                                    <span title="" data-value="3" data-status="0" aria-pressed="false" role="button" class="k-button k-state-disabled">Что-то 3</span>
+                                    <span title="" data-value="4" data-status="0" aria-pressed="false" role="button" class="k-button k-state-disabled">Что-то 4</span>
+                                </div>-->
+
+                                <!--<div id="STATUS_3" data-role="buttongroup" class="k-widget k-button-group" role="group" tabindex="0" aria-disabled="false">
+                                    <span title="Н.з.выдан, Н.з.выполняется" data-value="0" aria-pressed="false" role="button" class="k-button">В работе</span>
+                                    <span title="Н.з. в ожидании" data-value="1" aria-pressed="false" role="button" class="k-button">Ожидание</span>
+                                    <span title="Н.з. выдано, Н.з. выполняется, Н.з. в Ожидании" data-value="2" aria-pressed="true" role="button" class="k-button k-state-active">Все</span>
+                                </div>-->
+                            </div>
+
                         </div>
 
-                        <!-- Тут будет дополнительное меню (если будет нужен) -->
-                        <!--<div id="STATUS_EXT" data-role="buttongroup" class="k-widget k-button-group" role="group" tabindex="0" aria-disabled="false">
-                            <span title="" data-value="1" data-status="1" aria-pressed="true" role="button" class="k-button k-state-active k-state-focused">Что-то 1</span>
-                            <span title="" data-value="2" data-status="1" aria-pressed="false" role="button" class="k-button">Что-то 2</span>
-                            <span title="" data-value="3" data-status="0" aria-pressed="false" role="button" class="k-button k-state-disabled">Что-то 3</span>
-                            <span title="" data-value="4" data-status="0" aria-pressed="false" role="button" class="k-button k-state-disabled">Что-то 4</span>
-                        </div>-->
+                        <!-- Дополнительное меню с кнопками, например для разделения по типам -->
+                        <!-- Если надо, чтобы кнопка была неактивной, добавим класс k-state-disabled -->
+                        <div id="main_window_header" class="k-grouping-header" data-role="droptarget">
+                        </div>
 
-                        <!--<div id="STATUS_3" data-role="buttongroup" class="k-widget k-button-group" role="group" tabindex="0" aria-disabled="false">
-                            <span title="Н.з.выдан, Н.з.выполняется" data-value="0" aria-pressed="false" role="button" class="k-button">В работе</span>
-                            <span title="Н.з. в ожидании" data-value="1" aria-pressed="false" role="button" class="k-button">Ожидание</span>
-                            <span title="Н.з. выдано, Н.з. выполняется, Н.з. в Ожидании" data-value="2" aria-pressed="true" role="button" class="k-button k-state-active">Все</span>
+                        <div id="main_window" class="k-grid-header" style="">
+                        </div>
+
+                        <!--<div class="k-pager-wrap k-grid-pager k-widget k-floatwrap" data-role="pager">
+                            <span class="k-pager-info k-label">Отображены записи 1 - 9 из 9</span>
                         </div>-->
                     </div>
-
                 </div>
-
-                <!-- Дополнительное меню с кнопки, например для разделения по типам -->
-                <!-- Если надо, чтобы кнопка была неактивной, добавим класс k-state-disabled -->
-                <div id="main_window_header" class="k-grouping-header" data-role="droptarget">
-                </div>
-
-                <div id="main_window" class="k-grid-header" style="padding-right: 17px;">
-                    <div class="k-grid-header-wrap k-auto-scrollable" data-role="resizable">
-                        <table role="grid" id="myTable" class="tablesorter">
-                            <colgroup>
-                                <col style="width: 50px;  min-width: 50px;">
-                                <col style="width: 100px">
-                                <col style="width: 100px; min-width: 100px;">
-                                <col style="width: 80px">
-                                <col style="width: 100px; min-width: 100px;">
-                                <col style="width: 200px">
-                                <col style="width:186px">
-                            </colgroup>
-                            <thead role="rowgroup">
-                                <tr role="row">
-                                    <th scope="col" role="columnheader" data-field="COUNT_VR" aria-haspopup="true" rowspan="1" data-title="" data-groupable="false" data-index="1" id="b29dedd7-57f8-465a-8ed7-263c454c422d" title="" class="k-header" data-role="columnsorter">
-                                        <span class="k-link" href="">Тип</span>
-                                    </th>
-                                    <th scope="col" role="columnheader" data-field="DOCS" aria-haspopup="true" rowspan="1" data-title="" data-groupable="false" data-index="2" id="d18deb96-8f96-4ae2-8b0b-47db353fbc7e" title="" class="k-header" data-role="columnsorter">
-                                        <span class="k-link" href="">Модель</span>
-                                    </th>
-                                    <th scope="col" role="columnheader" data-field="NOMER_DEMAND" aria-haspopup="true" rowspan="1" data-title="" data-groupable="false" data-index="0" id="657d0dca-7461-490a-ad56-2fa0ff5aec83" title="" class="k-header" data-role="columnsorter">
-                                        <span class="k-link" href="">Инвент. №</span>
-                                    </th>
-                                    <th scope="col" role="columnheader" data-field="DATE_BEGIN" aria-haspopup="true" rowspan="1" data-title="" aria-label="" data-aggregates="count" data-index="3" id="b5e42713-5842-46c7-8611-68e18393ed37" title="Дата выдачи" class="k-header" data-role="columnsorter">
-                                        <span class="k-link" href="">Серийн. №</span>
-                                    </th>
-                                    <th scope="col" role="columnheader" data-field="CL_PHONE" aria-haspopup="true" rowspan="1" data-title="Host / Т.номер" aria-label="" data-aggregates="count" data-index="6" id="786d2679-6aad-4b0d-a59c-5030f828ef8e" title="Телефон" class="k-header" data-role="columnsorter">
-                                        <span class="k-link" href="">Host / Т.номер</span>
-                                    </th>
-                                    <th scope="col" role="columnheader" data-field="NAME_CLIENT" aria-haspopup="true" rowspan="1" data-title="Числится" aria-label="" data-aggregates="count" data-index="7" id="451c820c-081d-430a-9997-c4f55f9fdcd2" title="Клиент" class="k-header" data-role="columnsorter">
-                                        <span class="k-link" href="">Числится</span>
-                                    </th>
-                                    <th scope="col" role="columnheader" data-field="NOTE" aria-haspopup="true" rowspan="1" data-title="Описание" data-groupable="false" data-index="11" id="2fc10ed1-4709-41a5-b46d-31221285d389" title="Описание" class="k-header <!--k-with-icon k-filterable-->" data-role="columnsorter">
-                                        <span class="k-link" href="">Примечания</span>
-                                    </th>
-                                </tr>
-                            </thead>
-
-                        <tbody role="rowgroup">
-
-                            <!--
-                            Классы для tr (или td?)
-                            k-alt - Выделение серым (через 1)
-                            k-master-row - ХЗ для чего
-                            redsRows - Выделение красным (просроченно)
-                            k-state-selected - Выделение синим (выбраная строка)
-                            -->
-
-                            <tr data-uid="71742817-5fad-4b59-a6e4-3e0e51b3dc84" role="row">
-                                <td class="" role="gridcell">
-                                    <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
-                                        <div style="margin:auto;" title="">
-                                            ноутбук
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="" role="gridcell">
-                                    <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
-                                        <div style="margin:auto; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" title="ThinkPad 13 2nd Gen 8G 256 W10P">
-                                            ThinkPad 13 2nd Gen 8G 256 W10P
-                                        </div>
-                                    </div>
-                                </td>
-                                <td data-copymenu="true" class="" role="gridcell">
-                                    <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
-                                        <div id="NOM_DEMAND" style="margin:auto; cursor: pointer; color: rgb(25, 132, 200);" title="56300000000560">
-                                            56300000000560
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="" role="gridcell">
-                                    <div style="margin:auto; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" title="ThinkPad 13 2nd Gen 8G 256 W10P">
-                                        54511517-0000411
-                                    </div>
-                                </td>
-                                <td class="" role="gridcell">
-                                    <!--<a href="" target="_blank" title="RIMS" id="linkToRIMS">Гуцева Г.М.</a>-->
-                                    <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
-                                        <div style="margin:auto;" title="">
-                                            TAY-WN-004867
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="" role="gridcell">
-                                    <div id="NOM_DEMAND" style="cursor: pointer; color: rgb(25, 132, 200);" title="Красноперова Анастасия Валерьевна">
-                                        Красноперова Анастасия Валерьевна1
-                                    </div>
-                                </td>
-                                <td class="" role="gridcell">
-                                    <div class="note">
-                                        При подключении к ноутбуку нет видео сигнала.2
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr data-uid="71742817-5fad-4b59-a6e4-3e0e51b3dc84" role="row">
-                                <td class="" role="gridcell">
-                                    <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
-                                        <div style="margin:auto;" title="">
-                                            ноутбук
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="" role="gridcell">
-                                    <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
-                                        <div style="margin:auto; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" title="ThinkPad 13 2nd Gen 8G 256 W10P">
-                                            ThinkPad 13 2nd Gen 8G 256 W10P
-                                        </div>
-                                    </div>
-                                </td>
-                                <td data-copymenu="true" class="" role="gridcell">
-                                    <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
-                                        <div id="NOM_DEMAND" style="margin:auto; cursor: pointer; color: rgb(25, 132, 200);" title="56300000000560">
-                                            56300000000560
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="" role="gridcell">
-                                    <div style="margin:auto; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" title="ThinkPad 13 2nd Gen 8G 256 W10P">
-                                        54511517-0000411
-                                    </div>
-                                </td>
-                                <td class="" role="gridcell">
-                                    <!--<a href="" target="_blank" title="RIMS" id="linkToRIMS">Гуцева Г.М.</a>-->
-                                    <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
-                                        <div style="margin:auto;" title="">
-                                            TAY-WN-004867
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="" role="gridcell">
-                                    <div id="NOM_DEMAND" style="cursor: pointer; color: rgb(25, 132, 200);" title="Красноперова Анастасия Валерьевна">
-                                        Красноперова Анастасия Валерьевна2
-                                    </div>
-                                </td>
-                                <td class="" role="gridcell">
-                                    <div class="note">
-                                        При подключении к ноутбуку нет видео сигнала.1
-                                    </div>
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-
-                <!--<div class="k-pager-wrap k-grid-pager k-widget k-floatwrap" data-role="pager">
-                    <span class="k-pager-info k-label">Отображены записи 1 - 9 из 9</span>
-                </div>-->
-            </div>
-		</div>
-    </div>
-
-    <div tabindex="0" class="k-splitbar k-state-default k-splitbar-vertical" data-marker="5d1c7e7c" role="separator" aria-expanded="false" style="width: 1918px; top: 897px;">
-        <div class="k-icon k-resize-handle k-i-hbar"></div>
-    </div>
-
-    <div id="bottom-panel" role="group" class="k-pane k-scrollable k-state-collapsed" style="position: absolute; top: 904px; overflow: hidden; height: 0px; width: 1918px;">
-        <div class="k-tabstrip-wrapper"><div id="tabstrip" style="height:87%;" data-role="tabstrip" tabindex="0" class="k-widget k-header k-tabstrip k-floatwrap k-tabstrip-top" role="tablist">
-            <ul class="k-tabstrip-items k-reset"><li class="k-state-active k-item k-tab-on-top k-state-default k-first" data-grid="dsEmployee" role="tab" aria-selected="true" aria-controls="panelgrid2"><span class="k-loading k-complete"></span><span unselectable="on" class="k-link">Исполнение</span></li><li data-grid="dsDocs" class="k-item k-state-default" role="tab" aria-controls="panelgrid3"><span class="k-loading k-complete"></span><span unselectable="on" class="k-link">Документы</span></li><li data-grid="dsMatching" class="k-item k-state-default k-last" role="tab" aria-controls="panelgrid4"><span class="k-loading k-complete"></span><span unselectable="on" class="k-link">Согласование</span></li></ul>
-            <div id="panelgrid2" style="height: 79%; display: block;" class="k-content k-state-active" role="tabpanel" aria-expanded="true">
-                <div id="grid2" style="height:99%;" data-role="grid" class="k-grid k-widget k-display-block"><div class="k-grid-header" style="padding-right: 17px;"><div class="k-grid-header-wrap k-auto-scrollable"><table role="grid"><colgroup><col style="width:45px"><col style="width:35px"><col style="width:45px"><col style="width:45px"><col style="width:150px"><col style="width:50px"><col style="width:50px"></colgroup><thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader" data-field="DATE_CREATE" aria-haspopup="true" rowspan="1" data-title="Дата" data-index="0" id="5c4cc82a-ab1a-4655-a103-f980e4c4a0c8" class="k-header">Дата</th><th scope="col" role="columnheader" data-field="NAME_CREATOR" aria-haspopup="true" rowspan="1" data-title="Кем выдано" data-index="1" id="ec7609a3-c555-4a2f-a6be-fe258cddd77c" class="k-header">Кем выдано</th><th scope="col" role="columnheader" data-field="NAME_TEAM" aria-haspopup="true" rowspan="1" data-title="Команда" data-index="2" id="7528483d-bb05-4963-8893-1de68f249375" class="k-header">Команда</th>
-                    <th scope="col" role="columnheader" data-field="NAME_PERFORMER" aria-haspopup="true" rowspan="1" data-title="Исполнитель" data-index="3" id="5533dbbf-264e-462a-b805-1efe09c28059" class="k-header">Исполнитель</th><th scope="col" role="columnheader" data-field="NOTE_COMMENT" aria-haspopup="true" rowspan="1" data-title="Комментарий/решение" data-index="4" id="d0fe26c5-bcdf-4ccf-adb5-f1dd6519bfec" class="k-header">Комментарий/решение</th><th scope="col" role="columnheader" data-field="ID_DEMAND" aria-haspopup="true" rowspan="1" data-title="Вып. работы" data-index="5" id="e8fc2038-ac59-4bcf-8cfd-a362381f91d9" class="k-header">Вып. работы</th><th scope="col" role="columnheader" data-field="STATUS_DEMAND_TXT" aria-haspopup="true" rowspan="1" data-title="Статус" data-index="6" id="309fc3b0-caca-4a19-a14b-5c6cb1114cd9" class="k-header">Статус</th></tr></thead></table></div></div><div class="k-grid-content k-auto-scrollable" style="height: 35px;">
-                    <table role="grid" data-role="selectable" class="k-selectable"><colgroup><col style="width:45px"><col style="width:35px"><col style="width:45px"><col style="width:45px"><col style="width:150px"><col style="width:50px"><col style="width:50px"></colgroup><tbody role="rowgroup"></tbody></table><div class="k-grid-content-expander" style="width: 1851px;"></div></div>
-                    <div class="k-pager-wrap k-grid-pager k-widget k-floatwrap" data-role="pager"><span class="k-pager-info k-label">Нет записей для отображения</span></div></div>
             </div>
 
-            <div id="panelgrid4" style="height:79%;" class="k-content" role="tabpanel" aria-hidden="true" aria-expanded="false">
-                <div id="Matching" style="height:99%;" data-role="grid" class="k-grid k-widget k-display-block">
-                    <div class="k-grid-header" style="padding-right: 17px;"><div class="k-grid-header-wrap k-auto-scrollable"><table role="grid"><colgroup><col style="width:50px"><col style="width:50px"><col style="width:150px"><col style="width:50px"></colgroup><thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader" data-field="DATE_CREATE" aria-haspopup="true" rowspan="1" data-title="&lt;span style=&#39;font-weight:500;&#39;&gt;Дата согласования&lt;/span&gt;" data-index="0" id="c747fd00-5967-4339-bc81-6efae4116856" class="k-header"><span style="font-weight:500;">Дата согласования</span></th><th scope="col" role="columnheader" data-field="NAME" aria-haspopup="true" rowspan="1" data-title="&lt;span style=&#39;font-weight:500;&#39;&gt;ФИО Согласующего&lt;/span&gt;" data-index="1" id="9f37cef1-7fbc-40a7-b2be-6af3175213e4" class="k-header"><span style="font-weight:500;">ФИО Согласующего</span></th>
-                        <th scope="col" role="columnheader" data-field="COMMENT" aria-haspopup="true" rowspan="1" data-title="&lt;span style=&#39;font-weight:500;&#39;&gt;Комментарий&lt;/span&gt;" data-index="2" id="520871a8-969b-499d-810f-e741579ab3da" class="k-header"><span style="font-weight:500;">Комментарий</span></th><th scope="col" role="columnheader" data-field="FILES" aria-haspopup="true" rowspan="1" data-title="&lt;span style=&#39;font-weight:500;&#39;&gt;Файл&lt;/span&gt;" data-index="3" id="d54f1089-8bd5-4d0d-840e-008c1c4c03cd" class="k-header"><span style="font-weight:500;">Файл</span></th></tr></thead></table></div></div><div class="k-grid-content k-auto-scrollable"><table role="grid" data-role="selectable" class="k-selectable"><colgroup><col style="width:50px"><col style="width:50px">
-                    <col style="width:150px"><col style="width:50px"></colgroup><tbody role="rowgroup"></tbody></table></div><div class="k-pager-wrap k-grid-pager k-widget k-floatwrap k-pager-sm" data-role="pager"><span class="k-pager-info k-label">Нет записей для отображения</span></div></div>
+            <div tabindex="0" class="k-splitbar k-state-default k-splitbar-vertical" data-marker="5d1c7e7c" role="separator" aria-expanded="false" style="width: 1918px; top: 897px;">
+                <div class="k-icon k-resize-handle k-i-hbar"></div>
             </div>
-        </div></div>
-    </div>
-</div>
-    <span id="notification" style="display:none;" data-role="notification"></span>
-	<div id="dialog"></div>
-    <div id="dialogVR"></div>
-    
-    <div id="confirm"></div>
-    <div id="tooltipsite"></div>
-    <div id="ColorMenu">
-        <div id="colorChooser"></div>
-    </div>
-    
 
-<script id="templateDocs" type="text/x-kendo-template">
-    <div class="float-left" style="display:flex;width:100%">
-        <div id="panelfind2" class="float-left" style="width:98%;  margin: 0 10px;">
-            <input name="files" id="files" type="file" aria-label="files" />
+            <div id="bottom-panel" role="group" class="k-pane k-scrollable k-state-collapsed" style="position: absolute; top: 904px; overflow: hidden; height: 0px; width: 1918px;">
+                <div class="k-tabstrip-wrapper"><div id="tabstrip" style="height:87%;" data-role="tabstrip" tabindex="0" class="k-widget k-header k-tabstrip k-floatwrap k-tabstrip-top" role="tablist">
+                    <ul class="k-tabstrip-items k-reset"><li class="k-state-active k-item k-tab-on-top k-state-default k-first" data-grid="dsEmployee" role="tab" aria-selected="true" aria-controls="panelgrid2"><span class="k-loading k-complete"></span><span unselectable="on" class="k-link">Исполнение</span></li><li data-grid="dsDocs" class="k-item k-state-default" role="tab" aria-controls="panelgrid3"><span class="k-loading k-complete"></span><span unselectable="on" class="k-link">Документы</span></li><li data-grid="dsMatching" class="k-item k-state-default k-last" role="tab" aria-controls="panelgrid4"><span class="k-loading k-complete"></span><span unselectable="on" class="k-link">Согласование</span></li></ul>
+                    <div id="panelgrid2" style="height: 79%; display: block;" class="k-content k-state-active" role="tabpanel" aria-expanded="true">
+                        <div id="grid2" style="height:99%;" data-role="grid" class="k-grid k-widget k-display-block"><div class="k-grid-header" style="padding-right: 17px;"><div class="k-grid-header-wrap k-auto-scrollable"><table role="grid"><colgroup><col style="width:45px"><col style="width:35px"><col style="width:45px"><col style="width:45px"><col style="width:150px"><col style="width:50px"><col style="width:50px"></colgroup><thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader" data-field="DATE_CREATE" aria-haspopup="true" rowspan="1" data-title="Дата" data-index="0" id="5c4cc82a-ab1a-4655-a103-f980e4c4a0c8" class="k-header">Дата</th><th scope="col" role="columnheader" data-field="NAME_CREATOR" aria-haspopup="true" rowspan="1" data-title="Кем выдано" data-index="1" id="ec7609a3-c555-4a2f-a6be-fe258cddd77c" class="k-header">Кем выдано</th><th scope="col" role="columnheader" data-field="NAME_TEAM" aria-haspopup="true" rowspan="1" data-title="Команда" data-index="2" id="7528483d-bb05-4963-8893-1de68f249375" class="k-header">Команда</th>
+                            <th scope="col" role="columnheader" data-field="NAME_PERFORMER" aria-haspopup="true" rowspan="1" data-title="Исполнитель" data-index="3" id="5533dbbf-264e-462a-b805-1efe09c28059" class="k-header">Исполнитель</th><th scope="col" role="columnheader" data-field="NOTE_COMMENT" aria-haspopup="true" rowspan="1" data-title="Комментарий/решение" data-index="4" id="d0fe26c5-bcdf-4ccf-adb5-f1dd6519bfec" class="k-header">Комментарий/решение</th><th scope="col" role="columnheader" data-field="ID_DEMAND" aria-haspopup="true" rowspan="1" data-title="Вып. работы" data-index="5" id="e8fc2038-ac59-4bcf-8cfd-a362381f91d9" class="k-header">Вып. работы</th><th scope="col" role="columnheader" data-field="STATUS_DEMAND_TXT" aria-haspopup="true" rowspan="1" data-title="Статус" data-index="6" id="309fc3b0-caca-4a19-a14b-5c6cb1114cd9" class="k-header">Статус</th></tr></thead></table></div></div><div class="k-grid-content k-auto-scrollable" style="height: 35px;">
+                            <table role="grid" data-role="selectable" class="k-selectable"><colgroup><col style="width:45px"><col style="width:35px"><col style="width:45px"><col style="width:45px"><col style="width:150px"><col style="width:50px"><col style="width:50px"></colgroup><tbody role="rowgroup"></tbody></table><div class="k-grid-content-expander" style="width: 1851px;"></div></div>
+                            <div class="k-pager-wrap k-grid-pager k-widget k-floatwrap" data-role="pager"><span class="k-pager-info k-label">Нет записей для отображения</span></div></div>
+                    </div>
+
+                    <div id="panelgrid4" style="height:79%;" class="k-content" role="tabpanel" aria-hidden="true" aria-expanded="false">
+                        <div id="Matching" style="height:99%;" data-role="grid" class="k-grid k-widget k-display-block">
+                            <div class="k-grid-header" style="padding-right: 17px;"><div class="k-grid-header-wrap k-auto-scrollable"><table role="grid"><colgroup><col style="width:50px"><col style="width:50px"><col style="width:150px"><col style="width:50px"></colgroup><thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader" data-field="DATE_CREATE" aria-haspopup="true" rowspan="1" data-title="&lt;span style=&#39;font-weight:500;&#39;&gt;Дата согласования&lt;/span&gt;" data-index="0" id="c747fd00-5967-4339-bc81-6efae4116856" class="k-header"><span style="font-weight:500;">Дата согласования</span></th><th scope="col" role="columnheader" data-field="NAME" aria-haspopup="true" rowspan="1" data-title="&lt;span style=&#39;font-weight:500;&#39;&gt;ФИО Согласующего&lt;/span&gt;" data-index="1" id="9f37cef1-7fbc-40a7-b2be-6af3175213e4" class="k-header"><span style="font-weight:500;">ФИО Согласующего</span></th>
+                                <th scope="col" role="columnheader" data-field="COMMENT" aria-haspopup="true" rowspan="1" data-title="&lt;span style=&#39;font-weight:500;&#39;&gt;Комментарий&lt;/span&gt;" data-index="2" id="520871a8-969b-499d-810f-e741579ab3da" class="k-header"><span style="font-weight:500;">Комментарий</span></th><th scope="col" role="columnheader" data-field="FILES" aria-haspopup="true" rowspan="1" data-title="&lt;span style=&#39;font-weight:500;&#39;&gt;Файл&lt;/span&gt;" data-index="3" id="d54f1089-8bd5-4d0d-840e-008c1c4c03cd" class="k-header"><span style="font-weight:500;">Файл</span></th></tr></thead></table></div></div><div class="k-grid-content k-auto-scrollable"><table role="grid" data-role="selectable" class="k-selectable"><colgroup><col style="width:50px"><col style="width:50px">
+                            <col style="width:150px"><col style="width:50px"></colgroup><tbody role="rowgroup"></tbody></table></div><div class="k-pager-wrap k-grid-pager k-widget k-floatwrap k-pager-sm" data-role="pager"><span class="k-pager-info k-label">Нет записей для отображения</span></div></div>
+                    </div>
+                </div></div>
+            </div>
         </div>
-    </div>
-</script>
-<script>
-    var dmRep_070 = {
-        ID_PERFORMER: '218698', ProfileGrid: 'SHORT_NAME_TEAM,NOMER_DEMAND,NAME_CLIENT,CL_PHONE,COUNT_VR,NOTE,NAME_OBJECT_KUPSO,LINK_INTERNET,NAME_TEMPLATE_DEMAND,NAME_GROUP_WORK,DATE_BEGIN,DATE_CREATE,DATE_PLAN_END,DAY_PLAN_END,NAME_TEAM,NAME_PERFORMER,STATUS_DEMAND,DOCS,NAME_STATUS_DEMAND,CLIENT_ANSWER,SLA_LIGHT', ProfileGroup: 'null', ProfileContextMenu: '017,001,002,003,004,005,006,007,008,009,010,011,012,013,014,015,016,021',
-        ProfileRefreshInt: '0', ProfilePeriod: '30', search: '', ProfileName: 'По умолчанию',
-        WEB_ID: '130933', IdListColumns: '166702', IdListContextMenu: '185619', idProfile: '142123', ID_CLIENT: '272031',
-        PostponementAccess: 'False' == "True", idDateRangeSetting: '147300', idFontSizeSetting: '187270', idProfileRefres: '147296',
-        AppointExecutorAccess: 'False' == "True", idAdditionalParameterChangeExecutor: '44909', ID_USER: '17746',
-        idAllExecutorSetting: '188560', showExtPane: 'false' == 'true'
-    };
-    var access = { PRIV_TMC: '0', PRIV_CREATE_TEMP: '0' };
-    var bagModel = { Title: 'Справочник v2.0', ID_RES: '130933' };
-</script>
 
+        <span id="notification" style="display:none;" data-role="notification"></span>
+        <div id="dialog"></div>
+        <div id="dialogVR"></div>
 
-</div>
-	
+        <div id="confirm"></div>
+        <div id="tooltipsite"></div>
+        <div id="ColorMenu">
+            <div id="colorChooser"></div>
+        </div>
 
+        <script id="templateDocs" type="text/x-kendo-template">
+            <div class="float-left" style="display:flex;width:100%">
+                <div id="panelfind2" class="float-left" style="width:98%;  margin: 0 10px;">
+                    <input name="files" id="files" type="file" aria-label="files" />
+                </div>
+            </div>
+        </script>
 
+        <script>
+            var dmRep_070 = {
+                ID_PERFORMER: '218698', ProfileGrid: 'SHORT_NAME_TEAM,NOMER_DEMAND,NAME_CLIENT,CL_PHONE,COUNT_VR,NOTE,NAME_OBJECT_KUPSO,LINK_INTERNET,NAME_TEMPLATE_DEMAND,NAME_GROUP_WORK,DATE_BEGIN,DATE_CREATE,DATE_PLAN_END,DAY_PLAN_END,NAME_TEAM,NAME_PERFORMER,STATUS_DEMAND,DOCS,NAME_STATUS_DEMAND,CLIENT_ANSWER,SLA_LIGHT', ProfileGroup: 'null', ProfileContextMenu: '017,001,002,003,004,005,006,007,008,009,010,011,012,013,014,015,016,021',
+                ProfileRefreshInt: '0', ProfilePeriod: '30', search: '', ProfileName: 'По умолчанию',
+                WEB_ID: '130933', IdListColumns: '166702', IdListContextMenu: '185619', idProfile: '142123', ID_CLIENT: '272031',
+                PostponementAccess: 'False' == "True", idDateRangeSetting: '147300', idFontSizeSetting: '187270', idProfileRefres: '147296',
+                AppointExecutorAccess: 'False' == "True", idAdditionalParameterChangeExecutor: '44909', ID_USER: '17746',
+                idAllExecutorSetting: '188560', showExtPane: 'false' == 'true'
+            };
+            var access = { PRIV_TMC: '0', PRIV_CREATE_TEMP: '0' };
+            var bagModel = { Title: 'Справочник v2.0', ID_RES: '130933' };
+        </script>
 
 
 <!--<div class="k-widget k-window" data-role="draggable" style="visibility: visible; display: none; padding-top: 33px; min-width: 90px; min-height: 50px; top: 972.844px; left: 0px;">
@@ -368,46 +200,180 @@
     <li class="k-item k-state-default" role="menuitem" data-uid="a8a79987-58d4-4c1c-aac7-0ee2988f9c8a"><span class="k-link k-menu-link"><span data-code="5"><span class="k-icon k-i-copy"></span>Коп. URL</span></span></li><li class="k-item k-state-default k-last" role="menuitem" data-uid="8281976b-971c-4055-a60a-219f088cc563"><span class="k-link k-menu-link"><span data-code="6"><span class="k-icon k-i-copy"></span>Коп. общую инф-ю</span></span></li>
 </ul>-->
 
-    <!--<div class="k-animation-container" style="width: 226px; height: 423px; overflow: hidden; display: none; position: absolute; top: 254px; z-index: 10002; left: 1395px;" aria-hidden="true"><ul id="gridMenu" data-role="contextmenu" class="k-widget k-reset k-header k-menu k-context-menu k-popup k-group k-menu-vertical" tabindex="0" role="menubar" style="display: none; position: absolute; font-size: 11px; font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-stretch: 100%; font-style: normal; font-weight: 400; line-height: normal; opacity: 0;" aria-hidden="true"><li class="k-item k-state-default k-first" role="menuitem" data-uid="e7a90a19-e0c0-4bd0-8a0d-79471675c161"><span class="k-link k-menu-link"><span data-code="1">
-        <span class="k-icon k-i-copy"></span>Перевод статуса</span></span></li><li class="k-item k-state-default" role="menuitem" data-uid="b77075bd-f049-4cc4-8971-2f49c796a3c0"><span class="k-link k-menu-link"><span data-code="2"><span class="k-icon k-i-track-changes-accept"></span>Добавление/Просмотр ВР</span></span></li>
-        <li class="k-item k-state-disabled" role="menuitem" data-uid="86331a8c-aaea-46e4-a836-5df99640b5ef" aria-disabled="true"><span class="k-link k-menu-link"><span data-code="17" id="addCompletedWork"><span class="k-icon k-i-track-changes-accept"></span>Добавить ВР</span></span></li><li class="k-item k-state-default" role="menuitem" aria-haspopup="true" data-uid="9ccc2104-adb1-4422-98b8-26b9c8969efc" aria-disabled="false"><span class="k-link k-menu-link">
-            <span data-code="30" id="accessCloseNZ"><span class="k-icon k-i-track-changes-reject"></span>Закрыть н.з. по шаблону</span>
-        <span class="k-icon k-i-arrow-60-right k-menu-expand-arrow"></span></span><ul class="k-group k-menu-group" style="display:none" role="menu" aria-hidden="true"></ul></li><li class="k-item k-state-default" role="menuitem" aria-haspopup="true" data-uid="a8961c78-ab29-4d2c-bf40-9c78780bc2b7"><span class="k-link k-menu-link"><span data-code="14" id="assognPerformer"><span class="k-icon k-i-track-changes-enable"></span>Назначить исполнителя</span>
-            <span class="k-icon k-i-arrow-60-right k-menu-expand-arrow"></span></span><ul class="k-group k-menu-group" style="display:none" role="menu" aria-hidden="true"></ul></li><li class="k-item k-state-disabled" role="menuitem" aria-haspopup="true" data-uid="7a50bb43-b46a-4ba0-b7c8-9aae9552ba06" aria-disabled="true">
-        <span class="k-link k-menu-link"><span id="changeServices"><span class="k-icon k-i-track-changes-enable"></span>Редактирование</span><span class="k-icon k-i-arrow-60-right k-menu-expand-arrow"></span></span><ul class="k-group k-menu-group" style="display:none" role="menu" aria-hidden="true"></ul></li><li class="k-item k-state-default" role="menuitem" data-uid="4163b84c-a5f9-4a16-ac85-2a410940ff88"><span class="k-link k-menu-link">
-            <span data-code="4"><span class="k-icon k-i-track-changes-enable"></span>Выдать новый н.з</span></span></li><li class="k-item k-state-default" role="menuitem" data-uid="6367845b-c79c-468e-a402-48dea0dca694">
-        <span class="k-link k-menu-link"><span data-code="5"><span class="k-icon k-i-paste-plain-text"></span>Информация по заявке</span></span></li><li class="k-item k-state-default" role="menuitem" data-uid="5d183558-ea6c-4c77-b2f6-0a07afbea3c2"><span class="k-link k-menu-link"><span data-code="6"><span class="k-icon k-i-attachment"></span>Добавление/Просмотр документов</span></span></li>
-        <li class="k-item k-state-default" role="menuitem" data-uid="31538724-5573-4e5e-8142-4f84acd1a05a"><span class="k-link k-menu-link"><span data-code="7"><span class="k-icon k-i-calculator">
+        <div class="context-menu-container k-animation-container" style="display: none; width: 226px; height: 423px; overflow: visible; position: absolute; /*top: 254px;*/ z-index: 10002; /*left: 100px;*/" aria-hidden="true">
+            <ul id="gridMenu" data-role="contextmenu" class="k-widget k-reset k-header k-menu k-context-menu k-popup k-group k-menu-vertical" tabindex="0" role="menubar" style="display: block; position: absolute; font-size: 11px; font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-stretch: 100%; font-style: normal; font-weight: 400; line-height: normal; opacity: 1;" aria-hidden="true">
+                <li class="k-item k-state-default k-first" role="menuitem" data-uid="e7a90a19-e0c0-4bd0-8a0d-79471675c161">
+                    <span class="k-link k-menu-link">
+                        <span data-code="1">
+                            <span class="k-icon k-i-copy"></span>
+                            Перевод статуса
+                        </span>
+                    </span>
+                </li>
+                <li class="k-item k-state-default" role="menuitem" data-uid="b77075bd-f049-4cc4-8971-2f49c796a3c0"><span class="k-link k-menu-link"><span data-code="2"><span class="k-icon k-i-track-changes-accept"></span>Добавление/Просмотр ВР</span></span></li>
+                <li class="k-item k-state-disabled" role="menuitem" data-uid="86331a8c-aaea-46e4-a836-5df99640b5ef" aria-disabled="true"><span class="k-link k-menu-link"><span data-code="17" id="addCompletedWork"><span class="k-icon k-i-track-changes-accept"></span>Добавить ВР</span></span></li><li class="k-item k-state-default" role="menuitem" aria-haspopup="true" data-uid="9ccc2104-adb1-4422-98b8-26b9c8969efc" aria-disabled="false"><span class="k-link k-menu-link">
+                    <span data-code="30" id="accessCloseNZ"><span class="k-icon k-i-track-changes-reject"></span>Закрыть н.з. по шаблону</span>
+                    <span class="k-icon k-i-arrow-60-right k-menu-expand-arrow"></span></span><ul class="k-group k-menu-group" style="display:none" role="menu" aria-hidden="true"></ul></li><li class="k-item k-state-default" role="menuitem" aria-haspopup="true" data-uid="a8961c78-ab29-4d2c-bf40-9c78780bc2b7"><span class="k-link k-menu-link"><span data-code="14" id="assognPerformer"><span class="k-icon k-i-track-changes-enable"></span>Назначить исполнителя</span>
+                    <span class="k-icon k-i-arrow-60-right k-menu-expand-arrow"></span></span><ul class="k-group k-menu-group" style="display:none" role="menu" aria-hidden="true"></ul></li><li class="k-item k-state-disabled" role="menuitem" aria-haspopup="true" data-uid="7a50bb43-b46a-4ba0-b7c8-9aae9552ba06" aria-disabled="true">
+                    <span class="k-link k-menu-link"><span id="changeServices"><span class="k-icon k-i-track-changes-enable"></span>Редактирование</span><span class="k-icon k-i-arrow-60-right k-menu-expand-arrow"></span></span><ul class="k-group k-menu-group" style="display:none" role="menu" aria-hidden="true"></ul></li><li class="k-item k-state-default" role="menuitem" data-uid="4163b84c-a5f9-4a16-ac85-2a410940ff88"><span class="k-link k-menu-link">
+                    <span data-code="4"><span class="k-icon k-i-track-changes-enable"></span>Выдать новый н.з</span></span></li><li class="k-item k-state-default" role="menuitem" data-uid="6367845b-c79c-468e-a402-48dea0dca694">
+                    <span class="k-link k-menu-link"><span data-code="5"><span class="k-icon k-i-paste-plain-text"></span>Информация по заявке</span></span></li><li class="k-item k-state-default" role="menuitem" data-uid="5d183558-ea6c-4c77-b2f6-0a07afbea3c2"><span class="k-link k-menu-link"><span data-code="6"><span class="k-icon k-i-attachment"></span>Добавление/Просмотр документов</span></span></li>
+                <li class="k-item k-state-default" role="menuitem" data-uid="31538724-5573-4e5e-8142-4f84acd1a05a">
+                    <span class="k-link k-menu-link">
+                        <span data-code="7">
+                            <span class="k-icon k-i-calculator"></span>
+                            Назначить норму НЗ
+                        </span>
+                    </span>
+                </li>
+                <li class="k-item k-state-default" role="menuitem" data-uid="9af730b9-2f2a-4c0d-9fc2-87dc40c754e2"><span class="k-link k-menu-link"><span data-code="8"><span class="k-icon k-i-sort-asc"></span>Структура заявки</span></span></li><li class="k-item k-state-default" role="menuitem" data-uid="dda9aaf2-1d1e-4fb0-a6c7-20e168e15cff"><span class="k-link k-menu-link"><span data-code="9">
+                    <span class="k-icon k-i-edit-tools"></span>Комментарии/уточнения</span></span></li>
+                <li class="k-item k-state-disabled" role="menuitem" data-uid="3e26cb31-10bf-4619-b723-f3e6fa020ad8" aria-disabled="true">
+                    <span class="k-link k-menu-link"><span data-code="13" id="postponementSLA"><span class="k-icon k-i-gears"></span>Перенос срока SLA</span></span></li><li class="k-item k-state-disabled" role="menuitem" data-uid="99ee270b-c30c-41a5-a8cd-5eb550d4d006" aria-disabled="true"><span class="k-link k-menu-link"><span data-code="10" id="accessTMC"
+                    <span class="k-icon k-i-gears"></span>Добавление/Просмотр ТМЦ</span></span></li><li class="k-item k-state-disabled" role="menuitem" data-uid="0ed9e7e9-16b8-4e7a-8ab6-09cfc011dd1f" aria-disabled="true"><span class="k-link k-menu-link"><span data-code="11" id="accessCreateTemp"><span class="k-icon k-i-track-changes-accept"></span>Создать заявку по шаблону</span></span></li><li class="k-item k-state-default" role="menuitem" data-uid="9264fdd2-4ee1-4766-9023-6a17f9664bd7"><span class="k-link k-menu-link"><span data-code="12" id="accessCreateTemp"><span class="k-icon k-i-track-changes-accept"></span>Создать заявку на согласование</span></span></li><li class="k-item k-state-default" role="menuitem" aria-haspopup="true" data-uid="3faa6b06-c1a6-4bad-866c-872ad211095f"><span class="k-link k-menu-link"><span><span class="k-icon k-i-copy"></span>Копировать в буфер обмена</span><span class="k-icon k-i-arrow-60-right k-menu-expand-arrow"></span></span><ul class="k-group k-menu-group" style="display:none" role="menu" aria-hidden="true"></ul></li><li class="k-item k-state-default k-last" role="menuitem" data-uid="bbabb8f3-8fdb-4d7d-980c-a0ad62318c25"><span class="k-link k-menu-link"><span data-code="21" id="StatusExecTrans"><span class="k-icon k-i-check-outline"></span>Решение по перевозке</span></span></li>
+            </ul>
+        </div>
 
-    </span>Назначить норму НЗ</span></span></li>
-        <li class="k-item k-state-default" role="menuitem" data-uid="9af730b9-2f2a-4c0d-9fc2-87dc40c754e2"><span class="k-link k-menu-link"><span data-code="8"><span class="k-icon k-i-sort-asc"></span>Структура заявки</span></span></li><li class="k-item k-state-default" role="menuitem" data-uid="dda9aaf2-1d1e-4fb0-a6c7-20e168e15cff"><span class="k-link k-menu-link"><span data-code="9">
-            <span class="k-icon k-i-edit-tools"></span>Комментарии/уточнения</span></span></li>
-        <li class="k-item k-state-disabled" role="menuitem" data-uid="3e26cb31-10bf-4619-b723-f3e6fa020ad8" aria-disabled="true">
-            <span class="k-link k-menu-link"><span data-code="13" id="postponementSLA"><span class="k-icon k-i-gears"></span>Перенос срока SLA</span></span></li><li class="k-item k-state-disabled" role="menuitem" data-uid="99ee270b-c30c-41a5-a8cd-5eb550d4d006" aria-disabled="true"><span class="k-link k-menu-link"><span data-code="10" id="accessTMC"
-            <span class="k-icon k-i-gears"></span>Добавление/Просмотр ТМЦ</span></span></li><li class="k-item k-state-disabled" role="menuitem" data-uid="0ed9e7e9-16b8-4e7a-8ab6-09cfc011dd1f" aria-disabled="true"><span class="k-link k-menu-link"><span data-code="11" id="accessCreateTemp"><span class="k-icon k-i-track-changes-accept"></span>Создать заявку по шаблону</span></span></li><li class="k-item k-state-default" role="menuitem" data-uid="9264fdd2-4ee1-4766-9023-6a17f9664bd7"><span class="k-link k-menu-link"><span data-code="12" id="accessCreateTemp"><span class="k-icon k-i-track-changes-accept"></span>Создать заявку на согласование</span></span></li><li class="k-item k-state-default" role="menuitem" aria-haspopup="true" data-uid="3faa6b06-c1a6-4bad-866c-872ad211095f"><span class="k-link k-menu-link"><span><span class="k-icon k-i-copy"></span>Копировать в буфер обмена</span><span class="k-icon k-i-arrow-60-right k-menu-expand-arrow"></span></span><ul class="k-group k-menu-group" style="display:none" role="menu" aria-hidden="true"></ul></li><li class="k-item k-state-default k-last" role="menuitem" data-uid="bbabb8f3-8fdb-4d7d-980c-a0ad62318c25"><span class="k-link k-menu-link"><span data-code="21" id="StatusExecTrans"><span class="k-icon k-i-check-outline"></span>Решение по перевозке</span></span></li>
+        <div id="dialogWindow" title="Basic dialog">
+            <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the &apos;x&apos; icon.</p>
+        </div>
 
-    </ul>
-</div>-->
+
+        <!-- !!! Пример меню-->
+        <!--<menu class="menu">
+            <li class="menu-item">
+                <button type="button" class="menu-btn">
+                    <i class="fa fa-folder-open"></i>
+                    <span class="menu-text">Открыть</span>
+                </button>
+            </li>
+            <li class="menu-item disabled">
+                <button type="button" class="menu-btn">
+                    <span class="menu-text">Открыть в новом окне</span>
+                </button>
+            </li>
+            <li class="menu-separator"></li>
+            <li class="menu-item">
+                <button type="button" class="menu-btn">
+                    <i class="fa fa-reply"></i>
+                    <span class="menu-text">Обновить</span>
+                </button>
+            </li>
+            <li class="menu-item">
+                <button type="button" class="menu-btn">
+                    <i class="fa fa-star"></i>
+                    <span class="menu-text">В закладки</span>
+                </button>
+            </li>
+            <li class="menu-item submenu">
+                <button type="button" class="menu-btn">
+                    <i class="fa fa-users"></i>
+                    <span class="menu-text">Социальность</span>
+                </button>
+                <menu class="menu">
+                    <li class="menu-item">
+                        <button type="button" class="menu-btn">
+                            <i class="fa fa-comment"></i>
+                            <span class="menu-text">Комментарии</span>
+                        </button>
+                    </li>
+                    <li class="menu-item submenu">
+                        <button type="button" class="menu-btn">
+                            <i class="fa fa-share"></i>
+                            <span class="menu-text">Поделиться</span>
+                        </button>
+                        <menu class="menu">
+                            <li class="menu-item">
+                                <button type="button" class="menu-btn">
+                                    <i class="fa fa-twitter"></i>
+                                    <span class="menu-text">Twitter</span>
+                                </button>
+                            </li>
+                            <li class="menu-item">
+                                <button type="button" class="menu-btn">
+                                    <i class="fa fa-facebook-official"></i>
+                                    <span class="menu-text">Facebook</span>
+                                </button>
+                            </li>
+                            <li class="menu-item">
+                                <button type="button" class="menu-btn">
+                                    <i class="fa fa-google-plus"></i>
+                                    <span class="menu-text">Google Plus</span>
+                                </button>
+                            </li>
+                            <li class="menu-item">
+                                <button type="button" class="menu-btn">
+                                    <i class="fa fa-envelope"></i>
+                                    <span class="menu-text">Email</span>
+                                </button>
+                            </li>
+                        </menu>
+                    </li>
+                </menu>
+            </li>
+            <li class="menu-separator"></li>
+            <li class="menu-item">
+                <button type="button" class="menu-btn">
+                    <i class="fa fa-download"></i>
+                    <span class="menu-text">Сохранить</span>
+                </button>
+            </li>
+            <li class="menu-item">
+                <button type="button" class="menu-btn">
+                    <i class="fa fa-edit"></i>
+                    <span class="menu-text">Изменить</span>
+                </button>
+            </li>
+            <li class="menu-item">
+                <button type="button" class="menu-btn">
+                    <i class="fa fa-trash"></i>
+                    <span class="menu-text">Удалить</span>
+                </button>
+            </li>
+        </menu>-->
 
 <!--    <div class="k-animation-container" style="width: 376px; height: 247px; overflow: hidden; display: none; position: absolute; top: 183.812px; z-index: 10002; left: 538.625px;" aria-hidden="true">
     </div>-->
 
 
-    <!-- Подключили файл с JS функциями -->
-    <script src="js/functions.js"></script>
-    <!-- Подключили файл с JS для DnD -->
-    <script src="js/DragManager.js"></script>
+        <!-- Подключили файл с JS функциями -->
+        <script src="js/functions.js"></script>
+        <!-- Подключили файл с JS для DnD -->
+        <script src="js/DragManager.js"></script>
 
-    <!-- Подключили скрипт сортировки -->
-    <script>
-        $(function() {
-            $("#myTable").tablesorter();
-        });
-    </script>
+        <!-- Подключили скрипт сортировки -->
+        <script>
+            $(function() {
+                $("#myTable").tablesorter();
+            });
+        </script>
 
+        <!-- Действия при загрузке -->
+        <script>
+            $( document ).ready(function() {
+                // Чистим главное окно
+                $('#main_window').html('');
+                // Чистим менюшку с кнопками по типам
+                $("#main_window_header").html('');
+                // Показываем менюшку с кнопками по типам
+                $("#main_window_header").show();
 
+                // Запросим данные по типам оборудования
+                getDataFromDB('items_types');
 
-</div>
+                // Запросим данные по всему оборудованию
+                getItemsFromDB(0)
 
-</body>
+                // Запросим данные
+                //getDataFromDB ($(this).attr("id"));
+            });
+        </script>
+
+        <script>
+            $( function() {
+                $( "#dialogWindow" ).dialog();
+            } );
+        </script>
+
+    </body>
 </html>

@@ -80,30 +80,30 @@ try:
                 data['host_name'] = ''
 
             res += '''
-                            <tr data-uid="''' + str(data['id']) + '''" role="row">
+                            <tr class="item_data" data-uid="''' + str(data['id']) + '''" role="row">
                                 <td class="" role="gridcell">
                                     <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
-                                        <div style="margin:auto;" title="">
+                                        <div style="margin: auto;" title="">
                                             ''' + data['type_name'] + '''
                                         </div>
                                     </div>
                                 </td>
                                 <td class="" role="gridcell">
                                     <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
-                                        <div style="margin:auto; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" title="''' + data['model_name'] + '''">
+                                        <div style="/*margin: auto;*/ overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" title="''' + data['model_name'] + '''">
                                             ''' + data['model_name'] + '''
                                         </div>
                                     </div>
                                 </td>
                                 <td data-copymenu="true" class="" role="gridcell">
                                     <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
-                                        <div id="NOM_DEMAND" style="margin:auto; cursor: pointer; color: rgb(25, 132, 200);" title="">
+                                        <div id="NOM_DEMAND" style="margin: auto; cursor: pointer; color: rgb(25, 132, 200);" title="">
                                             ''' + str(data['invent']) + '''
                                         </div>
                                     </div>
                                 </td>
                                 <td class="" role="gridcell">
-                                    <div style="margin:auto; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" title="">
+                                    <div style="/*margin: auto;*/ overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" title="">
                                         ''' + data['serial'] + '''
                                     </div>
                                 </td>
