@@ -80,7 +80,7 @@ try:
                 data['host_name'] = ''
 
             res += '''
-                            <tr data-uid="''' + str(data['id']) + '''" role="row">
+                            <tr class="item_data" data-uid="''' + str(data['id']) + '''" role="row">
                                 <td class="" role="gridcell">
                                     <div style="display: flex; position: relative; margin-left: auto; margin-right: auto; cursor:pointer;">
                                         <div style="margin: auto;" title="">

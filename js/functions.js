@@ -25,7 +25,7 @@ $("body").on("click", ".k-button", function(){
             getDataFromDB('items_types');
 
             // Запросим данные по всему оборудованию
-            getItmesFromDB(0)
+            getItemsFromDB(0)
 
             // Запросим данные
             //getDataFromDB ($(this).attr("id"));
@@ -59,7 +59,7 @@ $("body").on("click", ".k-button", function(){
         // $(this).addClass('k-state-focused');
 
         // Запросим данные по всему оборудованию
-        getItmesFromDB($(this).attr("data-value"));
+        getItemsFromDB($(this).attr("data-value"));
     }
 });
 
@@ -186,7 +186,7 @@ function getStaffTree (){
 }
 
 //Загрузка оборудования
-function getItmesFromDB (type){
+function getItemsFromDB (type){
 
     let link = "py/get_items.py";
 
@@ -359,22 +359,62 @@ function moveWorkerOrStaffInStaff (worker_id, staff_id, target_staff_id){
 }
 
 //Для теста контекстного меню
-// let menu = document.querySelector('.menu');
-// function showMenu(x, y){
-// menu.style.left = x + 'px';
-// menu.style.top = y + 'px';
-// menu.classList.add('show-menu');
-// }
-// function hideMenu(){
-// menu.classList.remove('show-menu');
-// }
-// function onContextMenu(e){
-// e.preventDefault();
-// showMenu(e.pageX, e.pageY);
-// document.addEventListener('mousedown', onMouseDown, false);
-// }
-// function onMouseDown(e){
-// hideMenu();
-// document.removeEventListener('mousedown', onMouseDown);
-// }
+let menu = document.querySelector('.context-menu-container');
+
+function showMenu(x, y){
+    menu.style.left = x + 'px';
+    menu.style.top = y + 'px';
+    //menu.classList.add('show-menu');
+
+    menu.style.display = 'block';
+}
+
+function hideMenu(){
+    //menu.classList.remove('show-menu');
+
+    menu.style.display = 'none';
+}
+
+function onContextMenu(e){
+    e.preventDefault();
+    showMenu(e.pageX, e.pageY);
+    document.addEventListener('mousedown', onMouseDown, false);
+}
+
+function onMouseDown(e){
+    hideMenu();
+    document.removeEventListener('mousedown', onMouseDown);
+}
+
 // document.addEventListener('contextmenu', onContextMenu, false);
+//
+//
+// let items = document.querySelector(".k-menu-link");
+// console.log(items);
+
+document.addEventListener("contextmenu", event => {
+    // console.log(event.target.closest('td'));
+    // console.log(event.target.closest('tr'));
+    // console.log(event.target.closest('tr').className);
+
+    if (event.target.closest('tr') !== null) {
+        if (event.target.closest('tr').className !== undefined) {
+            if (event.target.closest('tr').className == 'item_data') {
+                onContextMenu(event);
+            }
+        }
+    }
+
+    //event.preventDefault();
+
+//                        //Сначала очищаем у всех окраску
+//                        $(".droppable, .draggable").removeClass("context_pick");
+//                        //Теперь покрасим
+//                        if (event.target.classList.contains("droppable")){
+//                            $(event.target).addClass("context_pick");
+//                        }
+
+    //contextMenuShow(0, 0, event, "sclad_cat");
+    //onContextMenu
+
+}, false);
