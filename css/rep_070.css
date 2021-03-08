@@ -69,15 +69,7 @@
     font-weight: bold;
 }
 
-.k-filter-row th, .k-grid-header th.k-header {
-    text-align: center;
-    font-size: 11px;
-}
 
-/* Grid columns with no width are collapsed if the space is not enough, thus min-width on the tables is needed */
-.k-grid table {
-    min-width: 1280px;
-}
 
 /*.k-alt {
     background-color: rgba(226, 226, 226, 0.81);
@@ -118,20 +110,7 @@
     position: relative !important;
 }
 
-.k-grid table {
-    table-layout: fixed;
-}
 
-/*.k-grid tbody tr{
-    max-height:50px;
-}*/
-
-/*!!!*/
-.k-grid td {
-    /*white-space: pre-wrap;*/
-    white-space: normal;
-    text-overflow: ellipsis;
-}
 
 .k-progressbar {
     width: 50px;
