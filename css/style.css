@@ -417,3 +417,16 @@ tbody tr:nth-child(even) {
 .ui-dialog td {
 	background-color: rgb(255 255 255);
 }
+
+.ui-widget-header{
+/*    background: #b0de78;
+    border: 0;
+    color: #fff;*/
+    font-weight: normal;
+
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border-color: #c3c3c8;
+    color: #515967;
+    background-color: #f3f3f4;
+    background-position: 50% 50%;
+}
