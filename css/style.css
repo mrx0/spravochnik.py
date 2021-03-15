@@ -360,8 +360,8 @@ tbody tr:nth-child(even) {
     border: 0;
     padding: 20px;
     font-size:18px;
-    color:#CAAD75;
-    background-color: #FDF8E4;
+    /* color:#CAAD75; */
+    /* background-color: #FDF8E4; */
     overflow: auto;
 }
 
@@ -412,5 +412,8 @@ tbody tr:nth-child(even) {
     color: #FFFFFF;
     width: 150px;
     background: #F86379;
+}
 
+.ui-dialog td {
+	background-color: rgb(255 255 255);
 }
