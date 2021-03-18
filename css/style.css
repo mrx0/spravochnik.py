@@ -345,9 +345,11 @@ tbody tr:nth-child(even) {
 .ui-dialog {
     top: 0;
     left: 0;
-    padding: .2em;
+    /*padding: .2em;*/
+	padding: 0;
     border: 1px;
     border-radius: 0;
+	box-shadow: rgb(165 165 165) 4px 7px 12px 1px;
 }
 
 .ui-dialog .ui-dialog-titlebar {
@@ -358,20 +360,23 @@ tbody tr:nth-child(even) {
 
 .ui-dialog .ui-dialog-content {
     border: 0;
-    padding: 20px;
+    padding: 0 20px 20px;
     font-size:18px;
     /* color:#CAAD75; */
     /* background-color: #FDF8E4; */
     overflow: auto;
+	
 }
 
 .ui-dialog .ui-dialog-buttonpane {
     text-align: left;
-    border-width: 1px 0 0 0;
+    /*border-width: 1px 0 0 0;*/
+    border-width: 0;
     background-image: none;
     margin-top: .5em;
     padding: .3em 1em .5em .4em;
-    background-color: #E3F1CF;
+    /*background-color: #E3F1CF;*/
+    background-color: #FFF;
 }
 
 .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
@@ -415,10 +420,18 @@ tbody tr:nth-child(even) {
 }
 
 .ui-dialog td {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 11px;
+	font-weight: 400;
 	background-color: rgb(255 255 255);
+	padding-top: 7px;
 }
 
-.ui-widget-header{
+.ui-dialog td span {
+	color: rgb(123 123 123);
+}
+
+.ui-widget-header {
 /*    background: #b0de78;
     border: 0;
     color: #fff;*/
@@ -429,4 +442,13 @@ tbody tr:nth-child(even) {
     color: #515967;
     background-color: #f3f3f4;
     background-position: 50% 50%;
+}
+
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
+	font-size: 11px;
+	height: 26px;
+}
+
+.ui-corner-all {
+	border-radius: 0;
 }

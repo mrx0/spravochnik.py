@@ -200,7 +200,7 @@
     <li class="k-item k-state-default" role="menuitem" data-uid="a8a79987-58d4-4c1c-aac7-0ee2988f9c8a"><span class="k-link k-menu-link"><span data-code="5"><span class="k-icon k-i-copy"></span>Коп. URL</span></span></li><li class="k-item k-state-default k-last" role="menuitem" data-uid="8281976b-971c-4055-a60a-219f088cc563"><span class="k-link k-menu-link"><span data-code="6"><span class="k-icon k-i-copy"></span>Коп. общую инф-ю</span></span></li>
 </ul>-->
 
-        <div class="context-menu-container k-animation-container" style="display: none; width: 226px; height: 423px; overflow: visible; position: absolute; /*top: 254px;*/ z-index: 10002; /*left: 100px;*/" aria-hidden="true">
+        <div id="test" class="context-menu-container k-animation-container" style="display: none; width: 226px; height: 423px; overflow: visible; position: absolute; /*top: 254px;*/ z-index: 10002; /*left: 100px;*/" aria-hidden="true">
             <ul id="gridMenu" data-role="contextmenu" class="k-widget k-reset k-header k-menu k-context-menu k-popup k-group k-menu-vertical" tabindex="0" role="menubar" style="display: block; position: absolute; font-size: 11px; font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-stretch: 100%; font-style: normal; font-weight: 400; line-height: normal; opacity: 1;" aria-hidden="true">
                 <li class="k-item k-state-default k-first" role="menuitem" data-uid="e7a90a19-e0c0-4bd0-8a0d-79471675c161">
                     <span class="k-link k-menu-link">
@@ -234,59 +234,111 @@
             </ul>
         </div>
 
+		<!-- Для пользователей -->
+		<div id="workersContextMenu" class="context-menu-container k-animation-container" style="display: none; width: 226px; height: 423px; overflow: visible; position: absolute; /*top: 254px;*/ z-index: 10002; /*left: 100px;*/" aria-hidden="true">
+            <ul id="gridMenu" data-role="contextmenu" class="k-widget k-reset k-header k-menu k-context-menu k-popup k-group k-menu-vertical" tabindex="0" role="menubar" style="display: block; position: absolute; font-size: 11px; font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-stretch: 100%; font-style: normal; font-weight: 400; line-height: normal; opacity: 1;" aria-hidden="true">
+                <li class="k-item k-state-default k-first" role="menuitem" data-uid="e7a90a19-e0c0-4bd0-8a0d-79471675c161">
+                    <span id="addNewWorker" class="k-link k-menu-link" onclick="addNewWorker();">
+                        <span data-code="1">
+                            <span class="k-icon k-i-file-add"></span> Добавить нового 
+                        </span>
+                    </span>
+                </li>
+                <!--<li class="k-item k-state-default" role="menuitem" data-uid="b77075bd-f049-4cc4-8971-2f49c796a3c0"><span class="k-link k-menu-link"><span data-code="2"><span class="k-icon k-i-track-changes-accept"></span>Добавление/Просмотр ВР</span></span></li>
+                <li class="k-item k-state-disabled" role="menuitem" data-uid="86331a8c-aaea-46e4-a836-5df99640b5ef" aria-disabled="true"><span class="k-link k-menu-link"><span data-code="17" id="addCompletedWork"><span class="k-icon k-i-track-changes-accept"></span>Добавить ВР</span></span></li><li class="k-item k-state-default" role="menuitem" aria-haspopup="true" data-uid="9ccc2104-adb1-4422-98b8-26b9c8969efc" aria-disabled="false"><span class="k-link k-menu-link">
+                    <span data-code="30" id="accessCloseNZ"><span class="k-icon k-i-track-changes-reject"></span>Закрыть н.з. по шаблону</span>
+                    <span class="k-icon k-i-arrow-60-right k-menu-expand-arrow"></span></span><ul class="k-group k-menu-group" style="display:none" role="menu" aria-hidden="true"></ul></li><li class="k-item k-state-default" role="menuitem" aria-haspopup="true" data-uid="a8961c78-ab29-4d2c-bf40-9c78780bc2b7"><span class="k-link k-menu-link"><span data-code="14" id="assognPerformer"><span class="k-icon k-i-track-changes-enable"></span>Назначить исполнителя</span>
+                    <span class="k-icon k-i-arrow-60-right k-menu-expand-arrow"></span></span><ul class="k-group k-menu-group" style="display:none" role="menu" aria-hidden="true"></ul></li><li class="k-item k-state-disabled" role="menuitem" aria-haspopup="true" data-uid="7a50bb43-b46a-4ba0-b7c8-9aae9552ba06" aria-disabled="true">
+                    <span class="k-link k-menu-link"><span id="changeServices"><span class="k-icon k-i-track-changes-enable"></span>Редактирование</span><span class="k-icon k-i-arrow-60-right k-menu-expand-arrow"></span></span><ul class="k-group k-menu-group" style="display:none" role="menu" aria-hidden="true"></ul></li><li class="k-item k-state-default" role="menuitem" data-uid="4163b84c-a5f9-4a16-ac85-2a410940ff88"><span class="k-link k-menu-link">
+                    <span data-code="4"><span class="k-icon k-i-track-changes-enable"></span>Выдать новый н.з</span></span></li><li class="k-item k-state-default" role="menuitem" data-uid="6367845b-c79c-468e-a402-48dea0dca694">
+                    <span class="k-link k-menu-link"><span data-code="5"><span class="k-icon k-i-paste-plain-text"></span>Информация по заявке</span></span></li><li class="k-item k-state-default" role="menuitem" data-uid="5d183558-ea6c-4c77-b2f6-0a07afbea3c2"><span class="k-link k-menu-link"><span data-code="6"><span class="k-icon k-i-attachment"></span>Добавление/Просмотр документов</span></span></li>
+                <li class="k-item k-state-default" role="menuitem" data-uid="31538724-5573-4e5e-8142-4f84acd1a05a">
+                    <span class="k-link k-menu-link">
+                        <span data-code="7">
+                            <span class="k-icon k-i-calculator"></span>
+                            Назначить норму НЗ
+                        </span>
+                    </span>
+                </li>
+                <li class="k-item k-state-default" role="menuitem" data-uid="9af730b9-2f2a-4c0d-9fc2-87dc40c754e2">
+					<span class="k-link k-menu-link">
+						<span data-code="8"><span class="k-icon k-i-sort-asc"></span>Структура заявки</span>
+					</span>
+				</li>
+				<li class="k-item k-state-default" role="menuitem" data-uid="dda9aaf2-1d1e-4fb0-a6c7-20e168e15cff">
+					<span class="k-link k-menu-link">
+						<span data-code="9"><span class="k-icon k-i-edit-tools"></span>Комментарии/уточнения</span>
+					</span>
+				</li>
+                <li class="k-item k-state-disabled" role="menuitem" data-uid="3e26cb31-10bf-4619-b723-f3e6fa020ad8" aria-disabled="true">
+                    <span class="k-link k-menu-link"><span data-code="13" id="postponementSLA">
+						<span class="k-icon k-i-gears"></span>Перенос срока SLA</span>
+					</span>
+				</li>
+				<li class="k-item k-state-disabled" role="menuitem" data-uid="99ee270b-c30c-41a5-a8cd-5eb550d4d006" aria-disabled="true">
+					<span class="k-link k-menu-link"><span data-code="10" id="accessTMC"
+                    <span class="k-icon k-i-gears"></span>Добавление/Просмотр ТМЦ</span></span>
+				</li>
+				<li class="k-item k-state-disabled" role="menuitem" data-uid="0ed9e7e9-16b8-4e7a-8ab6-09cfc011dd1f" aria-disabled="true"><span class="k-link k-menu-link"><span data-code="11" id="accessCreateTemp"><span class="k-icon k-i-track-changes-accept"></span>Создать заявку по шаблону</span></span></li><li class="k-item k-state-default" role="menuitem" data-uid="9264fdd2-4ee1-4766-9023-6a17f9664bd7"><span class="k-link k-menu-link"><span data-code="12" id="accessCreateTemp"><span class="k-icon k-i-track-changes-accept"></span>Создать заявку на согласование</span></span></li><li class="k-item k-state-default" role="menuitem" aria-haspopup="true" data-uid="3faa6b06-c1a6-4bad-866c-872ad211095f"><span class="k-link k-menu-link"><span><span class="k-icon k-i-copy"></span>Копировать в буфер обмена</span><span class="k-icon k-i-arrow-60-right k-menu-expand-arrow"></span></span><ul class="k-group k-menu-group" style="display:none" role="menu" aria-hidden="true"></ul></li><li class="k-item k-state-default k-last" role="menuitem" data-uid="bbabb8f3-8fdb-4d7d-980c-a0ad62318c25"><span class="k-link k-menu-link"><span data-code="21" id="StatusExecTrans"><span class="k-icon k-i-check-outline"></span>Решение по перевозке</span></span>
+				</li>-->
+            </ul>
+        </div>
+
+
+
         <div id="dialogWindow">
             <table>
 				<tr>
 					<td>
-						ФИО<br>
+						<span>ФИО</span><br>
 						<input id="worker_name" type="text">
 					</td>
 				</tr>
 				<tr>
 					<td>
-						Таб ном<br>
+						<span>Таб ном</span><br>
 						<input id="tabel_nom" type="text">
 					</td>
 				</tr>
 				<tr>
 					<td>
-						Тел личн<br>
+						<span>Тел личн</span><br>
 						<input id="tel" type="tel">
 					</td>
 				</tr>
 				<tr>
 					<td>
-						Дата трудоустройства<br>
+						<span>Дата трудоустройства</span><br>
 						<input type="date">
 					</td>
 				</tr>
 				<tr>
 					<td>
-						Дата рождения<br>
+						<span>Дата рождения</span><br>
 						<input type="date">
 					</td>
 				</tr>
 				<tr>
 					<td>
-						E-mail<br>
+						<span>E-mail</span><br>
 						<input type="email">
 					</td>
 				</tr>
 				<tr>
 					<td>
-						Account<br>
+						<span>Account</span><br>
 						<input type="text">
 					</td>
 				</tr>
 				<tr>
 					<td>
-						Должность<br>
+						<span>Должность</span><br>
 						<input type="text">
 					</td>
 				</tr>
 				<tr>
 					<td>
-						Отдел<br>
+						<span>Отдел</span><br>
 						<input type="search">
 					</td>
 				</tr>
@@ -424,21 +476,28 @@
             });
         </script>
 
-        <script>
+        <!--<script>
             $( function() {
                 $( "#dialogWindow" ).dialog({
 					fontSize: "11px",
 					color: "rgb(81, 89, 103)",
 					width: "auto",
 					title: "Заголовок диалога",
-
+					buttons: {
+						"Сохранить": function() {
+							$( this ).dialog( "close" );
+						},
+						"Отмена": function() {
+							$( this ).dialog( "close" );
+						}
+					}
                     /*create: function(event, ui) {
                         var widget = $(this).dialog("widget");
                         $(".ui-dialog-titlebar-close span", widget).removeClass("ui-icon-closethick").addClass("ui-icon-minusthick");
                     }*/
 				});
             });
-        </script>
+        </script>-->
 
     </body>
 </html>

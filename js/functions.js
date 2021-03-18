@@ -46,6 +46,11 @@ $("body").on("click", ".k-button", function(){
             //getDataFromDB ($(this).attr("id"));
 
         }
+        if ($(this).attr("id") == 'addNewWorker') {
+            // Чистим главное окно
+            console.log($(this).attr("id"));
+
+        }
     }
 
     // Если кнопка типа оборудования
@@ -358,8 +363,35 @@ function moveWorkerOrStaffInStaff (worker_id, staff_id, target_staff_id){
 
 }
 
+//Вызываем форму для добавления нового сотрудника
+function addNewWorker(){
+	console.log("addNewWorker");
+
+	//$( function() {
+		$( "#dialogWindow" ).dialog({
+			fontSize: "11px",
+			color: "rgb(81, 89, 103)",
+			width: "auto",
+			title: "Новый сотрудник",
+			buttons: {
+				"Сохранить": function() {
+					$( this ).dialog( "close" );
+				},
+				"Отмена": function() {
+					$( this ).dialog( "close" );
+				}
+			}
+			/*create: function(event, ui) {
+				var widget = $(this).dialog("widget");
+				$(".ui-dialog-titlebar-close span", widget).removeClass("ui-icon-closethick").addClass("ui-icon-minusthick");
+			}*/
+		});
+	//});
+}
+
 //Для теста контекстного меню
-let menu = document.querySelector('.context-menu-container');
+//let menu = document.querySelector('.context-menu-container');
+let menu = document.querySelector('#workersContextMenu');
 
 function showMenu(x, y){
     menu.style.left = x + 'px';
