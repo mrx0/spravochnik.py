@@ -114,14 +114,14 @@ function getDataFromDB (flag) {
                     // console.log(typeof(res.data));
 
                     //Выводим данные
-                    $('#main_window_header').html('<div id="main_window_header_buttons" data-role="buttongroup" class="k-widget k-button-group" role="group" tabindex="0" aria-disabled="false"></div>');
-                    $('#main_window_header_buttons').append('<span title="Все" data-status="item_type_button" data-value="0" role="button" class="k-button k-state-active k-state-focused">Все</span>');
+                    $("#main_window_header").html('<div id="main_window_header_buttons" data-role="buttongroup" class="k-widget k-button-group" role="group" tabindex="0" aria-disabled="false"></div>');
+                    $("#main_window_header_buttons").append('<span title="Все" data-status="item_type_button" data-value="0" role="button" class="k-button k-state-active k-state-focused">Все</span>');
 
                     res.data.forEach(function(element) {
                         // console.log(element['name']);
 
                         // Каждый отдельный элемент в отдельную кнопку
-                        $('#main_window_header_buttons').append('<span id="item_type_'+element['id']+'" data-status="item_type_button" data-value="'+element['id']+'" role="button" class="k-button" title="'+element['name']+'">'+element['name']+'</span>');
+                        $("#main_window_header_buttons").append('<span id="item_type_'+element['id']+'" data-status="item_type_button" data-value="'+element['id']+'" role="button" class="k-button" title="'+element['name']+'">'+element['name']+'</span>');
                     });
                 }
             }
@@ -389,6 +389,12 @@ function addNewWorker(){
 	//});
 }
 
+function actionDo(a){
+    if (a == 'addNewWorker') {
+        addNewWorker();
+    }
+}
+
 //Для теста контекстного меню
 //let menu = document.querySelector('.context-menu-container');
 let menu = document.querySelector('#workersContextMenu');
@@ -414,8 +420,19 @@ function onContextMenu(e){
 }
 
 function onMouseDown(e){
+    // console.log(e);
+
     hideMenu();
     document.removeEventListener('mousedown', onMouseDown);
+
+    if (e.target.closest('li') !== null) {
+        if (e.target.closest('li').id !== undefined) {
+            //console.log(e.target.closest('li').id)
+
+            //Передадим id в функцию, там рещим, что делать дальше
+            actionDo(e.target.closest('li').id);
+        }
+    }
 }
 
 // document.addEventListener('contextmenu', onContextMenu, false);
@@ -428,10 +445,20 @@ document.addEventListener("contextmenu", event => {
     // console.log(event.target.closest('td'));
     // console.log(event.target.closest('tr'));
     // console.log(event.target.closest('tr').className);
+    // console.log(event.target.closest('tr').classList);
 
     if (event.target.closest('tr') !== null) {
-        if (event.target.closest('tr').className !== undefined) {
-            if (event.target.closest('tr').className == 'item_data') {
+        if (event.target.closest('tr').classList !== undefined) {
+
+            //Контекстное меню для сотрудника
+            if (event.target.closest('tr').classList.contains("worker_item_tr")) {
+                menu = document.querySelector('#workersContextMenu');
+                onContextMenu(event);
+            }
+
+            //Контекстное меню для оборудования
+            if (event.target.closest('tr').classList.contains("item_data")) {
+                menu = document.querySelector('#itemContextMenu');
                 onContextMenu(event);
             }
         }
