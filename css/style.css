@@ -5,14 +5,19 @@ html,body{
 
 #main_window {
     /*width: 95vw;*/
-    height: 100%;
+    height: 85vh;
     overflow: auto;
     /*position: fixed;*/
     /*top: 0;*/
     /*left: 50%;*/
     /*padding: 10px;*/
     margin: auto; /* Выравниваем по центру */
-    padding-right: 0px;
+    padding-right: 0;
+    background: white;
+}
+
+#main_window_header{
+    background: white;
 }
 
 
@@ -195,7 +200,9 @@ li input:checked + ol > li:last-child {
 
 /*<---Стили для DnD элементов*/
 
-
+.selectableItem {
+    background-color: rgb(243 255 191) !important;
+}
 
 
 /*Для теста контекстного меню --->*/
@@ -326,10 +333,12 @@ li input:checked + ol > li:last-child {
     background-position:50% 50%
 }
 li.k-item:hover{
-    background-color:#b5bdcb;
+    /*background-color:#b5bdcb;*/
+    background-color:rgb(93 152 255);
     /*background-image:url(textures/highlight.png);*/
     background-image:none,linear-gradient(to bottom,rgba(255,255,255,.2) 0,rgba(255,255,255,0) 100%);
-    background-position:50% 50%
+    background-position:50% 50%;
+    color: rgb(240 248 255);
 }
 
 /*Строки таблицы разным цветом --->*/

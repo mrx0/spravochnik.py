@@ -74,9 +74,9 @@ try:
 
         result = cur.fetchall()
 
-        res += '''
-            <table style="width: 700px; max-width: 700px; min-width: 700px; border-spacing: 2px; background-color: white;">
-        '''
+        # res += '''
+        #     <table style="width: 700px; max-width: 700px; min-width: 700px; border-spacing: 2px; background-color: white;">
+        # '''
 
         # Собираем то, что получили, в одну строку для возврата обратно в Ajax
         for data in result:
@@ -119,9 +119,9 @@ try:
                             </tr>
                             '''
 
-        res += '''
-            </table>
-        '''
+        # res += '''
+        #     </table>
+        # '''
 
         # Работая с Python под WEB, нельзя забывать про вывод заголовков и указание кодировки
         print('Status: 200 OK')

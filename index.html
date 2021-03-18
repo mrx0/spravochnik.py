@@ -200,8 +200,8 @@
     <li class="k-item k-state-default" role="menuitem" data-uid="a8a79987-58d4-4c1c-aac7-0ee2988f9c8a"><span class="k-link k-menu-link"><span data-code="5"><span class="k-icon k-i-copy"></span>Коп. URL</span></span></li><li class="k-item k-state-default k-last" role="menuitem" data-uid="8281976b-971c-4055-a60a-219f088cc563"><span class="k-link k-menu-link"><span data-code="6"><span class="k-icon k-i-copy"></span>Коп. общую инф-ю</span></span></li>
 </ul>-->
 
-        <div id="itemContextMenu" class="context-menu-container k-animation-container" style="display: none; width: 226px; height: 423px; overflow: visible; position: absolute; /*top: 254px;*/ z-index: 10002; /*left: 100px;*/" aria-hidden="true">
-            <ul id="gridMenu" data-role="contextmenu" class="k-widget k-reset k-header k-menu k-context-menu k-popup k-group k-menu-vertical" tabindex="0" role="menubar" style="display: block; position: absolute; font-size: 11px; font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-stretch: 100%; font-style: normal; font-weight: 400; line-height: normal; opacity: 1;" aria-hidden="true">
+        <div id="itemContextMenu" class="context-menu-container k-animation-container" style="display: none; width: 226px; /*height: 423px; */ overflow: visible; position: absolute; /*top: 254px;*/ z-index: 10002; /*left: 100px;*/" aria-hidden="true">
+            <ul id="gridMenu" data-role="contextmenu" class="k-widget k-reset k-header k-menu k-context-menu k-popup k-group k-menu-vertical" tabindex="0" role="menubar" style="width: inherit; display: block; position: absolute; font-size: 11px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-stretch: 100%; font-style: normal; font-weight: 400; line-height: normal; opacity: 1;" aria-hidden="true">
                 <li class="k-item k-state-default k-first" role="menuitem" data-uid="e7a90a19-e0c0-4bd0-8a0d-79471675c161">
                     <span class="k-link k-menu-link">
                         <span data-code="1">
@@ -235,17 +235,23 @@
         </div>
 
 		<!-- Для пользователей -->
-		<div id="workersContextMenu" class="context-menu-container k-animation-container" style="display: none; width: 226px; height: 423px; overflow: visible; position: absolute; /*top: 254px;*/ z-index: 10002; /*left: 100px;*/" aria-hidden="true">
-            <ul data-role="contextmenu" class="k-widget k-reset k-header k-menu k-context-menu k-popup k-group k-menu-vertical" tabindex="0" role="menubar" style="display: block; position: absolute; font-size: 11px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-stretch: 100%; font-style: normal; font-weight: 400; line-height: normal; opacity: 1;" aria-hidden="true">
-                <li id="addNewWorker" class="k-item k-state-default k-first" role="menuitem" data-uid="" onclick="addNewWorker();">
+		<div id="workersContextMenu" class="context-menu-container k-animation-container" style="display: none; width: 226px; /*height: 423px;*/ overflow: visible; position: absolute; /*top: 254px;*/ z-index: 10002; /*left: 100px;*/" aria-hidden="true">
+            <ul data-role="contextmenu" class="k-widget k-reset k-header k-menu k-context-menu k-popup k-group k-menu-vertical" tabindex="0" role="menubar" style="width: inherit; display: block; position: absolute; font-size: 11px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-stretch: 100%; font-style: normal; font-weight: 400; line-height: normal; opacity: 1;" aria-hidden="true">
+                <li id="editWorker" class="k-item k-state-default k-first" role="menuitem" data-uid="">
                     <span class="k-link k-menu-link">
                         <span data-code="1">
+                            <span class="k-icon k-i-track-changes-accept"></span> Редактировать сотрудника
+                        </span>
+                    </span>
+                </li>
+                <li id="addNewWorker" class="k-item k-state-default" role="menuitem" data-uid="" onclick="addNewWorker();">
+                    <span class="k-link k-menu-link">
+                        <span data-code="2">
                             <span class="k-icon k-i-file-add"></span> Добавить нового 
                         </span>
                     </span>
                 </li>
-                <!--<li class="k-item k-state-default" role="menuitem" data-uid="b77075bd-f049-4cc4-8971-2f49c796a3c0"><span class="k-link k-menu-link"><span data-code="2"><span class="k-icon k-i-track-changes-accept"></span>Добавление/Просмотр ВР</span></span></li>
-                <li class="k-item k-state-disabled" role="menuitem" data-uid="86331a8c-aaea-46e4-a836-5df99640b5ef" aria-disabled="true"><span class="k-link k-menu-link"><span data-code="17" id="addCompletedWork"><span class="k-icon k-i-track-changes-accept"></span>Добавить ВР</span></span></li><li class="k-item k-state-default" role="menuitem" aria-haspopup="true" data-uid="9ccc2104-adb1-4422-98b8-26b9c8969efc" aria-disabled="false"><span class="k-link k-menu-link">
+                <!--<li class="k-item k-state-disabled" role="menuitem" data-uid="86331a8c-aaea-46e4-a836-5df99640b5ef" aria-disabled="true"><span class="k-link k-menu-link"><span data-code="17" id="addCompletedWork"><span class="k-icon k-i-track-changes-accept"></span>Добавить ВР</span></span></li><li class="k-item k-state-default" role="menuitem" aria-haspopup="true" data-uid="9ccc2104-adb1-4422-98b8-26b9c8969efc" aria-disabled="false"><span class="k-link k-menu-link">
                     <span data-code="30" id="accessCloseNZ"><span class="k-icon k-i-track-changes-reject"></span>Закрыть н.з. по шаблону</span>
                     <span class="k-icon k-i-arrow-60-right k-menu-expand-arrow"></span></span><ul class="k-group k-menu-group" style="display:none" role="menu" aria-hidden="true"></ul></li><li class="k-item k-state-default" role="menuitem" aria-haspopup="true" data-uid="a8961c78-ab29-4d2c-bf40-9c78780bc2b7"><span class="k-link k-menu-link"><span data-code="14" id="assognPerformer"><span class="k-icon k-i-track-changes-enable"></span>Назначить исполнителя</span>
                     <span class="k-icon k-i-arrow-60-right k-menu-expand-arrow"></span></span><ul class="k-group k-menu-group" style="display:none" role="menu" aria-hidden="true"></ul></li><li class="k-item k-state-disabled" role="menuitem" aria-haspopup="true" data-uid="7a50bb43-b46a-4ba0-b7c8-9aae9552ba06" aria-disabled="true">

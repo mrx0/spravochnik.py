@@ -137,14 +137,14 @@ function showAllWorkers(){
                 '<div style="margin: 5px 0 5px; font-size: 11px; cursor: pointer;">' +
                     '<!--<span class="dotyel a-action lasttreedrophide">скрыть всё</span>, <span class="dotyel a-action lasttreedropshow">раскрыть всё</span>-->' +
                 '</div>' +
-                '<div id="workers_staff_rezult" style="width: 350px; max-width: 350px; min-width: 350px; height: 750px; overflow-y: scroll; overflow-x: hidden;">' +
+                '<div id="workers_staff_rezult" style="width: 350px; max-width: 350px; min-width: 350px; height: 83vh; overflow-y: scroll; overflow-x: hidden;">' +
                 '</div>' +
             '</div>' +
 			'<div style="display: inline-block; border: 1px solid #c5c5c5; position: relative; vertical-align: top;">' +
                 '<div style="margin: 5px 0 5px; font-size: 11px; cursor: pointer;">' +
                     '<!--<span class="dotyel a-action lasttreedrophide">скрыть всё</span>, <span class="dotyel a-action lasttreedropshow">раскрыть всё</span>-->' +
                 '</div>' +
-                '<div id="workers_rezult" style="/*width: 700px; max-width: 700px; min-width: 700px;*/ height: 750px; overflow-y: scroll; overflow-x: hidden;">' +
+                '<div id="workers_rezult" style="/*width: 700px; max-width: 700px; min-width: 700px;*/ height: 83vh; overflow-y: scroll; overflow-x: hidden;">' +
 				'</div>' +
             '</div>' +
         '</div>');
@@ -296,7 +296,34 @@ function getWorkers(staff){
 
             // Вывели список
             if (res.result == 'success') {
-                $("#workers_rezult").html(res.data);
+                $("#workers_rezult").html('' +
+                    '<table role="grid" id="myTable" class="tablesorter" style="width: 700px; max-width: 700px; min-width: 700px; border-spacing: 2px; background-color: white;">' +
+                        '<thead role="rowgroup">' +
+                            '<tr role="row">' +
+                                '<th scope="col" role="columnheader" data-field="COUNT_VR" aria-haspopup="true" rowspan="1" data-title="" data-groupable="false" data-index="1" id="" title="" class="k-header" data-role="columnsorter">' +
+                                    '<span class="k-link" href="">ФИО</span>' +
+                                '</th>' +
+                                '<th scope="col" role="columnheader" data-field="DOCS" aria-haspopup="true" rowspan="1" data-title="" data-groupable="false" data-index="2" id="" title="" class="k-header" data-role="columnsorter">' +
+                                    '<span class="k-link" href="">Таб. номер</span>' +
+                                '</th>' +
+                                '<th scope="col" role="columnheader" data-field="NOMER_DEMAND" aria-haspopup="true" rowspan="1" data-title="" data-groupable="false" data-index="3" id="" title="" class="k-header" data-role="columnsorter">' +
+                                    '<span class="k-link" href="">Должность</span>' +
+                                '</th>' +
+                                '<th scope="col" role="columnheader" data-field="CL_PHONE" aria-haspopup="true" rowspan="1" data-title="" aria-label="" data-aggregates="count" data-index="4" id="" title="Телефон" class="k-header" data-role="columnsorter">' +
+                                    '<span class="k-link" href="">Тел.ном.(личный)</span>' +
+                                '</th>' +
+                            '</tr>' +
+                        '</thead>' +
+                        '<tbody id="itemTableData" role="rowgroup">' +
+                            res.data +
+                        '</tbody>' +
+                    '</table>' +
+                '');
+
+                //Запускаем функцию для сортировки
+                $(function() {
+                    $("#myTable").tablesorter();
+                });
             }
         }
     })
@@ -414,6 +441,11 @@ function hideMenu(){
 }
 
 function onContextMenu(e){
+    console.log(e);
+
+    // Выделим всю строку, где находится элемент
+    e.target.closest('tr').classList.add("selectableItem");
+
     e.preventDefault();
     showMenu(e.pageX, e.pageY);
     document.addEventListener('mousedown', onMouseDown, false);
@@ -423,7 +455,14 @@ function onMouseDown(e){
     // console.log(e);
 
     hideMenu();
+
     document.removeEventListener('mousedown', onMouseDown);
+
+    const items = document.querySelectorAll('.selectableItem')
+    const target = e.target
+    Array.from(items).forEach(item => {
+        item.classList.remove('selectableItem')
+    })
 
     if (e.target.closest('li') !== null) {
         if (e.target.closest('li').id !== undefined) {
@@ -441,6 +480,7 @@ function onMouseDown(e){
 // let items = document.querySelector(".k-menu-link");
 // console.log(items);
 
+// Обработка нажатия правой кнопки мыши, а точнее обработка при вызове контекстного меню
 document.addEventListener("contextmenu", event => {
     // console.log(event.target.closest('td'));
     // console.log(event.target.closest('tr'));
