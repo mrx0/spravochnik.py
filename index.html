@@ -31,6 +31,9 @@
         <script src="./js/dlgTree.js"></script>
         <script src="./js/jquery-ui-1.12.1.min.js"></script>
 
+        <!-- noty -->
+        <script type="text/javascript" src="./js/noty/packaged/jquery.noty.packaged.min.js"></script>
+
     </head>
     <body>
         <!--<link href="./css/rep_070.css" rel="stylesheet">-->
@@ -244,7 +247,7 @@
                         </span>
                     </span>
                 </li>
-                <li id="addNewWorker" class="k-item k-state-default" role="menuitem" data-uid="" onclick="addNewWorker();">
+                <li id="addNewWorker" class="k-item k-state-default" role="menuitem" data-uid="">
                     <span class="k-link k-menu-link">
                         <span data-code="2">
                             <span class="k-icon k-i-file-add"></span> Добавить нового 
@@ -297,57 +300,70 @@
 				<tr>
 					<td>
 						<span>ФИО</span><br>
-						<input id="worker_name" type="text">
+						<input id="worker_name" type="text" autocomplete="off">
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<span>Таб ном</span><br>
-						<input id="tabel_nom" type="text">
+						<input id="tabel_nom" type="text" autocomplete="off">
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<span>Тел личн</span><br>
-						<input id="tel" type="tel">
+						<input id="tel_own" type="tel" autocomplete="off" pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}">
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<span>Дата трудоустройства</span><br>
-						<input type="date">
+						<input id="employment_date" type="date">
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<span>Дата рождения</span><br>
-						<input type="date">
+						<input id="birth" type="date">
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<span>E-mail</span><br>
-						<input type="email">
+						<input id="email" type="email" autocomplete="off">
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<span>Account</span><br>
-						<input type="text">
+						<span>Логин</span><br>
+						<input id="login" type="text" autocomplete="off">
 					</td>
 				</tr>
+                <tr>
+                    <td>
+                        <span>Пароль</span><br>
+                        <input  id="password" type="text" autocomplete="off">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>Отдел</span><br>
+                        <input id="staff" type="search" autocomplete="off">
+                    </td>
+                </tr>
 				<tr>
 					<td>
 						<span>Должность</span><br>
-						<input type="text">
+						<input id="staff_position" type="text" autocomplete="off">
 					</td>
 				</tr>
-				<tr>
-					<td>
-						<span>Отдел</span><br>
-						<input type="search">
-					</td>
-				</tr>
+                <tr>
+                    <td>
+                        <span>Работал в Русале</span><br>
+                        <input type="radio" name="wasInRusal" value="1"> да<br>
+                        <input type="radio" name="wasInRusal" value="2" checked> нет
+                    </td>
+                </tr>
 			</table>
         </div>
 
@@ -504,6 +520,55 @@
 				});
             });
         </script>-->
+
+
+
+        <script type="text/javascript">
+
+            // function generate(type) {
+            //     let n = noty({
+            //         text        : type,
+            //         type        : type,
+            //         dismissQueue: false,
+            //         layout      : 'topCenter',
+            //         theme       : 'defaultTheme'
+            //     });
+            //     console.log(type + ' - ' + n.options.id);
+            //     return n;
+            // }
+            //
+            // $(document).ready(function () {
+            //
+            //     let alert = generate('alert');
+            //     let information = generate('information');
+            //     let error = generate('error');
+            //     let warning = generate('warning');
+            //     let notification = generate('notification');
+            //     let success = generate('success');
+            //
+            //     setTimeout(function () {
+            //         $.noty.setText(alert.options.id, 'I\'m closing now!'); // same as alert.setText('Text Override')
+            //     }, 1000);
+            //
+            //     setTimeout(function () {
+            //         $.noty.close(alert.options.id);
+            //     }, 3000);
+            //
+            //     setTimeout(function () {
+            //         $.noty.setType(information.options.id, 'warning'); // same as information.setType('warning')
+            //     }, 5000);
+            //
+            //     setTimeout(function () {
+            //         $.noty.setText(information.options.id, 'I\'m closing too. Goodbye!'); // same as information.setType('warning')
+            //     }, 7000);
+            //
+            //     setTimeout(function () {
+            //         $.noty.closeAll();
+            //     }, 10000);
+            //
+            // });
+
+        </script>
 
     </body>
 </html>
