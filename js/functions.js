@@ -553,6 +553,15 @@ document.addEventListener("contextmenu", event => {
 
 }, false);
 
+// Изменение адресной строки браузера на лету
+function setLocation(curLoc){
+    try {
+      history.pushState(null, null, curLoc);
+      return;
+    } catch(e) {}
+    location.hash = '#' + curLoc;
+}
+
 // Функция генерирует всплывающее окно
 function generateNoty(type, theme, text) {
     let n = noty({
