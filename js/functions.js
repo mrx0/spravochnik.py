@@ -391,8 +391,8 @@ function moveWorkerOrStaffInStaff (worker_id, staff_id, target_staff_id){
 }
 
 //Вызываем форму для добавления нового сотрудника
-function addNewWorker(){
-	console.log("addNewWorker");
+function addNewWorkerDialog(){
+	//console.log("addNewWorker");
 
 	//$( function() {
 		$( "#dialogWindow" ).dialog({
@@ -402,7 +402,8 @@ function addNewWorker(){
 			title: "Новый сотрудник",
 			buttons: {
 				"Сохранить": function() {
-					$( this ).dialog( "close" );
+				    addNewWorker();
+					//$( this ).dialog( "close" );
 				},
 				"Отмена": function() {
 					$( this ).dialog( "close" );
@@ -416,11 +417,45 @@ function addNewWorker(){
 	//});
 }
 
+// Выбор действия по условию
 function actionDo(a){
     if (a == 'addNewWorker') {
-        addNewWorker();
+        addNewWorkerDialog();
     }
 }
+
+// Добавление нового сотрудника
+function addNewWorker(){
+
+    let worker_name = $("#worker_name").val();
+
+    // Если не пустое поле
+    if (worker_name.length > 0){
+        let reqData = {
+            worker_name: worker_name,
+            tabel_nom: $("#tabel_nom").val(),
+            tel_own: $("#tel_own").val(),
+            employment_date: $("#employment_date").val(),
+            birth: $("#birth").val(),
+            email: $("#email").val(),
+            login: $("#login").val(),
+            password: $("#password").val(),
+            staff: $("#staff").val(),
+            staff_position: $("#staff_position").val(),
+            wasInRusal: $("input[name=wasInRusal]:checked").val()
+        };
+        console.log(reqData)
+
+        // Закроем диалоговое окно
+        $( "#dialogWindow" ).dialog( "close" );
+    }else{
+        generateNoty('error', 'someOtherTheme', 'Введите ФИО')
+    }
+}
+
+
+
+
 
 //Для теста контекстного меню
 //let menu = document.querySelector('.context-menu-container');
@@ -441,7 +476,7 @@ function hideMenu(){
 }
 
 function onContextMenu(e){
-    console.log(e);
+    // console.log(e);
 
     // Выделим всю строку, где находится элемент
     e.target.closest('tr').classList.add("selectableItem");
@@ -518,12 +553,21 @@ document.addEventListener("contextmenu", event => {
 
 }, false);
 
-
-// Изменение адресной строки браузера на лету
-function setLocation(curLoc){
-    try {
-      history.pushState(null, null, curLoc);
-      return;
-    } catch(e) {}
-    location.hash = '#' + curLoc;
+// Функция генерирует всплывающее окно
+function generateNoty(type, theme, text) {
+    let n = noty({
+        type        : type,
+        dismissQueue: true,
+        layout      : 'topRight',
+        theme       : theme,
+        text        : text,
+        timeout     : 3000,
+        animation: {
+            open: {height: 'toggle'}, // or Animate.css class names like: 'animated bounceInLeft'
+            close: {height: 'toggle'}, // or Animate.css class names like: 'animated bounceOutLeft'
+            easing: 'swing',
+            speed: 100 // opening & closing animation speed
+        },
+    });
+    return n;
 }
