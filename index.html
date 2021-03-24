@@ -471,12 +471,23 @@
                 // Показываем менюшку с кнопками по типам
                 $("#main_window_header").show();
 
-                // Запросим данные по типам оборудования
-                getDataFromDB('items_types');
+				// !!! 2021-03-22 на будущее, пока не используется
+				// Текущий адрес в браузере
+				// Удаляем все лишнее из строки
+				//let pathnameWithoutTrailingSlashes = window.location.search.replace(/[.,\/#!?$%\^&\*;:{}=\-_`~()]/g, '')
+				//console.log(pathnameWithoutTrailingSlashes);
+				
+				// Выбор действия по условию
+				//if (pathnameWithoutTrailingSlashes == 'workers'){
+				//	showAllWorkers();
+				//}else{
+				//	// Запросим данные по типам оборудования
+				//	getDataFromDB('items_types');
 
-                // Запросим данные по всему оборудованию
-                getItemsFromDB(0)
-
+				//	// Запросим данные по всему оборудованию
+				//	getItemsFromDB(0);
+				//}
+				
                 // Запросим данные
                 //getDataFromDB ($(this).attr("id"));
             });
