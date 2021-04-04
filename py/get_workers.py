@@ -1,5 +1,6 @@
 # get_workers.py
 # -*- coding: utf-8  -*-
+# Получаем сотрудников по отделу
 
 # Модуль логирования
 import logging
@@ -58,8 +59,8 @@ try:
 
         args = [req_data,8,9]
 
-        # Если получили staff == 0, значит надо показать Все элементы
-        if req_data == '0':
+        # Если получили staff == -1, значит надо показать Все элементы
+        if req_data == '-1':
             query = """SELECT s_w.id, s_w.fio, s_w.tab_nomer, s_w.phone_personal, s_w.status, st_pos.name AS pos_name 
                 FROM spr_workers s_w
                 LEFT JOIN spr_staff_positions st_pos ON st_pos.id = s_w.staff_position
@@ -83,6 +84,10 @@ try:
             # Если пусто БД, значит пустая строка (!!! пока, потом какой-то маркер добавить)
             if data['tab_nomer'] is None:
                 data['tab_nomer'] = '<span style="color: red">не указан</span>'
+            if data['phone_personal'] is None or data['phone_personal'] == '':
+                data['phone_personal'] = '<span style="color: grey">не указан</span>'
+            if data['pos_name'] is None or data['pos_name'] == '':
+                data['pos_name'] = '<span style="color: grey">не указана</span>'
             if data['phone_personal'] is None or data['phone_personal'] == '':
                 data['phone_personal'] = '<span style="color: grey">не указан</span>'
 

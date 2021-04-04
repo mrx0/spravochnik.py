@@ -1,4 +1,13 @@
 
+// Нажатие клавиш клавиатуры
+$(document).keyup(function(e) {
+    if (e.ctrlKey && e.keyCode === 45) {
+        //!!! Явно вызывает диалог добавления нового сотрудника. Переделать потом, чтоб были варианты
+        actionDo('addNewWorker');
+    }
+});
+
+
 // Клики в body по кнопкам
 $("body").on("click", ".k-button", function(){
     //console.log($(this).attr("id"));
@@ -47,8 +56,7 @@ $("body").on("click", ".k-button", function(){
 
         }
         if ($(this).attr("id") == 'addNewWorker') {
-            // Чистим главное окно
-            console.log($(this).attr("id"));
+            // console.log($(this).attr("id"));
 
         }
     }
@@ -67,6 +75,85 @@ $("body").on("click", ".k-button", function(){
         getItemsFromDB($(this).attr("data-value"));
     }
 });
+
+//Живой поиск отдела
+//Рабочий пример клика на элементе после подгрузки загрузки его в DOM
+$("body").on("change input click", ".fastSearch", function(){
+    //console.log($(this).attr("id"));
+
+    //Что обрабатываем
+    let target = $(this).attr("id");
+
+    //Если строка запроса не пустая
+    if(this.value.length > 2){
+
+        let link = "py/fast_search.py";
+
+        let reqData = {
+            'searchdata':this.value,
+            'target':target
+        };
+        // console.log(reqData);
+
+        $.ajax({
+            url: link,
+            global: false,
+            type: "POST",
+            dataType: "JSON",
+            data: reqData,
+            cache: false,
+            beforeSend: function() {
+
+            },
+            // действие, при ответе с сервера
+            success: function(res){
+                // $('#errrror').html(res);
+                // console.log(res);
+
+                //Выводим полученые данные в списке
+                $(".search_result_"+target).html(res.data).show();
+                // $("#search_result_"+target).html(res.data);
+            }
+        });
+
+
+    }else{
+        $(".search_result_" + target).html('');
+        $(".search_result_" + target).hide();
+    }
+});
+
+//При выборе результата поиска, прячем список и заносим выбранный результат в input
+$("body").on("click", ".search_result li", function(){
+    // console.log(this.firstChild);
+    // console.log($(this).attr("data-type"));
+    // console.log(this.id);
+    // console.log($(this).attr('id'));
+
+    $("#"+$(this).attr("data-type")).val($(this).text());
+    $("#"+$(this).attr("data-type")+"_id").val(this.id);
+
+    $(".search_result_" + $(this).attr("data-type")).html('');
+    $(".search_result_" + $(this).attr("data-type")).hide();
+
+});
+
+// input теряет фокус
+$("body").on("blur", ".fastSearch", function(){
+    $(".search_result").each(function() {
+        $(this).html('');
+        $(this).hide();
+    });
+})
+
+// Если click за пределами результатов поиска - убираем эти результаты
+$(document).click(function(e){
+    let elem = $(".search_result");
+
+    if((e.target != elem[0]) && (!elem.has(e.target).length)){
+        elem.hide();
+    }
+})
 
 // Функция получения данных по типам оборудования / сотрудникам
 function getDataFromDB (flag) {
@@ -151,7 +238,7 @@ function showAllWorkers(){
 
     getStaffTree ();
 	
-	getWorkers (0);
+	getWorkers (-1);
 
 }
 
@@ -380,7 +467,7 @@ function moveWorkerOrStaffInStaff (worker_id, staff_id, target_staff_id){
             // $('#errrror').html("<div style='width: 120px; height: 32px; padding: 10px; text-align: center; vertical-align: middle; border: 1px dotted rgb(255, 179, 0); background-color: rgba(255, 236, 24, 0.5);'><img src='img/wait.gif' style='float:left;'><span style='float: right;  font-size: 90%;'> обработка...</span></div>");
         },
         success: function (res) {
-            console.log (res);
+            //console.log (res);
 
             if (res.result == 'success') {
                 getStaffTree ();
@@ -393,6 +480,9 @@ function moveWorkerOrStaffInStaff (worker_id, staff_id, target_staff_id){
 //Вызываем форму для добавления нового сотрудника
 function addNewWorkerDialog(){
 	//console.log("addNewWorker");
+
+    //Тут будем хранить изначальное состояние диалогового окна при открытии
+    let originalContent;
 
 	//$( function() {
 		$( "#dialogWindow" ).dialog({
@@ -407,20 +497,134 @@ function addNewWorkerDialog(){
 				},
 				"Отмена": function() {
 					$( this ).dialog( "close" );
+                    // $( "#dialogForm" ).empty();
 				}
-			}
+			},
 			/*create: function(event, ui) {
 				var widget = $(this).dialog("widget");
 				$(".ui-dialog-titlebar-close span", widget).removeClass("ui-icon-closethick").addClass("ui-icon-minusthick");
-			}*/
+			},*/
+            // При открытии диалогвого окна, фиксируем его состояние
+            open : function(event, ui) {
+                originalContent = $("#dialogWindow").html();
+            },
+            // При закрытии диалогового окна, восстанавливаем его состояние
+            close : function(event, ui) {
+                $("#dialogWindow").html(originalContent);
+            }
 		});
+
 	//});
 }
 
+//Вызываем форму для редактирования сотрудника
+function editWorkerDialog(workerId){
+	//console.log("editWorker");
+
+    //Тут будем хранить изначальное состояние диалогового окна при открытии
+    let originalContent;
+
+    $( "#dialogWindow" ).dialog({
+        fontSize: "11px",
+        color: "rgb(81, 89, 103)",
+        width: "auto",
+        title: "Редактирование сотрудника",
+        buttons: {
+            "Сохранить": function() {
+                //!!! этой функции пока нет, сделай
+                editWorker(workerId);
+                //$( this ).dialog( "close" );
+            },
+            "Отмена": function() {
+                $( this ).dialog( "close" );
+                // $( "#dialogForm" ).empty();
+            }
+        },
+        /*create: function(event, ui) {
+            var widget = $(this).dialog("widget");
+            $(".ui-dialog-titlebar-close span", widget).removeClass("ui-icon-closethick").addClass("ui-icon-minusthick");
+        },*/
+        // При открытии диалогового окна, фиксируем его состояние
+        open : function(event, ui) {
+            originalContent = $("#dialogWindow").html();
+        },
+        // При закрытии диалогвого окна, восстанавливаем его состояние
+        close : function(event, ui) {
+            $("#dialogWindow").html(originalContent);
+        }
+    });
+
+    // Надо заполнить диалоговое окно данными
+    let link = "py/get_worker.py";
+
+    let reqData = {
+        worker_id: workerId
+    };
+    //console.log(reqData);
+
+    $.ajax({
+        url: link,
+        global: false,
+        type: "POST",
+        dataType: "JSON",
+        data: reqData,
+        cache: false,
+        beforeSend: function () {
+            // Что-то делаем пока ждём ответа
+            // $('#errrror').html("<div style='width: 120px; height: 32px; padding: 10px; text-align: center; vertical-align: middle; border: 1px dotted rgb(255, 179, 0); background-color: rgba(255, 236, 24, 0.5);'><img src='img/wait.gif' style='float:left;'><span style='float: right;  font-size: 90%;'> обработка...</span></div>");
+        },
+        success: function (res) {
+            console.log (res);
+
+            if (res.result == 'success') {
+                //Расставим данные по полям
+                $("#worker_name").val(res.data.fio)
+                $("#tabel_nom").val(res.data.tab_nomer),
+                $("#tel_own").val(res.data.phone_personal),
+                // !!! Вручную тест
+                $("#employment_date").val("2021-04-01"),
+                // !!! Вручную тест
+                $("#birth").val("1980-04-01"),
+                $("#email").val(res.data.email),
+                $("#login").val(res.data.login),
+                $("#password").val(res.data.password),
+                $("#staff").val(res.data.st_name),
+                $("#staff_id").val(res.data.st_id),
+                $("#staff_position").val(res.data.pos_name),
+                $("#staff_position_id").val(res.data.pos_id)
+                // !!! wasInRusal пока нигде не используем
+                // $("input[name=wasInRusal]:checked").val()
+            }else{
+                generateNoty('error', 'someOtherTheme', 'Ошибка данных')
+            }
+        }
+    })
+}
+
 // Выбор действия по условию
-function actionDo(a){
+function actionDo(a, data=""){
+    //console.log(a);
+    // console.log(data);
+
+    //Если хотим добавить нового сотрудника
     if (a == 'addNewWorker') {
+
         addNewWorkerDialog();
+
+        //сразу ставим курсор в поле ввода имени
+        setTimeout(function () {
+            $('#worker_name').focus();
+        }, 200);
+    }
+    //Если хотим редактировать существующего сотрудника
+    if (a == 'editWorker') {
+
+        editWorkerDialog(data.split('_')[1]);
+
+        //сразу ставим курсор в поле ввода имени
+        setTimeout(function () {
+            $('#worker_name').focus();
+        }, 200);
     }
 }
 
@@ -431,6 +635,9 @@ function addNewWorker(){
 
     // Если не пустое поле
     if (worker_name.length > 0){
+
+        let link = "py/add_new_worker.py";
+
         let reqData = {
             worker_name: worker_name,
             tabel_nom: $("#tabel_nom").val(),
@@ -440,14 +647,39 @@ function addNewWorker(){
             email: $("#email").val(),
             login: $("#login").val(),
             password: $("#password").val(),
-            staff: $("#staff").val(),
-            staff_position: $("#staff_position").val(),
+            staff_id: $("#staff_id").val(),
+            staff_position_id: $("#staff_position_id").val(),
+            // !!! wasInRusal пока нигде не используем
             wasInRusal: $("input[name=wasInRusal]:checked").val()
         };
         console.log(reqData)
 
-        // Закроем диалоговое окно
-        $( "#dialogWindow" ).dialog( "close" );
+        $.ajax({
+            url: link,
+            global: false,
+            type: "POST",
+            dataType: "JSON",
+            data: reqData,
+            cache: false,
+            beforeSend: function () {
+                // Что-то делаем пока ждём ответа
+                // $('#errrror').html("<div style='width: 120px; height: 32px; padding: 10px; text-align: center; vertical-align: middle; border: 1px dotted rgb(255, 179, 0); background-color: rgba(255, 236, 24, 0.5);'><img src='img/wait.gif' style='float:left;'><span style='float: right;  font-size: 90%;'> обработка...</span></div>");
+            },
+            success: function (res) {
+                //console.log (res);
+
+                if (res.result == 'success') {
+                    // Закроем диалоговое окно
+                    $( "#dialogWindow" ).dialog( "close" );
+
+                    generateNoty('success', 'someOtherTheme', 'Добавлен новый сотрудник')
+                }
+            }
+        })
+
+
+
+
     }else{
         generateNoty('error', 'someOtherTheme', 'Введите ФИО')
     }
@@ -458,8 +690,8 @@ function addNewWorker(){
 
 
 //Для теста контекстного меню
-//let menu = document.querySelector('.context-menu-container');
-let menu = document.querySelector('#workersContextMenu');
+// let menu = document.querySelector('.context-menu-container');
+// let menu = document.querySelector('#workersContextMenu');
 
 function showMenu(x, y){
     menu.style.left = x + 'px';
@@ -477,17 +709,34 @@ function hideMenu(){
 
 function onContextMenu(e){
     // console.log(e);
+    // console.log($(e.target.closest('tr')).attr("data-uid"));
 
     // Выделим всю строку, где находится элемент
     e.target.closest('tr').classList.add("selectableItem");
+    //console.log($(e.target.closest('tr')).attr("data-uid"));
 
     e.preventDefault();
+
+    // Вызываем меню
     showMenu(e.pageX, e.pageY);
+
     document.addEventListener('mousedown', onMouseDown, false);
+
+    // Передаём данные в контекстное меню. Берём их с того элемента, по которому кликаем
+    //Если вызвали контекстное меню на странице сотрудников
+    if (e.target.closest('tr').classList.contains("worker_item_tr")) {
+        // ID сотрудника для редактирования
+        $("#editWorker").attr("data-uid", $(e.target.closest('tr')).attr("data-uid"))
+    }
+    //Если вызвали контекстное меню на странице оборудования
+    if (e.target.closest('tr').classList.contains("item_data")) {
+        // !!! Доделать
+    }
 }
 
+// Действие при нажатии кнопки, используем на контекстном меню
 function onMouseDown(e){
-    // console.log(e);
+    //console.log(e);
 
     hideMenu();
 
@@ -503,8 +752,8 @@ function onMouseDown(e){
         if (e.target.closest('li').id !== undefined) {
             //console.log(e.target.closest('li').id)
 
-            //Передадим id в функцию, там рещим, что делать дальше
-            actionDo(e.target.closest('li').id);
+            //Передадим id в функцию, там решим, что делать дальше
+            actionDo(e.target.closest('li').id, $(e.target.closest('li')).attr("data-uid"));
         }
     }
 }
@@ -521,6 +770,7 @@ document.addEventListener("contextmenu", event => {
     // console.log(event.target.closest('tr'));
     // console.log(event.target.closest('tr').className);
     // console.log(event.target.closest('tr').classList);
+    // console.log($(event.target.closest('tr')).attr("data-uid"));
 
     if (event.target.closest('tr') !== null) {
         if (event.target.closest('tr').classList !== undefined) {

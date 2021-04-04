@@ -296,75 +296,90 @@
 
 
         <div id="dialogWindow">
-            <table>
-				<tr>
-					<td>
-						<span>ФИО</span><br>
-						<input id="worker_name" type="text" autocomplete="off">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<span>Таб ном</span><br>
-						<input id="tabel_nom" type="text" autocomplete="off">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<span>Тел личн</span><br>
-						<input id="tel_own" type="tel" autocomplete="off" pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<span>Дата трудоустройства</span><br>
-						<input id="employment_date" type="date">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<span>Дата рождения</span><br>
-						<input id="birth" type="date">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<span>E-mail</span><br>
-						<input id="email" type="email" autocomplete="off">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<span>Логин</span><br>
-						<input id="login" type="text" autocomplete="off">
-					</td>
-				</tr>
-                <tr>
-                    <td>
-                        <span>Пароль</span><br>
-                        <input  id="password" type="text" autocomplete="off">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span>Отдел</span><br>
-                        <input id="staff" type="search" autocomplete="off">
-                    </td>
-                </tr>
-				<tr>
-					<td>
-						<span>Должность</span><br>
-						<input id="staff_position" type="text" autocomplete="off">
-					</td>
-				</tr>
-                <tr>
-                    <td>
-                        <span>Работал в Русале</span><br>
-                        <input type="radio" name="wasInRusal" value="1"> да<br>
-                        <input type="radio" name="wasInRusal" value="2" checked> нет
-                    </td>
-                </tr>
-			</table>
+            <form id="dialogForm">
+                <table>
+                    <tr>
+                        <td>
+                            <span>ФИО</span><br>
+                            <input id="worker_name" type="text" autocomplete="off" >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Таб ном</span><br>
+                            <input id="tabel_nom" type="text" autocomplete="off">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Отдел</span><br>
+                            <input id="staff" class="fastSearch" type="search" autocomplete="off">
+                            <ul id="search_result_staff" class="search_result search_result_staff"></ul>
+                            <input id="staff_id" type="hidden" value="0">
+
+                            <!-- интересное решение, но не работает в Safari  http://jsfiddle.net/diefair/3e96fqzj/ -->
+                            <!--<input list="search_result_staff" id="staff" class="fastSearch" type="search" autocomplete="off">
+                            <datalist id="search_result_staff"></datalist>-->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Должность</span><br>
+                            <input id="staff_position" class="fastSearch" type="text" autocomplete="off">
+                            <ul id="search_result_staff_position" class="search_result search_result_staff_position"></ul>
+                            <input id="staff_position_id" type="hidden" value="0">
+
+                            <!-- интересное решение, но не работает в Safari  http://jsfiddle.net/diefair/3e96fqzj/ -->
+                            <!--<label for="staff_position">Должность</label>-->
+                            <!--<input list="search_result_staff_position" id="staff_position" name="staff_position" class="fastSearch" type="search" autocomplete="off">
+                            <datalist id="search_result_staff_position"></datalist>-->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Тел личн</span><br>
+                            <input id="tel_own" type="tel" autocomplete="off" pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Дата трудоустройства</span><br>
+                            <input id="employment_date" type="date">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Дата рождения</span><br>
+                            <input id="birth" type="date">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>E-mail</span><br>
+                            <input id="email" type="email" autocomplete="off">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Логин</span><br>
+                            <input id="login" type="text" autocomplete="off">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Пароль</span><br>
+                            <input  id="password" type="text" autocomplete="off">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Работал в Русале</span><br>
+                            <input type="radio" name="wasInRusal" value="1"> да<br>
+                            <input type="radio" name="wasInRusal" value="2" checked> нет
+                        </td>
+                    </tr>
+                </table>
+            </form>
         </div>
 
 
@@ -490,22 +505,34 @@
 				// !!! 2021-03-22 на будущее, пока не используется
 				// Текущий адрес в браузере
 				// Удаляем все лишнее из строки
-				//let pathnameWithoutTrailingSlashes = window.location.search.replace(/[.,\/#!?$%\^&\*;:{}=\-_`~()]/g, '')
+				// let pathnameWithoutTrailingSlashes = window.location.search.replace(/[.,\/#!?$%\^&\*;:{}=\-_`~()]/g, '')
 				//console.log(pathnameWithoutTrailingSlashes);
 				
-				// Выбор действия по условию
-				//if (pathnameWithoutTrailingSlashes == 'workers'){
-				//	showAllWorkers();
-				//}else{
-				//	// Запросим данные по типам оборудования
-				//	getDataFromDB('items_types');
-
-				//	// Запросим данные по всему оборудованию
-				//	getItemsFromDB(0);
-				//}
+				// // Выбор действия по условию
+				// if (pathnameWithoutTrailingSlashes == 'workers'){
+				// 	showAllWorkers();
+                //
+				// }else{
+				// 	// Запросим данные по типам оборудования
+				// 	getDataFromDB('items_types');
+                //
+				// 	// Запросим данные по всему оборудованию
+				// 	getItemsFromDB(0);
+                //
+				// 	// if (pathnameWithoutTrailingSlashes == ''){
+                //     //     setLocation('?workers');
+                //     // }
+				// }
 				
-                // Запросим данные
-                //getDataFromDB ($(this).attr("id"));
+                // // Запросим данные
+                // getDataFromDB ($(this).attr("id"));
+
+
+                // Запросим данные по типам оборудования
+                getDataFromDB('items_types');
+
+                // Запросим данные по всему оборудованию
+                getItemsFromDB(0)
             });
         </script>
 
