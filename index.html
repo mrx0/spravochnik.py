@@ -203,7 +203,7 @@
     <li class="k-item k-state-default" role="menuitem" data-uid="a8a79987-58d4-4c1c-aac7-0ee2988f9c8a"><span class="k-link k-menu-link"><span data-code="5"><span class="k-icon k-i-copy"></span>Коп. URL</span></span></li><li class="k-item k-state-default k-last" role="menuitem" data-uid="8281976b-971c-4055-a60a-219f088cc563"><span class="k-link k-menu-link"><span data-code="6"><span class="k-icon k-i-copy"></span>Коп. общую инф-ю</span></span></li>
 </ul>-->
 
-        <div id="itemContextMenu" class="context-menu-container k-animation-container" style="display: none; width: 226px; /*height: 423px; */ overflow: visible; position: absolute; /*top: 254px;*/ z-index: 10002; /*left: 100px;*/" aria-hidden="true">
+        <div id="testContextMenu" class="context-menu-container k-animation-container" style="display: none; width: 226px; /*height: 423px; */ overflow: visible; position: absolute; /*top: 254px;*/ z-index: 10002; /*left: 100px;*/" aria-hidden="true">
             <ul id="gridMenu" data-role="contextmenu" class="k-widget k-reset k-header k-menu k-context-menu k-popup k-group k-menu-vertical" tabindex="0" role="menubar" style="width: inherit; display: block; position: absolute; font-size: 11px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-stretch: 100%; font-style: normal; font-weight: 400; line-height: normal; opacity: 1;" aria-hidden="true">
                 <li class="k-item k-state-default k-first" role="menuitem" data-uid="e7a90a19-e0c0-4bd0-8a0d-79471675c161">
                     <span class="k-link k-menu-link">
@@ -237,9 +237,58 @@
             </ul>
         </div>
 
+        <!-- Для оборудования -->
+        <div id="itemContextMenu" class="context-menu-container k-animation-container" style="display: none; width: 226px; /*height: 423px;*/ overflow: visible; position: absolute; /*top: 254px;*/ z-index: 10002; /*left: 100px;*/" aria-hidden="true">
+            <ul data-role="contextmenu" class="k-widget k-reset k-header k-menu k-context-menu k-popup k-group k-menu-vertical" tabindex="0" role="menubar" style="width: inherit; display: block; position: absolute; font-size: 11px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-stretch: 100%; font-style: normal; font-weight: 400; line-height: normal; opacity: 1;" aria-hidden="true">
+                <li id="aboutItem" class="k-item k-state-default k-first" role="menuitem" data-uid="">
+                    <span class="k-link k-menu-link">
+                        <span data-code="1">
+                            <!--<span class="k-icon k-i-track-changes-accept"></span>--> Карточка оборудования
+                        </span>
+                    </span>
+                </li>
+                <li id="editItem" class="k-item k-state-default k-first" role="menuitem" data-uid="">
+                    <span class="k-link k-menu-link">
+                        <span data-code="1">
+                            <span class="k-icon k-i-track-changes-accept"></span> Редактировать оборудование
+                        </span>
+                    </span>
+                </li>
+                <li id="moveItem" class="k-item k-state-default k-first" role="menuitem" data-uid="">
+                    <span class="k-link k-menu-link">
+                        <span data-code="1">
+                            <!--<span class="k-icon k-i-track-changes-accept"></span>--> Переместить на ...
+                        </span>
+                    </span>
+                </li>
+                <li id="historyItem" class="k-item k-state-default k-first" role="menuitem" data-uid="">
+                    <span class="k-link k-menu-link">
+                        <span data-code="1">
+                            <!--<span class="k-icon k-i-track-changes-accept"></span>--> История
+                        </span>
+                    </span>
+                </li>
+                <li id="addNewItem" class="k-item k-state-default" role="menuitem" data-uid="">
+                    <span class="k-link k-menu-link">
+                        <span data-code="2">
+                            <span class="k-icon k-i-file-add"></span> Добавить оборудование
+                        </span>
+                    </span>
+                </li>
+            </ul>
+        </div>
+
+
 		<!-- Для пользователей -->
 		<div id="workersContextMenu" class="context-menu-container k-animation-container" style="display: none; width: 226px; /*height: 423px;*/ overflow: visible; position: absolute; /*top: 254px;*/ z-index: 10002; /*left: 100px;*/" aria-hidden="true">
             <ul data-role="contextmenu" class="k-widget k-reset k-header k-menu k-context-menu k-popup k-group k-menu-vertical" tabindex="0" role="menubar" style="width: inherit; display: block; position: absolute; font-size: 11px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-stretch: 100%; font-style: normal; font-weight: 400; line-height: normal; opacity: 1;" aria-hidden="true">
+                <li id="aboutWorker" class="k-item k-state-default k-first" role="menuitem" data-uid="">
+                    <span class="k-link k-menu-link">
+                        <span data-code="1">
+                            <!--<span class="k-icon k-i-track-changes-accept"></span>--> Карточка сотрудника
+                        </span>
+                    </span>
+                </li>
                 <li id="editWorker" class="k-item k-state-default k-first" role="menuitem" data-uid="">
                     <span class="k-link k-menu-link">
                         <span data-code="1">
