@@ -11,6 +11,8 @@ logging.basicConfig(filename='python_error.log', filemode='a', format='%(name)s 
 # Импортируем его
 import cgi
 
+import datetime
+
 # Сразу тут же тест конвертации данных в JSON формат и для работы с config.json
 # Импортируем модуль
 import json
@@ -121,7 +123,7 @@ try:
         print('')
 
         # Результат в виде JSON
-        print(json.dumps({"result": "success", "data": result}))
+        print(json.dumps({"result": "success", "data": result}, default=str))
 
         # Закрываем соединение
         conn.close()

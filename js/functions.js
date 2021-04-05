@@ -417,7 +417,7 @@ function getWorkers(staff){
 }
 
 // Показываем блок для подтверждения переноса
-// !!!2021-02-08 Сейчас никакого блока нет, функцуия сквозная, просто передаёт данные дальше
+// !!!2021-02-08 Сейчас никакого блока нет, функция сквозная, просто передаёт данные дальше
 // но м.б. в будущем мы сделаем тут диалог подтверждения
 function showMoveApprove(item, target){
     // console.log(item);
@@ -492,7 +492,7 @@ function addNewWorkerDialog(){
 			title: "Новый сотрудник",
 			buttons: {
 				"Сохранить": function() {
-				    addNewWorker();
+                    add_editWorker(0);
 					//$( this ).dialog( "close" );
 				},
 				"Отмена": function() {
@@ -532,7 +532,7 @@ function editWorkerDialog(workerId){
         buttons: {
             "Сохранить": function() {
                 //!!! этой функции пока нет, сделай
-                editWorker(workerId);
+                add_editWorker(workerId);
                 //$( this ).dialog( "close" );
             },
             "Отмена": function() {
@@ -581,10 +581,8 @@ function editWorkerDialog(workerId){
                 $("#worker_name").val(res.data.fio)
                 $("#tabel_nom").val(res.data.tab_nomer),
                 $("#tel_own").val(res.data.phone_personal),
-                // !!! Вручную тест
-                $("#employment_date").val("2021-04-01"),
-                // !!! Вручную тест
-                $("#birth").val("1980-04-01"),
+                $("#employment_date").val(res.data.employment_date),
+                $("#birth").val(res.data.birth),
                 $("#email").val(res.data.email),
                 $("#login").val(res.data.login),
                 $("#password").val(res.data.password),
@@ -629,16 +627,26 @@ function actionDo(a, data=""){
 }
 
 // Добавление нового сотрудника
-function addNewWorker(){
+function add_editWorker(workerId){
 
     let worker_name = $("#worker_name").val();
 
     // Если не пустое поле
     if (worker_name.length > 0){
 
-        let link = "py/add_new_worker.py";
+        // Обработчик добавляет сотрудника
+        let link = "py/worker_add_new.py";
+        // Текст оповещения при удачном исходе
+        let notyText = 'Добавлен новый сотрудник';
+
+        //Если передали workerId, вызывавам обработчик, редактирования сотрудника
+        if (workerId > 0){
+            link = "py/worker_edit.py";
+            notyText = 'Сотрудник отредактирован';
+        }
 
         let reqData = {
+            worker_id: workerId,
             worker_name: worker_name,
             tabel_nom: $("#tabel_nom").val(),
             tel_own: $("#tel_own").val(),
@@ -652,7 +660,7 @@ function addNewWorker(){
             // !!! wasInRusal пока нигде не используем
             wasInRusal: $("input[name=wasInRusal]:checked").val()
         };
-        console.log(reqData)
+        //console.log(reqData)
 
         $.ajax({
             url: link,
@@ -672,7 +680,7 @@ function addNewWorker(){
                     // Закроем диалоговое окно
                     $( "#dialogWindow" ).dialog( "close" );
 
-                    generateNoty('success', 'someOtherTheme', 'Добавлен новый сотрудник')
+                    generateNoty('success', 'someOtherTheme', notyText)
                 }
             }
         })

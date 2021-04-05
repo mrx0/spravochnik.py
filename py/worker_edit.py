@@ -1,5 +1,5 @@
-# add_new_worker.py
-# Добавляем нового сотрудника
+# worker_edit
+# Редактируем существующего сотрудника
 
 # Модуль логирования
 import logging
@@ -19,6 +19,7 @@ import mariadb
 try:
     storage = cgi.FieldStorage()
     # Получить значение того или иного параметра по его имени можно при помощи метода getvalue
+    worker_id = storage.getvalue('worker_id')
     fio = storage.getvalue('worker_name')
     tab_nomer = storage.getvalue('tabel_nom')
     phone_personal = storage.getvalue('tel_own')
@@ -53,15 +54,15 @@ try:
     # Добавляем сотрудника
     # Строка запроса
     query = """
-        INSERT INTO spr_workers
-        (fio, tab_nomer, phone_personal, employment_date, birth, email, login, password, staff, staff_position)
-        VALUES
-        (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        UPDATE spr_workers
+        SET fio=%s, tab_nomer=%s, phone_personal=%s, employment_date=%s, birth=%s, email=%s, login=%s, password=%s, staff=%s, staff_position=%s
+        WHERE
+        id=%s
         """
     # print(query)
 
     # Запрос в БД
-    cur.execute(query, (fio, tab_nomer, phone_personal, employment_date, birth, email, login, password, staff, staff_position,))
+    cur.execute(query, (fio, tab_nomer, phone_personal, employment_date, birth, email, login, password, staff, staff_position,worker_id,))
 
     # После внесений изменений в БД всегда надо делать commit (!!! есть вариант делать autocommit, надо изучить)
     conn.commit()
